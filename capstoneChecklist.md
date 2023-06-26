@@ -11,7 +11,7 @@
 
 - [x] Setup Github project repository for FavoSphere application (0.17 hrs)
 - [x] Add team members as read/write collaborators. (0.03 hrs)
-- [x] Add sample markdown files from cohort-56 repo (0.07 hrs)
+- [x] Add sample markdown files from cohort-56 repo (0.08 hrs)
 - [x] Add README.md for tasklist (0.03 hrs)
 - [x] Add `BrityHemming` and `scertian` as read/write collaborators to repo. (0.03 hrs)
 
@@ -21,12 +21,12 @@
 - [x] Discussion on roles- vs permissions-based access for database design. (0.17 hrs)
 
 - [x] Construct a user story (0.33 hrs)
-      - As a casual user, I would like to create an account so that I will be able to save my media favorites to the service in the future.
-      - As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner.
-      - As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
-      - As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
+    - As a casual user, I would like to create an account so that I will be able to save my media favorites to the service in the future.
+    - As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner.
+    - As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
+    - As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
       
-      Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
+    Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
 
 - [x] Create a database schema diagram (2 hrs)
 
@@ -268,7 +268,7 @@ src
 
 ### Part 4: Make requests to the server
 
-- [ ]Create requests.http in http directory
+- [ ] Create requests.http in http directory
 - [ ] Retrieve the favorite to edit
 - [ ] Update the form with the favorite’s property values
 - [ ] Update the onsubmit event handler to handle both `POST` and `PUT` requests
@@ -278,9 +278,11 @@ src
 - [ ] Display a list of favorites
   - [ ] Use `fetch` to `GET` a list of favorites from the FavoSphere API when the website is first loaded
 
-### Part 5: Set up the project (Frontend) (0.17 hrs)
+### Part 5: Frontend
+- [ ] Create react app and set-up client side (0.17 hrs)
+  - Remove unnecessary files (0.067 hrs)
 
-- [ ] Create an `index.html` and `main.js` file as a starting point for your project
+- [ ] Create an `index.html` and `main.js` file as a starting point for your project ()
 - [ ] Add Bootstrap to the `public/index.html` file
 - [ ] Components:
 
