@@ -218,6 +218,36 @@ src
 
 ### models.Favorite
 
+- `private BigInteger userId`
+
+- `private String url`
+
+- `private String title`
+
+- `private String gifURL`
+
+- `private String imageURL`
+
+- `private LocalDate createdOn`
+
+- `private LocalDate updatedOn`
+
+- `private String description`
+
+- `private Boolean isCustomTitle`
+
+- `private Boolean isCustomDescription`
+
+- `private String type`
+
+- `private String source`
+
+- Empty Constructor and “All of the Above” Constructor
+
+- Full Getters and Setters
+
+- Override equals (“All of the Above” as well) and hascode
+
 ### security.AppUser
 - `private int appUserId`
 - `private final String username`
