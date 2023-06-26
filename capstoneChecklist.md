@@ -218,36 +218,6 @@ src
 
 ### models.Favorite
 
-- `private BigInteger userId`
-
-- `private String url`
-
-- `private String title`
-
-- `private String gifURL`
-
-- `private String imageURL`
-
-- `private LocalDate createdOn`
-
-- `private LocalDate updatedOn`
-
-- `private String description`
-
-- `private Boolean isCustomTitle`
-
-- `private Boolean isCustomDescription`
-
-- `private String type`
-
-- `private String source`
-
-- Empty Constructor and “All of the Above” Constructor
-
-- Full Getters and Setters
-
-- Override equals (“All of the Above” as well) and hascode
-
 ### security.AppUser
 - `private int appUserId`
 - `private final String username`
@@ -316,19 +286,18 @@ src
 - [ ] Write `JwtConverter` (1 hr)
 - [ ] Write `JwtRequestFilter` (0.5 hr)
 - [ ] Write `SecurityConfig` (0.75 hr)
+- [ ] Write `AuthController` (0.75 hrs)
+- [ ] Write `FavoriteController` (0.75 hrs)
 
 
-## Part 4: Make requests to the server
 
-- [ ] Create requests.http in http directory
-- [ ] Retrieve the favorite to edit
-- [ ] Update the form with the favorite’s property values
-- [ ] Update the onsubmit event handler to handle both `POST` and `PUT` requests
-- [ ] Set the favorite’s ID on the favorite object
-- [ ] Use `fetch` to `PUT` the updated favorite’s information to the FavoSphere API
-- [ ] On success, refresh the FavoritesList, or on failure, display any validation errors from the API in the UI
-- [ ] Display a list of favorites
-  - [ ] Use `fetch` to `GET` a list of favorites from the FavoSphere API when the website is first loaded
+## Part 4: Make http requests to the server
+
+- [ ] Create requests.http in http directory (0.17 hrs)
+- [ ] Retrieve a favorite using a  `GET` request (0.17 hrs)
+- [ ] Use `POST` to add a favorite (0.25 hrs)
+- [ ] Use `PUT` to edit a favorite with an ID (0.25 hrs)
+- [ ] Display a list of all favorites for an authorized user (0.25 hrs)
 
 ### Part 5: Frontend
 - [ ] Create react app and set-up client side (0.17 hrs)
