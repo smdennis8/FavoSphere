@@ -1,70 +1,140 @@
-# Capstone Checklist
 
-- [] Create a team name.
-  - []
-- [x] Seth creates a capstone Github repository. Be sure to include an appropriate `.gitignore`.
-- [x] Add team members as read/write collaborators.
-- [x] Add `BrityHemming` and `scertian` as read/write collaborators.
-- [x] Detail discussion on .gitignore and file management setup.
-- [x] Detail discussion on application purpose and user flow.
-- [x] Detail discussion on application MVP, features, and stretch goals by milestone/release version.
-- [x] Detail discussion on roles vs permissions based access for database design.
+# FavoSphere Capstone Application
 
-- Start fleshing out your project's features by writing user stories.
+## Tasks
 
-  - https://www.atlassian.com/agile/project-management/user-stories
-  - https://en.wikipedia.org/wiki/User_story
+### Part 1: Project Setup
 
-  Dev10 doesn't have a rigid format requirement for user stories. The important thing is to focus on a discrete thing a user can do with your app. Your story should mention the user's role/persona (public/unauthenticated, standard user, moderator, admin). Users may have more than one role. It should include a single, meaningful interaction with an app feature.
+* [ ] Create a team name.
+  * [ ] The Favorites, The Spheres, The Spheres of Influence, The Spherical Cows, The Spherical Earthers, The AtmoSpheres
 
-  Generic template: "As a [persona], I [want to], [so that]."
+### Part 2: Planning and Wireframing
 
-  ### Good ✔
+* [X] Setup Github project repository for FavoSphere application
+* [X] Add team members as read/write collaborators.
+* [X] Add sample markdown files from cohort-56 repo
+* [X] Add README.md for tasklist
+* [X] Add `BrityHemming` and `scertian` as read/write collaborators to repo.
 
-  - As a casual user, I want to search for products, so I can find something I might be interested in purchasing.
-  - As an authenticated user, I want to add a product to my cart, so I may purchase it later.
-  - As a product administrator, I want to mark a product as unavailable, so I can control inventory when automatic inventory management isn't working.
+* [X] Detail discussion on .gitignore and file management setup.
+* [X] Detail discussion on application purpose and user flow.
+* [X] Detail discussion on application MVP, features, and stretch goals by milestone/release version.
+* [X] Detail discussion on roles vs permissions based access for database design.
 
-  ### Bad ❌
+* [X] Construct a user story
+As a casual user, I would like to create an account so that I will be able to save my media favorites to the service in the future.
+As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner. 
+As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
+As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
+Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
 
-  - As a user, I want to be able to shop on the site, so I can purchase things with my credit card. (too vague, multiple stories)
-  - As an administrator, I want to control data in the Oracle database that isn't editable by a standard user, so I can better serve our customers. (too vague, don't mention specific technologies)
-  - I need to be able to view reports so I can make informed decisions. (too vague, no persona)
+* [X] Create a database schema diagram
+  * [X] Upload schema/ERD diagram to Github
 
-  User stories may have dependencies:
+* [ ] Construct a wireframe
+  * [X] Display Home/Gallery Screen
+  * [X] Add a basic user flow
+  * [ ] Favoriting a favorite user flow
+  * [ ] Editing a favorite user flow
+  * [ ] Searching a favorite user flow
+  * [ ] Sharing a favorite user flow
 
-  - "As an authenticated user, I want to add a product to my cart, so I may purchase it later."
-  - Depends on: "As an unauthenticated user, I want to log in, so I can use features that require authentication." (could be standard user or admin)
-  - Which depends on: "As a new user, I want to create an account, so I can make purchases." (new users can't automatically become admins)
+### Part 3: Set up the project (Backend)
 
-- Once you're happy with user stories, think about the technical details behind them. To "realize" the user story, what has to happen in?:
+* [ ] Create packages for controllers, data, domain, models, and security
+  * [ ] Within Controllers:
+    * [ ] AuthController
+    * [ ] FavoriteController
+  * [ ] Within Data:
+    * [ ] AppUserJdbcTemplateRepository
+    * [ ]  AppUserMapper
+    * [ ] FavoriteJdbcTemplateRepository
+    * [ ] FavoriteMapper
+    * [ ] AppUserRepository Interface
+    * [ ] FavoriteRepository Interface
+  * [ ] Within Domain:
+    * [ ] EmailService
+    * [ ] ActionStatus Enum
+    * [ ] FavoriteService
+    * [ ] FavoriteResult
+* [ ] Within Models:
+  * [ ] AppUser
+  * [ ] Favorite
+* [ ] Within Security:
+  * [ ] AppUserService
+  * [ ] JwtConverter
+  * [ ] JwtRequestFilter
+  * [ ] SecurityConfig
 
-  - the database (tables and relationships)
-  - the REST API (models, repositories, services, controllers)
-  - the UI (components and their relationships)
-  - other details (complex rules, calculations, challenging technologies)
+### Part 4: Make requests to the server
 
-- Create concrete technical tasks, estimated to take no longer than 4 hours, that target design and/or code in specific physical or conceptual layers. Hour estimates are required. From the user story perspective, some technical tasks may be repeated. For example, "Create the `product` table in the database." may be a technical requirement for several user stories.
+* [ ]Create requests.http in http directory
+* [ ] Retrieve the favorite to edit
+* [ ] Update the form with the favorite’s property values
+* [ ] Update the onsubmit event handler to handle both `POST` and `PUT` requests
+* [ ] Set the favorite’s ID on the favorite object
+* [ ] Use `fetch` to `PUT` the updated favorite’s information to the FavoSphere API
+* [ ] On success, refresh the FavoritesList, or on failure, display any validation errors from the API in the UI
+* [ ] Display a list of favorites
+  * [ ] Use `fetch` to `GET` a list of favorites from the FavoSphere API when the website is first loaded
 
-  Try your best to keep tasks granular. If a task will take longer than 4 hours, consider ways to break it down further:
+### Part 5: Set up the project (Frontend)
 
-  - Implement the `findByCategory` method in the `ProductRepository`.
-  - Implement the `findById` method in the `ProductRepository`.
+* [ ] Create an `index.html` and `main.js` file as a starting point for your project
+* [ ] Add Bootstrap to the `public/index.html` file
+* [ ] Components:
+  * [ ] Navigation Panel Wrapper
+  * [ ] Filter Bar Component
+  * [ ] Home Component
+  * [ ] Login Page
+  * [ ] Favorites Gallery Grid Component
+  * [ ] Favorites Table Component
+  * [ ] Favorites Staging/Inbox Component
+  * [ ] Edit Favorite Page
+  * [ ] Contact Page
+  * [ ] Add a link to the Bootstrap CSS using the [CDN from the official docs](https://getbootstrap.com/docs/4.6/getting-started/introduction/#css)
+  * [ ] Add the [`container` CSS class](https://getbootstrap.com/docs/4.6/layout/overview/#containers) to the `<div id="root"></div>` element
 
-  versus
+  * [ ] Use HTML and JavaScript to render the favorites array
+  * [ ] Stub out click event handlers for the "Add Favorite", "Edit Favorite", and "Delete Favorite" buttons
 
-  - Implement the `ProductRepository`.
+* [ ] Conditionally render sections of the page
+  * [ ] Add a state variable to track the current view
+  * [ ] Add a method to update the current view and conditionally render the list or the form
+  * [ ] Call the method to update the current where needed
 
-  Determine tasks dependencies. For example, a data model task must happen _before_ a repository task. A REST API task may need to be complete before a React component task. (Though not always. Sometimes we agree on the "shape" of a model/class/object and then mock those interactions in different layers.)
+### Part 6: Finishing Touches
 
-- When everything is estimated to the most granular level possible, total up your hours. Is it even possible to complete the project in 2 weeks? Is there too much work? Too little? If too much, preemptively start removing features. If too little, add features.
+* [ ] Apply Bootstrap styling
+  * [ ] Style all buttons
+  * [ ] Style the favoriteslist
+  * [ ] Style the form
 
-- Take a step back from user stories. Consider your data model, class model, layers, and project structure more cohesively. Work through design from a zoomed-out context. Does this change technical tasks?
+  * [ ] Add onsubmit event handler to the form element (be sure to prevent the form from submitting!)
+  * [ ] Create a favorite object
+  * [ ] Use `fetch` to `POST` the new favorite’s information to the FavoSphere API
+  * [ ] On success, refresh the favorites list, or on failure, display any validation errors from the API in the UI
 
-- Finally, with dependencies in mind, start scheduling tasks for your team members.
+* [ ] Support deleting favorites
+  * [ ] Confirm the deletion with the user
+  * [ ] Use `fetch` to `DELETE` the favorite from the FavoSphere API
+  * [ ] On success, refresh the favorites list
+**Commit all changes and push to GitHub**
 
-## Tips
+## High-Level Requirements
 
-- Tackle the hardest thing first. If you save it for last, the effort required won't be known until the end. By then, it will be too late. By scheduling it first, the hardest thing's scope reveals itself immediately. If you're still struggling with it at the end of the week, pivot.
+Implement a full CRUD UI for favorites.
 
-- Prototype, prototype, prototype (mostly for unknowns). Don't assume you'll know how to integrate something unknown immediately. Instead, build low-effort, low-risk prototypes that won't be used in the project and then use lessons-learned to integrate the formerly-unknown tech into your project.
+* Display all favorites (user, admin)
+* Add a favorite (user, admin)
+* Update a favorite (user, admin)
+* Delete a favorite (user, admin)
+* CRUD for other users (admin)
+* Stretch Goal: CRUD for other users within the same group (group user)
+
+## Technical Requirements
+
+* Always use semantically correct markup.
+* With the exception of Bootstrap (or another CSS framework) for styles, don't use any libraries or frameworks.
+* Use `fetch` for async HTTP.
+* Scrapers specific to website links copied to FavoSphere
