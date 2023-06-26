@@ -46,81 +46,111 @@
 ```
 src
 ├───main
-│   ├───java
-│   │   └───learn
-│   │       └───rent
-│   │           │   App.java
-│   │           │
-│   │           ├───data
-│   │           │       DataException.java
-│   │           │       ReservationFileRepository.java
-│   │           │       ReservationRepository.java
-│   │           │       HostFileRepository.java
-│   │           │       HostRepository.java
-│   │           │       GuestFileRepository.java
-│   │           │       GuestRepository.java
-│   │           │
-│   │           ├───domain
-│   │           │       Response.java
-│   │           │       Result.java
-│   │           │       HostService.java
-│   │           │       GuestService.java
-│   │           │       ReservationService.java
-│   │           │
-│   │           ├───models
-│   │           │       Guest.java
-│   │           │       Reservation.java
-│   │           │       Host.java
-│   │           │
-│   │           └───ui
-│   │                   ConsoleIO.java
-│   │                   MainMenuOptions.java
-│   │                   Controller.java
-│   │                   View.java
-│   │
-|   └───reources
+    ├───java
+       └───learn
+           └───favorite
+               │      App.java
+               │      AppConfig.java
+               │
+               ├───controllers
+               │       AuthController.java
+               │       FavoriteController.java
+               │
+               ├───data
+               │       AppUserJdbcTemplateRepository.java
+               │       AppUserMapper.java
+               │       AppUserRepostiroy.java (Interface)
+               │       FavoriteJdbcTemplateRepository.java
+               │       FavoriteMapper.java
+               │       FavoriteRepository.java (Interface)
+               │
+               ├───domain
+               │       ActionStatus.java (Enum)
+               │       FavoriteService.java
+               │       Result.java
+               │
+               ├───models
+               |       AppUser.java
+               |       Favorite.java
+               |
+               ├───security
+               |       AppUserService.java
+               |       JwtConverter.java
+               |       JwtRequestFilter.java
+               |       SecurityConfig.java
+               |
+    └───reources
+        |       application.properties
 └───test
     └───java
         └───learn
-            └───rent
-                ├───data
-                │       ReservationFileRepositoryTest.java
-                │       ReservationRepositoryTestDouble.java
-                │       HostFileRepositoryTest.java
-                │       HostRepositoryTestDouble.java
-                │       GuestFileRepositoryTest.java
-                │       GuestRepositoryTestDouble.java
+            └───favorite
+                ├───controllers
+                │       AuthControllerTest.java
+                │       FavoriteControllerTest.java
+                │       TestHelpers.java
                 │
-                └───domain
-                        ReservationServiceTest.java
-                        GuestServiceTest.java
-                        HostServiceTest.java
+                ├───data
+                |        AppUserJdbcTemplateRepositoryTest.
+                |        FavoriteJdbcTemplateRepositoryTest.
+                |
+                ├───domain
+                |        HostServiceTest.java
+                |
+                ├───security
+                |        AppUserServiceTest.java
+                |
+    └───reources
+        |       application.properties
 ```
 
-- [ ] Create packages for controllers, data, domain, models, and security
-  - [ ] Within Controllers:
-    - [ ] AuthController
-    - [ ] FavoriteController
-  - [ ] Within Data:
-    - [ ] AppUserJdbcTemplateRepository
-    - [ ] AppUserMapper
-    - [ ] FavoriteJdbcTemplateRepository
-    - [ ] FavoriteMapper
-    - [ ] AppUserRepository Interface
-    - [ ] FavoriteRepository Interface
-  - [ ] Within Domain:
-    - [ ] EmailService
-    - [ ] ActionStatus Enum
-    - [ ] FavoriteService
-    - [ ] FavoriteResult
-- [ ] Within Models:
-  - [ ] AppUser
-  - [ ] Favorite
-- [ ] Within Security:
-  - [ ] AppUserService
-  - [ ] JwtConverter
-  - [ ] JwtRequestFilter
-  - [ ] SecurityConfig
+### App
+
+- `public static void main(String[])` -- instantiate all required classes with valid arguments, dependency injection. run controller
+
+### AppConfig
+
+- `public PasswordEncoder getEncoder()` -- returns a new BCryptPasswordEncoder
+
+### controllers.AuthController
+
+- `public ResponseEntity<Map<String, String>> authenticate(@RequestBody Map<String, String> credentials)` -- Check for a valid user
+
+- `public ResponseEntity<Map<String, String>> refreshToken(@AuthenticationPrincipal AppUser appUser)`
+
+- `public ResponseEntity<?> createAccount(@RequestBody Map<String, String> credentials)`
+
+### controllers.FavoriteController
+
+### data.AppUserJdbcTemplateRepository
+
+### data.AppUserMapper
+
+### data.AppUserRepository
+
+### data.FavoriteJdbcTemplateRepository
+
+### data.FavoriteMapper
+
+### data.FavoriteRepository
+
+### domain.ActionStatus
+
+### domain.FavoriteService
+
+### domain.Result
+
+### models.AppUser
+
+### models.Favorite
+
+### security.AppUserService
+
+### security.JwtConverter
+
+### security.JwtRequestFilter
+
+### security.SecurityConfig
 
 ### Part 4: Make requests to the server
 
