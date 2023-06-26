@@ -72,10 +72,10 @@ src
                │       Result.java
                │
                ├───models
-               |       AppUser.java
                |       Favorite.java
                |
                ├───security
+               |       AppUser.java
                |       AppUserService.java
                |       JwtConverter.java
                |       JwtRequestFilter.java
@@ -150,7 +150,7 @@ src
 
 ### data.AppUserMapper
 
-- `public AppUser mapRow(ResultSet rs, int i) throws SQLException` -- Vasilates between IntelliJ and MySQL Workbench
+- `public AppUser mapRow(ResultSet rs, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
 
 ### data.AppUserRepository
 
@@ -174,7 +174,7 @@ src
 
 ### data.FavoriteMapper
 
-- `public Favorite mapRow(ResultSet resultSet, int i) throws SQLException` -- Vasilates between IntelliJ and MySQL Workbench
+- `public Favorite mapRow(ResultSet resultSet, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
 
 ### data.FavoriteRepository
 
@@ -255,17 +255,17 @@ src
 - `public AppUser getUserFromToken(String token)`
 
 ### security.JwtRequestFilter
-- `private final JwtConverter converter;` -- 
+- `private final JwtConverter converter;`
 - `public JwtRequestFilter(AuthenticationManager authenticationManager, JwtConverter converter)` -- constructor
 - `protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain chain)` -- 
+                                    FilterChain chain)`
 
 ### security.SecurityConfig
 - `private final JwtConverter jwtConverter;`
 - `public SecurityConfig(JwtConverter jwtConverter)` -- constructor
-- `public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig)` -- 
-- `public AuthenticationManager authenticationManager(AuthenticationConfiguration config)` -- 
+- `public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig)`
+- `public AuthenticationManager authenticationManager(AuthenticationConfiguration config)`
 
 ### Steps for the backend
 - [ ] Set-up project backend (Maven project; packages & classes) (0.17 hrs)
@@ -277,6 +277,15 @@ src
 - [ ] Extract `FavoriteRepository` (0.5 hrs)
 - [ ] Write `AppUsermapper` (0.25 hrs)
 - [ ] Write `FavoriteMapper` (0.25 hrs)
+- [ ] Write `ActionStatus` (0.25 hrs)
+- [ ] Write `FavoriteService` (1.5 hrs)
+- [ ] Write `Result` (0.33 hrs)
+- [ ] Write `Favorite` (0.25 hrs)
+- [ ] Write `AppUser` (0.25 hrs)
+- [ ] Write `AppUserService` (1 hr)
+- [ ] Write `JwtConverter` (1 hr)
+- [ ] Write `JwtRequestFilter` (0.5 hr)
+- [ ] Write `SecurityConfig` (0.75 hr)
 
 
 ## Part 4: Make requests to the server
@@ -295,47 +304,41 @@ src
 - [ ] Create react app and set-up client side (0.17 hrs)
   - Remove unnecessary files (0.067 hrs)
 
-- [ ] Create an `index.html` and `main.js` file as a starting point for your project ()
-- [ ] Add Bootstrap to the `public/index.html` file
+- [ ] Create an `index.html` and `main.js` file as a starting point for your project (0.25 hrs)
+- [ ] Add Bootstrap to the `public/index.html` file (0.08 hrs)
 - [ ] Components:
 
-  - [ ] Navigation Panel Wrapper
-  - [ ] Filter Bar Component
-  - [ ] Home Component
-  - [ ] Login Page
-  - [ ] Favorites Gallery Grid Component
-  - [ ] Favorites Table Component
-  - [ ] Favorites Staging/Inbox Component
-  - [ ] Edit Favorite Page
-  - [ ] Contact Page
-  - [ ] Add a link to the Bootstrap CSS using the [CDN from the official docs](https://getbootstrap.com/docs/4.6/getting-started/introduction/#css)
-  - [ ] Add the [`container` CSS class](https://getbootstrap.com/docs/4.6/layout/overview/#containers) to the `<div id="root"></div>` element
+  - [ ] Navigation Panel Wrapper (0.5 hrs)
+  - [ ] Filter Bar Component (3 hrs)
+  - [ ] Home Component - Gallery View (3 hrs)
+  - [ ] Login Page (2 hrs)
+  - [ ] Favorites Gallery Grid Component (1 hr)
+  - [ ] Favorites Staging/Inbox Component (1.5 hrs)
+  - [ ] Edit Favorite Page (1.5 hrs)
+  - [ ] Stub out click event handlers for the "Add Favorite", "Edit Favorite", and "Delete Favorite" buttons (1 hr)
 
-  - [ ] Use HTML and JavaScript to render the favorites array
-  - [ ] Stub out click event handlers for the "Add Favorite", "Edit Favorite", and "Delete Favorite" buttons
-
-- [ ] Conditionally render sections of the page
-  - [ ] Add a state variable to track the current view
+- [ ] Conditionally render sections of the page (1.5 hr)
+  - [ ] Add a state variable to track the current view 
   - [ ] Add a method to update the current view and conditionally render the list or the form
   - [ ] Call the method to update the current where needed
 
 ### Part 6: Finishing Touches
 
-- [ ] Apply Bootstrap styling
+- [ ] Choose an appropriate CSS framework for the style desired and implement (0.25 hrs)
 
-  - [ ] Style all buttons
-  - [ ] Style the favoriteslist
-  - [ ] Style the form
+  - [ ] Style all buttons (0.5 hrs)
+  - [ ] Style the favorites list (grid) in gallery view (0.75 hrs)
+  - [ ] Style the form (0.75 hrs)
 
-  - [ ] Add onsubmit event handler to the form element (be sure to prevent the form from submitting!)
-  - [ ] Create a favorite object
-  - [ ] Use `fetch` to `POST` the new favorite’s information to the FavoSphere API
-  - [ ] On success, refresh the favorites list, or on failure, display any validation errors from the API in the UI
+  - [ ] Add onsubmit event handler to the form element (be sure to prevent the form from submitting!) (0.25 hrs)
+  - [ ] Create a favorite object (0.25 hrs)
+  - [ ] Use `fetch` to `POST` the new favorite’s information to the FavoSphere API (0.5 hrs)
+  - [ ] On success, refresh the favorites list, or on failure, display any validation errors from the API in the UI (1 hr)
 
 - [ ] Support deleting favorites
-  - [ ] Confirm the deletion with the user
-  - [ ] Use `fetch` to `DELETE` the favorite from the FavoSphere API
-  - [ ] On success, refresh the favorites list
+  - [ ] Confirm the deletion with the user (0.25 hrs)
+  - [ ] Use `fetch` to `DELETE` the favorite from the FavoSphere API (0.33 hrs)
+  - [ ] On success, refresh the favorites list (0.33 hrs)
         **Commit all changes and push to GitHub**
 
 ## High-Level Requirements
