@@ -2,14 +2,14 @@
 
 Once you have user stories at a sufficiently granular level, use them to generate concrete tasks. Walk through the questions below. Not all will apply, but they will get you thinking about what is required. Questions are intended to be exhaustive, but, of course, they're not. Consider other technical and non-technical tasks that may arise from a user story.
 
-## For each user story:
+## For each user story
 
 1. Which database tables and relationships are required? If you're using a non-relational data store as a stretch goal, how is data represented in that stretch goal?
 
 2. Are you designing your database at a higher level, not per user story? If so:
 
-    - Create a task for the diagram. How long will it take? 
-    - Create a task from the DDL. How long will that take? 
+    - Create a task for the diagram. How long will it take?
+    - Create a task from the DDL. How long will that take?
     - Create a task for populating test data via DML. Estimate it.
     - If your test database is different than your production database (maybe establishing known good state), create a task for that DML. Estimate it.
 
@@ -76,3 +76,4 @@ Use user stories to drive tasks, but don't forgot about larger, more general tas
 - Allocating time to troubleshoot cloud deployment.
 
 Once every task is defined and estimated, total them up. Assuming a ten-day project with 8 hours per person per day (that's 8 hours of real work, most humans "work" longer but don't get 8 hours of productivity), anything more than 240 hours is too much. Reduce scope. If your estimate is significantly less than 240 hours, increase scope.
+>

@@ -23,7 +23,7 @@
 
 * [X] Construct a user story
 As a casual user, I would like to create an account so that I will be able to save my media favorites to the service in the future.
-As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner. 
+As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner.
 As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
 As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
 Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
