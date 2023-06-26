@@ -43,6 +43,7 @@
 
 ## Package/Class Overview
 
+```
 src
 ├───main
     ├───java
@@ -68,11 +69,11 @@ src
                │       FavoriteService.java
                │       Result.java
                │
-               └───models
+               ├───models
                |       AppUser.java
                |       Favorite.java
                |
-               └───security
+               ├───security
                |       AppUserService.java
                |       JwtConverter.java
                |       JwtRequestFilter.java
@@ -89,18 +90,19 @@ src
                 │       FavoriteControllerTest.java
                 │       TestHelpers.java
                 │
-                └───data
-                |        AppUserJdbcTemplateRepositoryTest.java
-                |        FavoriteJdbcTemplateRepositoryTest.java
+                ├───data
+                |        AppUserJdbcTemplateRepositoryTest.
+                |        FavoriteJdbcTemplateRepositoryTest.
                 |
-                └───domain
+                ├───domain
                 |        HostServiceTest.java
                 |
-                └───security
+                ├───security
                 |        AppUserServiceTest.java
                 |
     └───reources
         |       application.properties
+```
 
 ### App
 
@@ -111,6 +113,12 @@ src
 - `public PasswordEncoder getEncoder()` -- returns a new BCryptPasswordEncoder
 
 ### controllers.AuthController
+
+- `public ResponseEntity<Map<String, String>> authenticate(@RequestBody Map<String, String> credentials)` -- Check for a valid user
+
+- `public ResponseEntity<Map<String, String>> refreshToken(@AuthenticationPrincipal AppUser appUser)`
+
+- `public ResponseEntity<?> createAccount(@RequestBody Map<String, String> credentials)`
 
 ### controllers.FavoriteController
 
