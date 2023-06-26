@@ -214,17 +214,56 @@ src
 
 - `public boolean isSuccess()` -- Success if the messages field length is 0; failure otherwise
 
-### models.AppUser
-
 ### models.Favorite
 
+### security.AppUser
+- `private int appUserId`
+- `private final String username`
+- `private final String password`
+- `private boolean enabled`
+- `private final Collection<GrantedAuthority> authorities`
+- `public AppUser(int appUserId, String username, String password, boolean enabled, List<String> roles)`
+- `private static Collection<GrantedAuthority> convertRolesToAuthorities(List<String> roles)`
+- `public Collection<GrantedAuthority> getAuthorities()`
+`Getters and setters for all fields`
+
 ### security.AppUserService
+- `private final AppUserRepository repository`
+- `private final PasswordEncoder encoder`
+- `public AppUserService(AppUserRepository repository, PasswordEncoder encoder)`
+- `public UserDetails loadUserByUsername(String username)`
+- `public Result<AppUser> create(Credentials credentials)`
+- `private Result<AppUser> validate(Credentials credentials)`
+- `private boolean isValidPassword(String password)`
+
+### security.Credentials
+- `private String username`
+- `private String password`
+- `public String getUsername()`
+- `public void setUsername(String username)`
+- `public String getPassword()`
+- `public void setPassword(String password)`
 
 ### security.JwtConverter
+- `private Key key` -- 
+- `private final String ISSUER`
+- `private final int EXPIRATION_MINUTES`
+- `private final int EXPIRATION_MILLIS`
+- `public String getTokenFromUser(AppUser user)`
+- `public AppUser getUserFromToken(String token)`
 
 ### security.JwtRequestFilter
+- `private final JwtConverter converter;` -- 
+- `public JwtRequestFilter(AuthenticationManager authenticationManager, JwtConverter converter)` -- constructor
+- `protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain chain)` -- 
 
 ### security.SecurityConfig
+- `private final JwtConverter jwtConverter;`
+- `public SecurityConfig(JwtConverter jwtConverter)` -- constructor
+- `public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig)` -- 
+- `public AuthenticationManager authenticationManager(AuthenticationConfiguration config)` -- 
 
 ### Part 4: Make requests to the server
 
