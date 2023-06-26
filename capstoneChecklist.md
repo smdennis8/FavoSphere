@@ -106,39 +106,113 @@ src
 
 ### App
 
-- `public static void main(String[])` -- instantiate all required classes with valid arguments, dependency injection. run controller
+- `public static void main(String[])` -- Instantiates all required classes with valid arguments, dependency injection. run controller
 
 ### AppConfig
 
-- `public PasswordEncoder getEncoder()` -- returns a new BCryptPasswordEncoder
+- `public PasswordEncoder getEncoder()` -- Returns a new BCryptPasswordEncoder
 
 ### controllers.AuthController
 
-- `public ResponseEntity<Map<String, String>> authenticate(@RequestBody Map<String, String> credentials)` -- Check for a valid user
+- `public ResponseEntity<Map<String, String>> authenticate(@RequestBody Map<String, String> credentials)` -- Checks for a valid user
 
-- `public ResponseEntity<Map<String, String>> refreshToken(@AuthenticationPrincipal AppUser appUser)`
+- `public ResponseEntity<Map<String, String>> refreshToken(@AuthenticationPrincipal AppUser appUser)` -- Refreshes the JWT Token
 
-- `public ResponseEntity<?> createAccount(@RequestBody Map<String, String> credentials)`
+- `public ResponseEntity<?> createAccount(@RequestBody Map<String, String> credentials)` -- Accepts a username and email from user to create an account
 
 ### controllers.FavoriteController
 
+- `public List<Favorite> findAll()` -- Finds all of the existing Favorites
+
+- `public ResponseEntity<Favorite> findById(@PathVariable int favoriteId)` -- Finds a particular Favorite by its ID
+
+- `public ResponseEntity<Favorite> add(@RequestBody Favorite favorite)` -- Adds a new Favorite
+
+- `public ResponseEntity<Void> update(@PathVariable int favoriteId, @RequestBody Favorite favorite)` -- Edits an existing Favorite
+
+- `public ResponseEntity<Void> delete(@PathVariable int favoriteId)` -- Upon Confirmation, Deletes an existing Favorite
+
+- `private HttpStatus getStatus(Result<Favorite> result, HttpStatus statusDefault)` -- Returns a particular HttpStatus depending on the result.getStatus() value
+
 ### data.AppUserJdbcTemplateRepository
+
+- `public AppUser findByUsername(String username)` -- Searches for a user by their username
+
+- `public AppUser create(AppUser user)` -- Creates a new user from the credentials passed to it
+
+- `public boolean update(AppUser user)` -- Updates an existing user
+
+- `private void updateRoles(AppUser user)` -- Updates the roles that an existing user has
+
+- `private List<String> getRolesByUsername(String username)` -- Returns a list of all the roles that a given username has
 
 ### data.AppUserMapper
 
+- `public AppUser mapRow(ResultSet rs, int i) throws SQLException` -- Vasilates between IntelliJ and MySQL Workbench
+
 ### data.AppUserRepository
+
+- `AppUser findByUsername(String username)`
+
+- `AppUser create(AppUser user)`
+
+- `boolean update(AppUser user)`
 
 ### data.FavoriteJdbcTemplateRepository
 
+- `public List<Favorite> findAll()` -- Displays all of the favorites
+
+- `public Favorite findById(int favoriteId)` -- Finds a particular Favorite by its ID
+
+- `public Favorite add(Favorite favorite)` -- Adds a new Favorite
+
+- `public boolean update(Favorite favorite)` -- Updates an existing Favorite
+
+- `public boolean deleteById(int favoriteId)` -- Upon Confirmation, Deletes an existing Favorite
+
 ### data.FavoriteMapper
+
+- `public Favorite mapRow(ResultSet resultSet, int i) throws SQLException` -- Vasilates between IntelliJ and MySQL Workbench
 
 ### data.FavoriteRepository
 
+- `List<Favorite> findAll()`
+
+- `Favorite findById(int favoriteId)`
+
+- `Favorite add(Favorite favorite)`
+
+- `boolean update(Favorite favorite)`
+
+- `boolean deleteById(int favoriteId)`
+
 ### domain.ActionStatus
+
+- Enum for SUCCESS, INVALID, DUPLICATE, NOT_FOUND
 
 ### domain.FavoriteService
 
+- `public List<Favorite> findAll()` -- Displays all of the Favorites
+
+- `public Favorite findById(int favoriteId)` -- Finds a particular Favorite based on its ID
+
+- `public Result<Favorite> add(Favorite favorite)` -- Adds a new Favorite
+
+- `public Result<Favorite> update(Favorite favorite)` -- Updates an existing Favorite
+
+- `public Result<Favorite> deleteById(int favoriteId)` -- Upon Confirmation, Deletes an existing Favorite
+
+- `private Result<Favorite> validate(Favorite favorite)` -- Ensures that all of the required inputs are filled in, no incorrect information is inputted, and no duplicates are created
+
 ### domain.Result
+
+- `private ActionStatus status`
+
+- `private ArrayList<String> messages`
+
+- `private T payload`
+
+- `public boolean isSuccess()` -- Success if the messages field length is 0; failure otherwise
 
 ### models.AppUser
 
