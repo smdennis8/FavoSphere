@@ -2,12 +2,12 @@
 
 ## Tasks
 
-### Part 1: Project Setup
+## Part 1: Project Setup
 
 - [ ] Create a team name.
   - [ ] The Favorites, The Spheres, The Spheres of Influence, The Spherical Cows, The Spherical Earthers, The AtmoSpheres
 
-### Part 2: Planning and Wireframing
+## Part 2: Planning and Wireframing
 
 - [x] Setup Github project repository for FavoSphere application (0.17 hrs)
 - [x] Add team members as read/write collaborators. (0.03 hrs)
@@ -40,9 +40,10 @@
   - [ ] Searching a favorite user flow (0.75 hrs)
   - [ ] Sharing a favorite user flow (0.75 hrs)
 
-### Part 3: Set up the project (Backend) (0.17 hrs)
+## Part 3: Backend
 
-## Package/Class Overview
+
+### Package/Class Overview
 
 ```
 src
@@ -107,7 +108,7 @@ src
 
 ### App
 
-- `public static void main(String[])` -- Instantiates all required classes with valid arguments, dependency injection. run controller
+- `public static void main(String[])` -- Instantiates all required classes with valid arguments, dependency injection annotation
 
 ### AppConfig
 
@@ -266,7 +267,19 @@ src
 - `public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig)` -- 
 - `public AuthenticationManager authenticationManager(AuthenticationConfiguration config)` -- 
 
-### Part 4: Make requests to the server
+### Steps for the backend
+- [ ] Set-up project backend (Maven project; packages & classes) (0.17 hrs)
+- [ ] Write `App.java` class - with dependency injection handled by SpringBootApplication (0.17 hrs)
+- [ ] Write `AppConfig` class (0.17 hrs)
+- [ ] Write `AppUserJdbcTemplateRepository` (0.5 hrs)
+- [ ] Extract `AppUserRepository` (0.25 hrs)
+- [ ] Write `FavoriteJdbcTemplateRepository` (0.5 hrs)
+- [ ] Extract `FavoriteRepository` (0.5 hrs)
+- [ ] Write `AppUsermapper` (0.25 hrs)
+- [ ] Write `FavoriteMapper` (0.25 hrs)
+
+
+## Part 4: Make requests to the server
 
 - [ ] Create requests.http in http directory
 - [ ] Retrieve the favorite to edit
