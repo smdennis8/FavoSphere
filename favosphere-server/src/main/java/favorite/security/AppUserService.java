@@ -42,8 +42,9 @@ public class AppUserService implements UserDetailsService {
 
         String hashedPassword = encoder.encode(credentials.getPassword());
 
-        AppUser appUser = new AppUser(0, credentials.getEmail(),
-                hashedPassword, true, List.of("USER"));
+        AppUser appUser = new AppUser(0, null, null, null, null,
+                credentials.getEmail(), hashedPassword, null, null, true,
+                List.of("USER"));
 
         try {
             appUser = repository.create(appUser);
