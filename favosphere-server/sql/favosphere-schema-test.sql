@@ -2,8 +2,8 @@ drop database if exists favosphere_test;
 create database favosphere_test;
 use favosphere_test;
 
-create table `user` (
-    user_id bigint primary key auto_increment,
+create table `app_user` (
+    app_user_id bigint primary key auto_increment,
     first_name varchar(50) not null,
     middle_name varchar(50) not null,
     last_name varchar(50) not null ,
@@ -15,8 +15,8 @@ create table `user` (
     user_enabled bit not null default(1)
 );
 
-create table `role` (
-    role_id int primary key auto_increment,
+create table `app_role` (
+    app_role_id int primary key auto_increment,
     title varchar(50) not null unique,
     `description` varchar(255) not null,
     enabled bit not null default(1),
@@ -24,17 +24,17 @@ create table `role` (
     updated_on datetime not null
 );
 
-create table user_role (
-    user_id bigint not null,
-    role_id int not null,
-    constraint pk_user_role
-        primary key (user_id, role_id),
-    constraint fk_user_role_user_id
-        foreign key (user_id)
-        references `user`(user_id),
-    constraint fk_user_role_role_id
-        foreign key (role_id)
-        references `role`(role_id)
+create table app_user_role (
+    app_user_id bigint not null,
+    app_role_id int not null,
+    constraint pk_app_user_role
+        primary key (app_user_id, app_role_id),
+    constraint fk_app_user_role_app_user_id
+        foreign key (app_user_id)
+        references `app_user`(app_user_id),
+    constraint fk_app_user_role_app_role_id
+        foreign key (app_role_id)
+        references `app_role`(app_role_id)
 );
 
 create table permission (
@@ -47,13 +47,13 @@ create table permission (
 );
 
 create table role_permission (
-    role_id int not null,
+    app_role_id int not null,
     permission_id int not null,
     constraint pk_role_permission_id
-        primary key (role_id, permission_id),
-    constraint fk_role_permission_role_id
-        foreign key (role_id)
-        references `role`(role_id),
+        primary key (app_role_id, permission_id),
+    constraint fk_role_permission_app_role_id
+        foreign key (app_role_id)
+        references `app_role`(app_role_id),
     constraint fk_role_permission_permission_id
         foreign key (permission_id)
         references permission(permission_id)
@@ -61,7 +61,7 @@ create table role_permission (
 
 create table favorite (
     favorite_id bigint primary key auto_increment,
-    user_id bigint not null,
+    app_user_id bigint not null,
     url varchar(500) not null,
     `source` varchar(255),
     creator varchar(50),
@@ -76,9 +76,9 @@ create table favorite (
 	is_custom_description bit default(null),
     is_custom_image bit default(null),
 	is_custom_gif bit default(null),
-    constraint fk_user_user_id
-        foreign key (user_id)
-        references `user`(user_id)
+    constraint fk_favorite_app_user_id
+        foreign key (app_user_id)
+        references `app_user`(app_user_id)
 );
 
 create table tag (
@@ -108,24 +108,24 @@ begin
     
     delete from favorite;
     alter table favorite auto_increment = 1;
-    delete from user_role;
+    delete from app_user_role;
     delete from role_permission;
-    delete from `role`;
-    alter table `role` auto_increment = 1;
-    delete from `user`;
-    alter table `user` auto_increment = 1;
+    delete from `app_role`;
+    alter table `app_role` auto_increment = 1;
+    delete from `app_user`;
+    alter table `app_user` auto_increment = 1;
     
-	insert into `role` (title, `description`, enabled, created_on, updated_on) values
+	insert into `app_role` (title, `description`, enabled, created_on, updated_on) values
     ('USER', 'Manages own favorites', 1, '2023-06-26','2023-06-26'),
     ('ADMIN', 'Manages all user favorites', 1, '2023-06-26','2023-06-26');
 
 -- passwords are set to "P@ssw0rd!"
-insert into `user` (first_name, middle_name, last_name, phone, email, password_hash, registered_on, last_login, user_enabled)
+insert into `app_user` (first_name, middle_name, last_name, phone, email, password_hash, registered_on, last_login, user_enabled)
     values
     ('John', 'Jingle-Heimer', 'Smith', '1-111-111-1111', 'john@smith.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2010-01-11', '2023-06-26', 1),
     ('Sally', 'Wally', 'Jones', '1-222-222-2222', 'sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2020-02-22', '2023-06-26', 1);
 
-insert into user_role
+insert into app_user_role
     values
     (1, 2),
     (2, 1);
@@ -144,7 +144,7 @@ insert into role_permission
     (2, 3),
     (2, 4);
 
-insert into favorite (user_id, url, `source`, creator, `type`, title, `description`, gif_url, image_url, created_on, updated_on, is_custom_title, is_custom_description, is_custom_image, is_custom_gif)
+insert into favorite (app_user_id, url, `source`, creator, `type`, title, `description`, gif_url, image_url, created_on, updated_on, is_custom_title, is_custom_description, is_custom_image, is_custom_gif)
     values 
         (1, 'https://www.youtube.com/watch?v=R6EFebizEKs', 'Youtube', 'News Be Funny', 'Video', 'Best Cats Work From Home News Bloopers',
         'Watch the Best Cats Work From Home News Bloopers! In this unique video with original commentary, we comment and react to the best cats news bloopers that happened during working from 
