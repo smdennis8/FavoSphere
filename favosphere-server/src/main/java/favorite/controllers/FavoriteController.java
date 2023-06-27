@@ -8,8 +8,9 @@ import favorite.domain.ResultType;
 import favorite.domain.FavoriteService;
 import favorite.models.Favorite;
 
+import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/favorite")
@@ -17,7 +18,7 @@ public class FavoriteController {
 
     private final FavoriteService service;
 
-    public VideoGameController(FavoriteService service) {
+    public FavoriteController(FavoriteService service) {
         this.service = service;
     }
 
@@ -45,8 +46,8 @@ public class FavoriteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable int id, @RequestBody Favorite favorite) {
-        if(id != favorite.getId()) {
+    public ResponseEntity<Object> update(@PathVariable BigInteger id, @RequestBody Favorite favorite) {
+        if(!Objects.equals(id, favorite.getFavoriteId())) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         Result<Favorite> result = service.update(favorite);

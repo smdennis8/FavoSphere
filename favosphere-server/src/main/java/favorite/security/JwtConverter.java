@@ -5,6 +5,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -46,11 +47,20 @@ public class JwtConverter {
                     .build()
                     .parseClaimsJws(token.substring(7));
 
-            String username = jws.getBody().getSubject();
             int appUserId = (int) jws.getBody().get("app_user_id");
+            String firstName = jws.getBody().getSubject();
+            String middleName = jws.getBody().getSubject();
+            String lastName = jws.getBody().getSubject();
+            String phone = jws.getBody().getSubject();
+            String email = jws.getBody().getSubject();
+            String password = jws.getBody().getSubject();
+            LocalDate registeredOn = (LocalDate) jws.getBody().get("registered_on");
+            LocalDate lastLogin = (LocalDate) jws.getBody().get("last_login");
+            Boolean userEnabled = (Boolean) jws.getBody().get("user_enabled");
             String authStr = (String) jws.getBody().get("authorities");
 
-            return new AppUser(appUserId, username, null, true,
+            return new AppUser(appUserId, firstName, middleName, lastName, phone,
+                    email, password, registeredOn, lastLogin, userEnabled,
                     Arrays.asList(authStr.split(",")));
 
         } catch (JwtException e) {

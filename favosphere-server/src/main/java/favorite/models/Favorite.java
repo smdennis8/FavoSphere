@@ -11,6 +11,7 @@ public class Favorite {
     private String url;
     private String source;
     private String creator;
+    private String type;
     private String title;
     private String description;
     private String gifUrl;
@@ -23,11 +24,8 @@ public class Favorite {
     private Boolean isCustomImage;
     private Boolean isCustomGif;
 
-    public Favorite() {
-    }
-
     public Favorite(BigInteger favoriteId, BigInteger userId, String url, String source, String creator,
-                    String title, String description, String gifUrl, String imageUrl, LocalDate createdOn,
+                    String type, String title, String description, String gifUrl, String imageUrl, LocalDate createdOn,
                     LocalDate updatedOn, Boolean isCustomTitle, Boolean isCustomDescription, Boolean isCustomImage,
                     Boolean isCustomGif) {
         this.favoriteId = favoriteId;
@@ -35,6 +33,7 @@ public class Favorite {
         this.url = url;
         this.source = source;
         this.creator = creator;
+        this.type = type;
         this.title = title;
         this.description = description;
         this.gifUrl = gifUrl;
@@ -85,6 +84,14 @@ public class Favorite {
 
     public void setCreator(String creator) {
         this.creator = creator;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getTitle() {

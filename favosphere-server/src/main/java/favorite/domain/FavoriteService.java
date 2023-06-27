@@ -5,6 +5,7 @@ import favorite.data.FavoriteRepository;
 import favorite.models.Favorite;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,8 @@ public class FavoriteService {
             return result;
         }
 
-        if (favorite.getId() > 0) {
+
+        if (favorite.getFavoriteId().compareTo(BigInteger.ZERO) > 0) {
             result.addMessage("Cannot create existing favorite");
             return result;
         }
