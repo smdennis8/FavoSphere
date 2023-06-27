@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Collection;
@@ -47,8 +48,8 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
             ps.setString(4, user.getPhone());
             ps.setString(5, user.getEmail());
             ps.setString(6, user.getPassword());
-            ps.setObject(7, user.getRegisteredOn());
-            ps.setObject(8, user.getLastLogin());
+            ps.setDate(7, Date.valueOf(user.getRegisteredOn()));
+            ps.setDate(8, Date.valueOf(user.getLastLogin()));
             ps.setBoolean(9, user.isEnabled());
             return ps;
         }, keyHolder);
