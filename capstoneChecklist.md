@@ -94,9 +94,7 @@ src
         └───learn
             └───favorite
                 ├───controllers
-                │       AuthControllerTest.java
                 │       FavoriteControllerTest.java
-                │       TestHelpers.java
                 │
                 ├───data
                 |        AppUserJdbcTemplateRepositoryTest.
@@ -104,9 +102,6 @@ src
                 |
                 ├───domain
                 |        HostServiceTest.java
-                |
-                ├───security
-                |        AppUserServiceTest.java
                 |
     └───reources
         |       application.properties
