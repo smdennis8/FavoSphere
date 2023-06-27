@@ -21,12 +21,12 @@
 - [x] Discussion on roles- vs permissions-based access for database design. (0.17 hrs)
 
 - [x] Construct a user story (0.33 hrs)
-    - As a casual user, I would like to create an account so that I will be able to save my media favorites to the service in the future.
-    - As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner.
-    - As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
-    - As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
+  - As a casual user, I would like to create an account so that I will be able to save my media favorites to the service in the future.
+  - As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner.
+  - As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
+  - As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
 
-    Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
+  - Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
 
 - [x] Create a database schema diagram (2 hrs)
 
@@ -61,8 +61,8 @@ src
                │
                ├───data
                     └───mappers
-                        │       AppUserMapper.java
-                        │       FavoriteMapper.java
+                        │    AppUserMapper.java
+                        │    FavoriteMapper.java
                         |
                │       AppUserJdbcTemplateRepository.java
                │       AppUserRepostiroy.java (Interface)
@@ -94,9 +94,7 @@ src
         └───learn
             └───favorite
                 ├───controllers
-                │       AuthControllerTest.java
                 │       FavoriteControllerTest.java
-                │       TestHelpers.java
                 │
                 ├───data
                 |        AppUserJdbcTemplateRepositoryTest.
@@ -105,11 +103,9 @@ src
                 ├───domain
                 |        HostServiceTest.java
                 |
-                ├───security
-                |        AppUserServiceTest.java
-                |
     └───reources
         |       application.properties
+
 ```
 
 ### App
@@ -279,7 +275,7 @@ src
 
 ### security.JwtConverter
 
-- `private Key key` 
+- `private Key key`
 - `private final String ISSUER`
 - `private final int EXPIRATION_MINUTES`
 - `private final int EXPIRATION_MILLIS`
@@ -303,7 +299,7 @@ src
 
 ### Steps for the backend
 
-- [ ] Set-up project backend (Maven project; packages & classes) (0.17 hrs)
+- [X] Set-up project backend (Maven project; packages & classes) (0.17 hrs)
 - [ ] Write `App.java` class - with dependency injection handled by SpringBootApplication (0.17 hrs)
 - [ ] Write `AppConfig` class (0.17 hrs)
 - [ ] Write `AppUserJdbcTemplateRepository` (0.5 hrs)
@@ -323,7 +319,6 @@ src
 - [ ] Write `SecurityConfig` (0.75 hr)
 - [ ] Write `AuthController` (0.75 hrs)
 - [ ] Write `FavoriteController` (0.75 hrs)
-
 
 ## Part 4: Make http requests to the server
 
@@ -352,7 +347,7 @@ src
   - [ ] Stub out click event handlers for the "Add Favorite", "Edit Favorite", and "Delete Favorite" buttons (1 hr)
 
 - [ ] Conditionally render sections of the page (1.5 hr)
-  - [ ] Add a state variable to track the current view 
+  - [ ] Add a state variable to track the current view
   - [ ] Add a method to update the current view and conditionally render the list or the form
   - [ ] Call the method to update the current where needed
 

@@ -1,10 +1,8 @@
 package favorite.data;
 
 import favorite.data.mappers.AppUserMapper;
-import favorite.models.Favorite;
 import favorite.security.AppUser;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
