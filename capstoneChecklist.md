@@ -25,14 +25,14 @@
     - As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner.
     - As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
     - As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
-      
+
     Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
 
 - [x] Create a database schema diagram (2 hrs)
 
   - [x] Upload schema/ERD diagram to Github
 
-- [ ] Construct a wireframe 
+- [ ] Construct a wireframe
   - [x] Display Home/Gallery Screen (0.75 hrs)
   - [x] Add a basic user flow (0.75 hrs)
   - [ ] Favoriting a favorite user flow (0.75 hrs)
@@ -41,7 +41,6 @@
   - [ ] Sharing a favorite user flow (0.75 hrs)
 
 ## Part 3: Backend
-
 
 ### Package/Class Overview
 
@@ -56,20 +55,26 @@ src
                │
                ├───controllers
                │       AuthController.java
+               │       EmailController.java
                │       FavoriteController.java
+               │       GlobalExceptionHandler.java
                │
                ├───data
+                    └───mappers
+                        │       AppUserMapper.java
+                        │       FavoriteMapper.java
+                        |
                │       AppUserJdbcTemplateRepository.java
-               │       AppUserMapper.java
                │       AppUserRepostiroy.java (Interface)
                │       FavoriteJdbcTemplateRepository.java
-               │       FavoriteMapper.java
                │       FavoriteRepository.java (Interface)
                │
                ├───domain
-               │       ActionStatus.java (Enum)
+               │       FavoriteResult.java
                │       FavoriteService.java
                │       Result.java
+               │       ResultType.java (Enum)
+               │       Validations.java
                │
                ├───models
                |       Favorite.java
@@ -77,6 +82,7 @@ src
                ├───security
                |       AppUser.java
                |       AppUserService.java
+               |       Credentials.java
                |       JwtConverter.java
                |       JwtRequestFilter.java
                |       SecurityConfig.java
@@ -122,6 +128,8 @@ src
 
 - `public ResponseEntity<?> createAccount(@RequestBody Map<String, String> credentials)` -- Accepts a username and email from user to create an account
 
+### controllers.EmailController
+
 ### controllers.FavoriteController
 
 - `public List<Favorite> findAll()` -- Finds all of the existing Favorites
@@ -136,6 +144,24 @@ src
 
 - `private HttpStatus getStatus(Result<Favorite> result, HttpStatus statusDefault)` -- Returns a particular HttpStatus depending on the result.getStatus() value
 
+### controllers.GlobalExceptionHandler
+
+- `public ResponseEntity<?> handleException(DuplicateKeyException ex)` -- Checks for a duplicate entry
+
+- `public ResponseEntity<?> handleException(HttpMessageNotReadableException ex)` -- Checks for a JSON error
+
+- `public ResponseEntity<?> handleException(Exception ex)` -- Generic error ("Something went wrong")
+
+- `private ResponseEntity<?> reportException(String message)` -- Displays a list of the errors
+
+### data.mappers.AppUserMapper
+
+- `public AppUser mapRow(ResultSet rs, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
+
+### data.mappers.FavoriteMapper
+
+- `public Favorite mapRow(ResultSet resultSet, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
+
 ### data.AppUserJdbcTemplateRepository
 
 - `public AppUser findByUsername(String username)` -- Searches for a user by their username
@@ -147,10 +173,6 @@ src
 - `private void updateRoles(AppUser user)` -- Updates the roles that an existing user has
 
 - `private List<String> getRolesByUsername(String username)` -- Returns a list of all the roles that a given username has
-
-### data.AppUserMapper
-
-- `public AppUser mapRow(ResultSet rs, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
 
 ### data.AppUserRepository
 
@@ -172,10 +194,6 @@ src
 
 - `public boolean deleteById(int favoriteId)` -- Upon Confirmation, Deletes an existing Favorite
 
-### data.FavoriteMapper
-
-- `public Favorite mapRow(ResultSet resultSet, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
-
 ### data.FavoriteRepository
 
 - `List<Favorite> findAll()`
@@ -188,9 +206,13 @@ src
 
 - `boolean deleteById(int favoriteId)`
 
-### domain.ActionStatus
+### domain.FavoriteResult
 
-- Enum for SUCCESS, INVALID, DUPLICATE, NOT_FOUND
+- `public void addMessage(String message)`
+
+- `public void addMessage(String message, ResultType resultType)`
+
+- `public boolean isSuccess()`
 
 ### domain.FavoriteService
 
@@ -216,9 +238,16 @@ src
 
 - `public boolean isSuccess()` -- Success if the messages field length is 0; failure otherwise
 
+### domain.ResultType
+
+- Enum for SUCCESS, INVALID, DUPLICATE, NOT_FOUND
+
+### domain.Validations
+
 ### models.Favorite
 
 ### security.AppUser
+
 - `private int appUserId`
 - `private final String username`
 - `private final String password`
@@ -230,6 +259,7 @@ src
 `Getters and setters for all fields`
 
 ### security.AppUserService
+
 - `private final AppUserRepository repository`
 - `private final PasswordEncoder encoder`
 - `public AppUserService(AppUserRepository repository, PasswordEncoder encoder)`
@@ -239,6 +269,7 @@ src
 - `private boolean isValidPassword(String password)`
 
 ### security.Credentials
+
 - `private String username`
 - `private String password`
 - `public String getUsername()`
@@ -247,7 +278,8 @@ src
 - `public void setPassword(String password)`
 
 ### security.JwtConverter
-- `private Key key` -- 
+
+- `private Key key` 
 - `private final String ISSUER`
 - `private final int EXPIRATION_MINUTES`
 - `private final int EXPIRATION_MILLIS`
@@ -255,6 +287,7 @@ src
 - `public AppUser getUserFromToken(String token)`
 
 ### security.JwtRequestFilter
+
 - `private final JwtConverter converter;`
 - `public JwtRequestFilter(AuthenticationManager authenticationManager, JwtConverter converter)` -- constructor
 - `protected void doFilterInternal(HttpServletRequest request,
@@ -262,12 +295,14 @@ src
                                     FilterChain chain)`
 
 ### security.SecurityConfig
+
 - `private final JwtConverter jwtConverter;`
 - `public SecurityConfig(JwtConverter jwtConverter)` -- constructor
 - `public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig)`
 - `public AuthenticationManager authenticationManager(AuthenticationConfiguration config)`
 
 ### Steps for the backend
+
 - [ ] Set-up project backend (Maven project; packages & classes) (0.17 hrs)
 - [ ] Write `App.java` class - with dependency injection handled by SpringBootApplication (0.17 hrs)
 - [ ] Write `AppConfig` class (0.17 hrs)
@@ -290,7 +325,6 @@ src
 - [ ] Write `FavoriteController` (0.75 hrs)
 
 
-
 ## Part 4: Make http requests to the server
 
 - [ ] Create requests.http in http directory (0.17 hrs)
@@ -300,6 +334,7 @@ src
 - [ ] Display a list of all favorites for an authorized user (0.25 hrs)
 
 ### Part 5: Frontend
+
 - [ ] Create react app and set-up client side (0.17 hrs)
   - Remove unnecessary files (0.067 hrs)
 

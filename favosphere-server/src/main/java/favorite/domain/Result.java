@@ -1,4 +1,4 @@
 package favorite.domain;
 
-public class ActionStatus {
+public class Result {
 }
