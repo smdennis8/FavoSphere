@@ -5,7 +5,7 @@
 ## Part 1: Project Setup
 
 - [ ] Create a team name.
-  - [ ] The Favorites, The Spheres, The Spheres of Influence, The Spherical Cows, The Spherical Earthers, The AtmoSpheres
+  - [ ] Please Wreck My House!
 
 ## Part 2: Planning and Wireframing
 
