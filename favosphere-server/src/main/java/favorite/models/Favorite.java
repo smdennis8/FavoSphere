@@ -24,16 +24,8 @@ public class Favorite {
     private Boolean isCustomImage;
     private Boolean isCustomGif;
 
-<<<<<<< Updated upstream
     public Favorite(BigInteger favoriteId, BigInteger userId, String url, String source, String creator,
                     String type, String title, String description, String gifUrl, String imageUrl, LocalDate createdOn,
-=======
-    public Favorite() {
-    }
-
-    public Favorite(BigInteger favoriteId, BigInteger userId, String url, String source, String creator, String type,
-                    String title, String description, String gifUrl, String imageUrl, LocalDate createdOn,
->>>>>>> Stashed changes
                     LocalDate updatedOn, Boolean isCustomTitle, Boolean isCustomDescription, Boolean isCustomImage,
                     Boolean isCustomGif) {
         this.favoriteId = favoriteId;

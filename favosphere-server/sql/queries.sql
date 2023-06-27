@@ -18,6 +18,9 @@ where email = 'john@smith.com';
 select * from app_user_role;
 
 
-insert into app_user_role (app_user_id, app_role_id)
-select 1,
-app_role_id from app_role where `title` = 'ADMIN';
+-- insert into app_user_role (app_user_id, app_role_id)
+-- select 1,
+-- app_role_id from app_role where `title` = 'ADMIN';
+
+select *
+from favorite;
