@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class AppUserMapper implements RowMapper<AppUser> {
@@ -24,8 +25,8 @@ public class AppUserMapper implements RowMapper<AppUser> {
                 rs.getString("phone"),
                 rs.getString("email"),
                 rs.getString("password_hash"),
-                rs.getDate("registered_on"),
-                rs.getDate("last_login"),
+                LocalDate.parse(rs.getString("registered_on")),
+                LocalDate.parse(rs.getString("last_login")),
                 rs.getBoolean("user_enabled"),
                 roles);
     }
