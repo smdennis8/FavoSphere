@@ -240,7 +240,31 @@ src
 
 ### domain.Validations
 
+- `public static boolean isValidUrl(String input)` -- Checks for a valid URL
+
 ### models.Favorite
+
+- `private BigInteger favoriteId`
+- `private BigInteger userId`
+- `private String url`
+- `private String source`
+- `private String creator`
+- `private String title`
+- `private String description`
+- `private String gifUrl`
+- `private String imageUrl`
+- `private LocalDate createdOn`
+- `private LocalDate updatedOn`
+- `private Boolean isCustomTitle`
+- `private Boolean isCustomDescription`
+- `private Boolean isCustomImage`
+- `private Boolean isCustomGif`
+
+- Empty Constructor and "All of the Above" Constructor
+
+- Full Getters and Setters
+
+- Override equals and hashcode
 
 ### security.AppUser
 
