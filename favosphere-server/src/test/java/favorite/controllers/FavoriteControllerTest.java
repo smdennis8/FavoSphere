@@ -104,10 +104,10 @@ class FavoriteControllerTest {
     @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldUpdateFavoriteAndReturnHttpNoContent() throws Exception {
         Favorite favorite = new Favorite(
-                BigInteger.valueOf(1), BigInteger.valueOf(11), "url.example01@test.com",
+                BigInteger.valueOf(1), BigInteger.valueOf(11), "http://url.example01@test.com",
                 "sourceExample01", "creatorExample01", "typeExample01",
-                "titleExample01","descriptionExample01", "gifUrlExample01",
-                "imageUrlExample01", LocalDate.of(2001, 1, 1),
+                "titleExample01","descriptionExample01", "http://gifUrl.Example01@test.com",
+                "http://imageUrl.Example01@test.com", LocalDate.of(2001, 1, 1),
                 LocalDate.of(2011, 11, 11), true,
                 false, true, true);
 
@@ -149,10 +149,10 @@ class FavoriteControllerTest {
     @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldNotUpdateMissingFavoriteAndReturnHttpNotFound() throws Exception {
         Favorite favorite = new Favorite(
-                BigInteger.valueOf(99), BigInteger.valueOf(999), "url.exampleX@test.com",
+                BigInteger.valueOf(99), BigInteger.valueOf(999), "http://url.exampleX@test.com",
                 "sourceExampleX", "creatorExampleX", "typeExampleX",
-                "titleExampleX","descriptionExampleX", "gifUrlExampleX",
-                "imageUrlExampleX", LocalDate.of(1901, 1, 1),
+                "titleExampleX","descriptionExampleX", "http://gifUrl.ExampleX@test.com",
+                "http://imageUrl.ExampleX@test.com", LocalDate.of(1901, 1, 1),
                 LocalDate.of(1902, 2, 2), true,
                 false, true, true);
 
@@ -171,14 +171,14 @@ class FavoriteControllerTest {
     void shouldNotUpdateInvalidFavoriteAndReturnHttpBadRequest() throws Exception {
 
         Favorite favorite = new Favorite(
-                BigInteger.valueOf(1), BigInteger.valueOf(11), null,
+                BigInteger.valueOf(1), BigInteger.valueOf(11), "null",
                 "sourceExample01", "creatorExample01", "typeExample01",
-                "titleExample01","descriptionExample01", "gifUrlExample01",
-                "imageUrlExample01", LocalDate.of(2001, 1, 1),
+                "titleExample01","descriptionExample01", "http://gifUrl.Example01@test.com",
+                "http://imageUrl.Example01@test.com", LocalDate.of(2001, 1, 1),
                 LocalDate.of(2011, 11, 11), true,
                 false, true, true);
 
-        List<String> errorMessages = List.of("Url is required");
+        List<String> errorMessages = List.of("Url must be a valid url");
         String expectedJson = objectMapper.writeValueAsString(errorMessages);
 
         String favoriteJson = objectMapper.writeValueAsString(favorite);
