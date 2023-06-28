@@ -10,6 +10,7 @@ import favorite.data.AppUserRepository;
 import favorite.domain.Result;
 import favorite.domain.ResultType;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -42,7 +43,7 @@ public class AppUserService implements UserDetailsService {
 
         String hashedPassword = encoder.encode(credentials.getPassword());
 
-        AppUser appUser = new AppUser(0, null, null, null, null,
+        AppUser appUser = new AppUser(BigInteger.ZERO, null, null, null, null,
                 credentials.getEmail(), hashedPassword, null, null, true,
                 List.of("USER"));
 

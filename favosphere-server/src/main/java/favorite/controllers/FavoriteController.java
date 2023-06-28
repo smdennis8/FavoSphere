@@ -28,8 +28,8 @@ public class FavoriteController {
     }
 
     @GetMapping("/{favoriteId}")
-    public ResponseEntity<Object> findById(@PathVariable int id) {
-        Favorite favorite = service.findById(id);
+    public ResponseEntity<Object> findById(@PathVariable BigInteger favoriteId) {
+        Favorite favorite = service.findById(favoriteId);
         if (favorite != null) {
             return new ResponseEntity<>(favorite, HttpStatus.OK);
         }
@@ -46,8 +46,8 @@ public class FavoriteController {
     }
 
     @PutMapping("/{favoriteId}")
-    public ResponseEntity<Object> update(@PathVariable BigInteger id, @RequestBody Favorite favorite) {
-        if(!Objects.equals(id, favorite.getFavoriteId())) {
+    public ResponseEntity<Object> update(@PathVariable BigInteger favoriteId, @RequestBody Favorite favorite) {
+        if(!Objects.equals(favoriteId, favorite.getFavoriteId())) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         Result<Favorite> result = service.update(favorite);
@@ -61,8 +61,8 @@ public class FavoriteController {
     }
 
     @DeleteMapping("/{favoriteId}")
-    public ResponseEntity<Object> deleteById(@PathVariable int id) {
-        Result<Favorite> result = service.deleteById(id);
+    public ResponseEntity<Object> deleteById(@PathVariable BigInteger favoriteId) {
+        Result<Favorite> result = service.deleteById(favoriteId);
         if (result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

@@ -1,6 +1,6 @@
 use favosphere_test;
 set sql_safe_updates = 0;
-call set_known_good_state();
+-- call set_known_good_state();
 -- select *
 -- from app_user_role ur
 -- inner join app_role ar on ur.app_role_id = ar.app_role_id
@@ -8,6 +8,6 @@ call set_known_good_state();
 -- where au.email = 'john@smith.com';
 
 select *
-from app_user
-where email = 'john@smith.com';
+from app_user;
+-- where email = "jjjackson@jmail.jom";
 set sql_safe_updates = 1;

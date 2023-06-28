@@ -3,6 +3,7 @@ package favorite.data.mappers;
 import favorite.security.AppUser;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ public class AppUserMapper implements RowMapper<AppUser> {
     @Override
     public AppUser mapRow(ResultSet rs, int i) throws SQLException {
         return new AppUser(
-                rs.getInt("app_user_id"),
+                BigInteger.valueOf(rs.getInt("app_user_id")),
                 rs.getString("first_name"),
                 rs.getString("middle_name"),
                 rs.getString("last_name"),

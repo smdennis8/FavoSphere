@@ -4,6 +4,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.security.Key;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -47,7 +48,7 @@ public class JwtConverter {
                     .build()
                     .parseClaimsJws(token.substring(7));
 
-            int appUserId = (int) jws.getBody().get("app_user_id");
+            BigInteger appUserId = BigInteger.valueOf((Long) jws.getBody().get("app_user_id"));
             String firstName = jws.getBody().getSubject();
             String middleName = jws.getBody().getSubject();
             String lastName = jws.getBody().getSubject();

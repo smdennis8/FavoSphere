@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AppUser implements UserDetails {
-    private int appUserId;
+    private BigInteger appUserId;
     private final String firstName;
     private final String middleName;
     private final String lastName;
@@ -24,7 +25,7 @@ public class AppUser implements UserDetails {
     private boolean userEnabled;
     private final Collection<GrantedAuthority> authorities;
 
-    public AppUser(int appUserId, String firstName, String middleName, String lastName, String phone, String email, String password, LocalDate registeredOn, LocalDate lastLogin, boolean userEnabled, List<String> roles) {
+    public AppUser(BigInteger appUserId, String firstName, String middleName, String lastName, String phone, String email, String password, LocalDate registeredOn, LocalDate lastLogin, boolean userEnabled, List<String> roles) {
         this.appUserId = appUserId;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -64,11 +65,11 @@ public class AppUser implements UserDetails {
         return true;
     }
 
-    public int getAppUserId() {
+    public BigInteger getAppUserId() {
         return appUserId;
     }
 
-    public void setAppUserId(int appUserId) {
+    public void setAppUserId(BigInteger appUserId) {
         this.appUserId = appUserId;
     }
 
