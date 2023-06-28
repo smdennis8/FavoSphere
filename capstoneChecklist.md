@@ -351,8 +351,8 @@ src
 
 ### Part 2: Testing
 
-- [ ] Write `FavoriteControllerTest` (4 hrs)
-- [ ] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
+- [X] Write `FavoriteControllerTest` (4 hrs)
+- [X] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
 - [ ] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
 - [ ] Write `FavoriteServiceTest` (3 hrs)
 
