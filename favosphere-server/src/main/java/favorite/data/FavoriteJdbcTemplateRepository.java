@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.sql.Date;
@@ -13,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
+@Repository
 public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<Favorite> rowMapper = new FavoriteMapper();
@@ -121,7 +123,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     }
 
     @Override
-    public boolean delete(int favoriteId) {
+    public boolean deleteById(int favoriteId) {
         return jdbcTemplate.update("delete from favorite where favorite_id = ?;", favoriteId) > 0;
     }
 }
