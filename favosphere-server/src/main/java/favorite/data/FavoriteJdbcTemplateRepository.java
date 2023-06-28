@@ -124,7 +124,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     }
 
     @Override
-    public boolean delete(int favoriteId) {
+    public boolean deleteById(int favoriteId) {
         return jdbcTemplate.update("delete from favorite where favorite_id = ?;", favoriteId) > 0;
     }
 }

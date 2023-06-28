@@ -101,7 +101,6 @@ class FavoriteControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "testuser", roles = "USER")
     void shouldUpdateFavoriteAndReturnHttpNoContent() throws Exception {
         Favorite favorite = new Favorite(
                 BigInteger.valueOf(1), BigInteger.valueOf(11), "url.example01@test.com",
@@ -124,6 +123,7 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!")
     void shouldNotUpdateFavoriteIfIdsMismatchedAndReturnHttpConflict() throws Exception {
 
         Favorite favorite = new Favorite(
@@ -136,7 +136,7 @@ class FavoriteControllerTest {
 
         String favoriteJson = objectMapper.writeValueAsString(favorite);
 
-        var request = put("/favorite/3")
+        var request = put("/favosphere/3")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(favoriteJson);
 
@@ -156,7 +156,7 @@ class FavoriteControllerTest {
 
         String favoriteJson = objectMapper.writeValueAsString(favorite);
 
-        var request = put("/favorite/99")
+        var request = put("/favosphere/99")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(favoriteJson);
 
@@ -193,7 +193,7 @@ class FavoriteControllerTest {
     @Test
     void shouldDeleteFavoriteAndReturnHttpNoContent() throws Exception {
 
-        when(repository.delete(3)).thenReturn(true);
+        when(repository.deleteById(3)).thenReturn(true);
 
         var request = delete("/favorite/3");
 

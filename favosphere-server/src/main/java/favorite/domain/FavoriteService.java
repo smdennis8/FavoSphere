@@ -64,7 +64,7 @@ public class FavoriteService {
 
     public Result<Favorite> deleteById(int favoriteId) {
         Result<Favorite> result = new Result<>();
-        if (!repository.delete(favoriteId)) {
+        if (!repository.deleteById(favoriteId)) {
             result.addMessage(String.format("Favorite: %s doesn't exist", favoriteId), ResultType.NOT_FOUND);
         }
         return result;
