@@ -60,7 +60,7 @@ public class AppUserService implements UserDetailsService {
     private Result<AppUser> validate(Credentials credentials) {
         Result<AppUser> result = new Result<>();
         if (credentials.getEmail() == null || credentials.getEmail().isBlank()) {
-            result.addMessage("username is required");
+            result.addMessage("email is required");
             return result;
         }
 
@@ -70,7 +70,7 @@ public class AppUserService implements UserDetailsService {
         }
 
         if (credentials.getEmail().length() > 50) {
-            result.addMessage("username must be less than 50 characters");
+            result.addMessage("email must be less than 50 characters");
         }
 
         if (!isValidPassword(credentials.getPassword())) {

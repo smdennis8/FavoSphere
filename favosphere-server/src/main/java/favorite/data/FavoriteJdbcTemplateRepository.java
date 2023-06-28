@@ -16,6 +16,7 @@ import java.util.List;
 
 @Repository
 public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
+
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<Favorite> rowMapper = new FavoriteMapper();
 

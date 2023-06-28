@@ -321,30 +321,42 @@ src
 - `public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig)`
 - `public AuthenticationManager authenticationManager(AuthenticationConfiguration config)`
 
-### Steps for the backend
+### Part 1: Steps for the backend
 
 - [X] Set-up project backend (Maven project; packages & classes) (0.17 hrs)
-- [ ] Write `App.java` class - with dependency injection handled by SpringBootApplication (0.17 hrs)
-- [ ] Write `AppConfig` class (0.17 hrs)
-- [ ] Write `AppUserJdbcTemplateRepository` (0.5 hrs)
-- [ ] Extract `AppUserRepository` (0.25 hrs)
-- [ ] Write `FavoriteJdbcTemplateRepository` (0.5 hrs)
-- [ ] Extract `FavoriteRepository` (0.5 hrs)
-- [ ] Write `AppUsermapper` (0.25 hrs)
-- [ ] Write `FavoriteMapper` (0.25 hrs)
-- [ ] Write `ActionStatus` (0.25 hrs)
-- [ ] Write `FavoriteService` (1.5 hrs)
-- [ ] Write `Result` (0.33 hrs)
-- [ ] Write `Favorite` (0.25 hrs)
-- [ ] Write `AppUser` (0.25 hrs)
-- [ ] Write `AppUserService` (1 hr)
-- [ ] Write `JwtConverter` (1 hr)
-- [ ] Write `JwtRequestFilter` (0.5 hr)
-- [ ] Write `SecurityConfig` (0.75 hr)
-- [ ] Write `AuthController` (0.75 hrs)
-- [ ] Write `FavoriteController` (0.75 hrs)
+- [X] Write `App.java` class - with dependency injection handled by SpringBootApplication (0.17 hrs)
+- [X] Write `AppConfig` class (0.17 hrs)
+- [X] Write `AuthController` class (0.25 hrs)
+- [ ] Write `EmailController` class (4 hrs)
+- [X] Write `FavoriteController` class (1.5 hrs)
+- [X] Write `GlobalExceptionHandler` class (0.25 hrs)
+- [X] Write `AppUsermapper` (0.25 hrs)
+- [X] Write `FavoriteMapper` (0.25 hrs)
+- [X] Write `AppUserJdbcTemplateRepository` (0.5 hrs)
+- [X] Extract `AppUserRepository` (0.25 hrs)
+- [X] Write `FavoriteJdbcTemplateRepository` (0.5 hrs)
+- [X] Extract `FavoriteRepository` (0.5 hrs)
+- [X] Write `FavoriteResult`  (0.25 hrs)
+- [X] Write `FavoriteService` (1.5 hrs)
+- [X] Write `Result` (0.33 hrs)
+- [X] Write `ResultType` (0.1 hrs)
+- [X] Write `Validations` (0.1 hrs)
+- [X] Write `Favorite` (0.25 hrs)
+- [X] Write `AppUser` (0.25 hrs)
+- [X] Write `AppUserService` (1 hr)
+- [X] Write `Credentials` (0.25 hrs)
+- [X] Write `JwtConverter` (1 hr)
+- [X] Write `JwtRequestFilter` (0.5 hr)
+- [X] Write `SecurityConfig` (0.75 hr)
 
-## Part 4: Make http requests to the server
+### Part 2: Testing
+
+- [ ] Write `FavoriteControllerTest` (4 hrs)
+- [ ] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
+- [ ] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
+- [ ] Write `FavoriteServiceTest` (3 hrs)
+
+## Part 3: Make http requests to the server
 
 - [ ] Create requests.http in http directory (0.17 hrs)
 - [ ] Retrieve a favorite using a  `GET` request (0.17 hrs)
@@ -352,7 +364,7 @@ src
 - [ ] Use `PUT` to edit a favorite with an ID (0.25 hrs)
 - [ ] Display a list of all favorites for an authorized user (0.25 hrs)
 
-### Part 5: Frontend
+### Part 4: Frontend
 
 - [ ] Create react app and set-up client side (0.17 hrs)
   - Remove unnecessary files (0.067 hrs)
@@ -375,7 +387,7 @@ src
   - [ ] Add a method to update the current view and conditionally render the list or the form
   - [ ] Call the method to update the current where needed
 
-### Part 6: Finishing Touches
+### Part 5: Finishing Touches
 
 - [ ] Choose an appropriate CSS framework for the style desired and implement (0.25 hrs)
 
