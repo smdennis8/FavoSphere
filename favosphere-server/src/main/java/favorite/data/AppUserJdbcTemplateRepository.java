@@ -26,7 +26,7 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
     public AppUser findByEmail(String email) {
         List<String> roles = getRolesByEmail(email);
         final String sql = """
-                select app_user_id, email, password_hash, user_enabled
+                select *
                 from app_user
                 where email = ?;
                 """;
@@ -71,9 +71,9 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
                 from app_user_role ur
                 inner join app_role ar on ur.app_role_id = ar.app_role_id
                 inner join app_user au on ur.app_user_id = au.app_user_id
-                where au.username = ?
+                where au.email = ?
                 """;
-        return jdbcTemplate.query(sql, (rs, rowId) -> rs.getString("name"), email);
+        return jdbcTemplate.query(sql, (rs, rowId) -> rs.getString("title"), email);
     }
 
     private void updateRoles(AppUser user) {
