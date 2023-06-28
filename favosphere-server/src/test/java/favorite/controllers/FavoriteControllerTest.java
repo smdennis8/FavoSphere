@@ -83,7 +83,7 @@ class FavoriteControllerTest {
                 LocalDate.of(2013, 3, 13), false,
                 true, true, false);
 
-        when(repository.findById(3)).thenReturn(favorite);
+        when(repository.findById(BigInteger.valueOf(3))).thenReturn(favorite);
 
         String expectedJson = objectMapper.writeValueAsString(favorite);
 
@@ -101,6 +101,7 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldUpdateFavoriteAndReturnHttpNoContent() throws Exception {
         Favorite favorite = new Favorite(
                 BigInteger.valueOf(1), BigInteger.valueOf(11), "url.example01@test.com",
@@ -114,7 +115,7 @@ class FavoriteControllerTest {
 
         when(repository.update(favorite)).thenReturn(true);
 
-        var request = put("/favosphere/1")
+        var request = put("/favorite/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(favoriteJson);
 
@@ -123,7 +124,7 @@ class FavoriteControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!")
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldNotUpdateFavoriteIfIdsMismatchedAndReturnHttpConflict() throws Exception {
 
         Favorite favorite = new Favorite(
@@ -136,7 +137,7 @@ class FavoriteControllerTest {
 
         String favoriteJson = objectMapper.writeValueAsString(favorite);
 
-        var request = put("/favosphere/3")
+        var request = put("/favorite/3")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(favoriteJson);
 
@@ -145,6 +146,7 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldNotUpdateMissingFavoriteAndReturnHttpNotFound() throws Exception {
         Favorite favorite = new Favorite(
                 BigInteger.valueOf(99), BigInteger.valueOf(999), "url.exampleX@test.com",
@@ -156,7 +158,7 @@ class FavoriteControllerTest {
 
         String favoriteJson = objectMapper.writeValueAsString(favorite);
 
-        var request = put("/favosphere/99")
+        var request = put("/favorite/99")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(favoriteJson);
 
@@ -165,17 +167,18 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldNotUpdateInvalidFavoriteAndReturnHttpBadRequest() throws Exception {
 
         Favorite favorite = new Favorite(
-                BigInteger.valueOf(99), BigInteger.valueOf(999), "url.exampleX@test.com",
-                "sourceExampleX", "creatorExampleX", "typeExampleX",
-                "titleExampleX","descriptionExampleX", "gifUrlExampleX",
-                "imageUrlExampleX", LocalDate.of(1901, 1, 1),
-                LocalDate.of(1902, 2, 2), true,
+                BigInteger.valueOf(1), BigInteger.valueOf(11), null,
+                "sourceExample01", "creatorExample01", "typeExample01",
+                "titleExample01","descriptionExample01", "gifUrlExample01",
+                "imageUrlExample01", LocalDate.of(2001, 1, 1),
+                LocalDate.of(2011, 11, 11), true,
                 false, true, true);
 
-        List<String> errorMessages = List.of("Title is required");
+        List<String> errorMessages = List.of("Url is required");
         String expectedJson = objectMapper.writeValueAsString(errorMessages);
 
         String favoriteJson = objectMapper.writeValueAsString(favorite);
@@ -191,9 +194,10 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldDeleteFavoriteAndReturnHttpNoContent() throws Exception {
 
-        when(repository.deleteById(3)).thenReturn(true);
+        when(repository.deleteById(BigInteger.valueOf(3))).thenReturn(true);
 
         var request = delete("/favorite/3");
 
@@ -202,6 +206,7 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldNotDeleteMissingAndReturnHttpNotFound() throws Exception {
 
         var request = delete("/favorite/99");
