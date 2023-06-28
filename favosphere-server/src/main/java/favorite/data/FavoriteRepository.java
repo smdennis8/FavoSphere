@@ -14,5 +14,5 @@ public interface FavoriteRepository {
 
     boolean update(Favorite favorite);
 
-    boolean delete(int favoriteId)
+    boolean delete(int favoriteId);
 }
