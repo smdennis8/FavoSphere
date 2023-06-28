@@ -355,6 +355,7 @@ src
 - [X] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
 - [ ] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
 - [ ] Write `FavoriteServiceTest` (3 hrs)
+- [ ] Write `AppUserServiceTest` (4 hrs)
 
 ## Part 3: Make http requests to the server
 
