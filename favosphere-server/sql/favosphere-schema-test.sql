@@ -10,8 +10,8 @@ create table `app_user` (
     phone varchar(50) not null,
     email varchar(255) not null unique,
     password_hash varchar(2048) not null,
-    registered_on datetime not null,
-    last_login datetime not null,
+    registered_on date not null,
+    last_login date not null,
     user_enabled bit not null default(1)
 );
 
@@ -20,8 +20,8 @@ create table `app_role` (
     title varchar(50) not null unique,
     `description` varchar(255) not null,
     enabled bit not null default(1),
-    created_on datetime not null,
-    updated_on datetime not null
+    created_on date not null,
+    updated_on date not null
 );
 
 create table app_user_role (
@@ -41,8 +41,8 @@ create table permission (
     permission_id int primary key auto_increment,
     title varchar(50) not null unique,
     `description` varchar(255) not null,
-    created_on datetime not null,
-    updated_on datetime not null,
+    created_on date not null,
+    updated_on date not null,
     enabled bit not null default(1)
 );
 
@@ -70,8 +70,8 @@ create table favorite (
     `description` text,
     gif_url varchar(500),
     image_url varchar(500),
-    created_on datetime not null,
-    updated_on datetime not null,
+    created_on date not null,
+    updated_on date not null,
 	is_custom_title bit default(null),
 	is_custom_description bit default(null),
     is_custom_image bit default(null),
@@ -114,6 +114,11 @@ begin
     alter table `app_role` auto_increment = 1;
     delete from `app_user`;
     alter table `app_user` auto_increment = 1;
+    delete from permission;
+    alter table permission auto_increment = 1;
+--     delete from favorite_tag;
+--     delete from tag;
+--     alter table tag auto_increment = 1;
     
 	insert into `app_role` (title, `description`, enabled, created_on, updated_on) values
     ('USER', 'Manages own favorites', 1, '2023-06-26','2023-06-26'),
