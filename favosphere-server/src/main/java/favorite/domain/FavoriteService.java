@@ -25,7 +25,7 @@ public class FavoriteService {
         return repository.findAll();
     }
 
-    public Favorite findById(int favoriteId) {
+    public Favorite findById(BigInteger favoriteId) {
         return repository.findById(favoriteId);
     }
 
@@ -62,7 +62,7 @@ public class FavoriteService {
         return result;
     }
 
-    public Result<Favorite> deleteById(int favoriteId) {
+    public Result<Favorite> deleteById(BigInteger favoriteId) {
         Result<Favorite> result = new Result<>();
         if (!repository.deleteById(favoriteId)) {
             result.addMessage(String.format("Favorite: %s doesn't exist", favoriteId), ResultType.NOT_FOUND);

@@ -15,6 +15,7 @@ import favorite.security.AppUserService;
 import favorite.security.Credentials;
 import favorite.security.JwtConverter;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 
 @RestController
@@ -67,7 +68,7 @@ public class AuthController {
             return new ResponseEntity<>(result.getMessages(), HttpStatus.BAD_REQUEST);
         }
 
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMap<String, BigInteger> map = new HashMap<>();
         map.put("appUserId", result.getPayload().getAppUserId());
 
         return new ResponseEntity<>(map, HttpStatus.CREATED);

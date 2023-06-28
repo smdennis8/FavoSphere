@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -38,7 +39,7 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
     @Override
     @Transactional
     public AppUser create(AppUser user) {
-        final String sql = "insert into `app_user` (first_name, middle_name, last_name, phone, email, password_hash, registered_on, last_login, user_enabled);";
+        final String sql = "insert into `app_user` (first_name, middle_name, last_name, phone, email, password_hash, registered_on, last_login, user_enabled) values (?,?,?,?,?,?,?,?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -58,7 +59,7 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
             return null;
         }
 
-        user.setAppUserId(keyHolder.getKey().intValue());
+        user.setAppUserId(BigInteger.valueOf(keyHolder.getKey().intValue()));
 
         updateRoles(user);
 
@@ -71,9 +72,45 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
                 from app_user_role ur
                 inner join app_role ar on ur.app_role_id = ar.app_role_id
                 inner join app_user au on ur.app_user_id = au.app_user_id
-                where au.email = ?
+                where au.email = ?;
                 """;
         return jdbcTemplate.query(sql, (rs, rowId) -> rs.getString("title"), email);
+    }
+
+    @Transactional
+    public boolean update(AppUser user) {
+        final String sql = """
+                update app_user set
+                first_name = ?,
+                middle_name = ?,
+                last_name = ?,
+                phone = ?,
+                email = ?,
+                password_hash = ?,
+                registered_on = ?,
+                last_login = ?,
+                user_enabled = ?
+                where app_user_id = ?;
+                """;
+
+        int rowsReturned = jdbcTemplate.update(sql,
+                user.getFirstName(),
+                user.getMiddleName(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getRegisteredOn(),
+                user.getLastLogin(),
+                user.isEnabled(),
+                user.getAppUserId());
+
+        if (rowsReturned > 0) {
+            updateRoles(user);
+            return true;
+        }
+
+        return false;
     }
 
     private void updateRoles(AppUser user) {
