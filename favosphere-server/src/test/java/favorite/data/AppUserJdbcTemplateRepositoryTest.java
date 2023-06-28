@@ -22,14 +22,11 @@ class AppUserJdbcTemplateRepositoryTest {
     @Autowired
     AppUserJdbcTemplateRepository repository;
 
-    static boolean hasRun = false;
+
 
     @BeforeEach
     void setup() {
-        if (!hasRun) {
-            jdbcTemplate.update("call set_known_good_state();");
-            hasRun = true;
-        }
+        jdbcTemplate.update("call set_known_good_state();");
     }
 
     @Test
