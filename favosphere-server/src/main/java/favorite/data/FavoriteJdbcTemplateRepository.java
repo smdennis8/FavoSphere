@@ -33,7 +33,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     }
 
     @Override
-    public Favorite findById(int favoriteId) {
+    public Favorite findById(BigInteger favoriteId) {
         String sql = """
                 select *
                 from favorite
@@ -98,7 +98,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
                     is_custom_title = ?,
                     is_custom_description = ?,
                     is_custom_image = ?,
-                    is_custom_gif = ?,
+                    is_custom_gif = ?
                 where favorite_id = ?;
                 """;
 
@@ -123,7 +123,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     }
 
     @Override
-    public boolean deleteById(int favoriteId) {
+    public boolean deleteById(BigInteger favoriteId) {
         return jdbcTemplate.update("delete from favorite where favorite_id = ?;", favoriteId) > 0;
     }
 }
