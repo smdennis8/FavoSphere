@@ -64,9 +64,6 @@ public class FavoriteService {
 
     public Result<Favorite> deleteById(BigInteger favoriteId) {
         Result<Favorite> result = new Result<>();
-        if (favoriteId == null) {
-            result.addMessage("Id cannot be null");
-        }
         if (!repository.deleteById(favoriteId)) {
             result.addMessage(String.format("Favorite: %s doesn't exist", favoriteId), ResultType.NOT_FOUND);
         }

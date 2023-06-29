@@ -348,11 +348,11 @@ class FavoriteServiceTest {
 
     @Test
     void shouldNotDeleteNullFavorite() {
-        Favorite blank = null;
+        Favorite blank = new Favorite();
 
         Result<Favorite> actual = service.deleteById(blank.getFavoriteId());
         assertFalse(actual.isSuccess());
-        assertEquals("Id cannot be null", actual.getMessages().get(0));
+        assertEquals("Favorite: null doesn't exist", actual.getMessages().get(0));
     }
 
     @Test
