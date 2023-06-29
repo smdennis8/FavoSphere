@@ -118,7 +118,8 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
                 favorite.getCustomTitle(),
                 favorite.getCustomDescription(),
                 favorite.getCustomImage(),
-                favorite.getCustomGif());
+                favorite.getCustomGif(),
+                favorite.getFavoriteId());
 
         return rowsUpdated > 0;
     }

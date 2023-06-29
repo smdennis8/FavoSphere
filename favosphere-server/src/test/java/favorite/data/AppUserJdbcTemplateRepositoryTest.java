@@ -22,14 +22,11 @@ class AppUserJdbcTemplateRepositoryTest {
     @Autowired
     AppUserJdbcTemplateRepository repository;
 
-    static boolean hasRun = false;
+
 
     @BeforeEach
     void setup() {
-        if (!hasRun) {
-            jdbcTemplate.update("call set_known_good_state();");
-            hasRun = true;
-        }
+        jdbcTemplate.update("call set_known_good_state();");
     }
 
     @Test
@@ -39,13 +36,22 @@ class AppUserJdbcTemplateRepositoryTest {
         assertEquals("Jingle-Heimer", actual.getMiddleName());
         assertEquals("Smith", actual.getLastName());
         assertTrue(actual.isEnabled());
-        assertEquals(1, actual.getAuthorities().size());
+        assertEquals(2, actual.getAuthorities().size());
+        System.out.println(actual.getAuthorities());
         assertTrue(actual.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN")));
     }
 
     @Test
+    void shouldNotFindMissingUsername(){
+        AppUser actual = repository.findByEmail("test@test.com");
+        assertNull(actual);
+    }
+
+    @Test
     void shouldCreate(){
-        AppUser user = new AppUser(BigInteger.valueOf(0),"Jane", "John", "Jackson", "800-800-8000", "jjjackson@jmail.jom", "pAsSwOrD", LocalDate.of(2023,06,28), LocalDate.of(2023,06,28), true, List.of("USER"));
+        AppUser user = new AppUser(BigInteger.valueOf(0),"Jane", "John", "Jackson",
+                "800-800-8000", "jjjackson@jmail.jom", "pAsSwOrD", LocalDate.of(2023,06,28),
+                LocalDate.of(2023,06,28), true, List.of("USER"));
         AppUser actual = repository.create(user);
         AppUser jane = repository.findByEmail("jjjackson@jmail.jom");
 
