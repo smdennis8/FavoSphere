@@ -58,13 +58,29 @@ class FavoriteJdbcTemplateRepositoryTest {
 
     @Test
     void shouldUpdate(){
+        //update by first finding the favorite object in repo
         Favorite favorite = repository.findById(BigInteger.ONE);
         favorite.setSource("MyFavorite");
-
         assertTrue(repository.update(favorite));
         Favorite updated = repository.findById(BigInteger.ONE);
         assertEquals(BigInteger.ONE, updated.getFavoriteId());
         assertEquals("MyFavorite", updated.getSource());
+
+        //update directly by accessing the favorite object by its id
+        Favorite actual = new Favorite(BigInteger.valueOf(1), BigInteger.TWO, "http://www.myfavorite.com", "Favorite", "Sports Complex", "Video", "Title",
+                "Description", "http://www.myfavorite.com/gif", "http://www.myfavorite.com/image", LocalDate.of(2023,06,28),
+                LocalDate.of(2023,06,28), true, true, true, true);
+        assertTrue(repository.update(actual));
+        assertEquals("Title", actual.getTitle());
+    }
+
+    @Test
+    void shouldNotupdateMissing(){
+        Favorite favorite = new Favorite(BigInteger.valueOf(99), BigInteger.TWO, "http://www.myfavorite.com", "Favorite", "Sports Complex", "Video", "Title",
+                "Description", "http://www.myfavorite.com/gif", "http://www.myfavorite.com/image", LocalDate.of(2023,06,28),
+                LocalDate.of(2023,06,28), true, true, true, true);
+
+        assertFalse(repository.update(favorite));
     }
 
     @Test
@@ -74,4 +90,8 @@ class FavoriteJdbcTemplateRepositoryTest {
         assertNull(repository.findById(BigInteger.ONE));
     }
 
+    @Test
+    void shouldNotDeleteMissing(){
+        assertFalse(repository.deleteById(BigInteger.valueOf(99)));
+    }
 }

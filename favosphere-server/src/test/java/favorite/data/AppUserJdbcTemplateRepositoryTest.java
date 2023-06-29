@@ -49,7 +49,9 @@ class AppUserJdbcTemplateRepositoryTest {
 
     @Test
     void shouldCreate(){
-        AppUser user = new AppUser(BigInteger.valueOf(0),"Jane", "John", "Jackson", "800-800-8000", "jjjackson@jmail.jom", "pAsSwOrD", LocalDate.of(2023,06,28), LocalDate.of(2023,06,28), true, List.of("USER"));
+        AppUser user = new AppUser(BigInteger.valueOf(0),"Jane", "John", "Jackson",
+                "800-800-8000", "jjjackson@jmail.jom", "pAsSwOrD", LocalDate.of(2023,06,28),
+                LocalDate.of(2023,06,28), true, List.of("USER"));
         AppUser actual = repository.create(user);
         AppUser jane = repository.findByEmail("jjjackson@jmail.jom");
 
@@ -60,11 +62,6 @@ class AppUserJdbcTemplateRepositoryTest {
         assertEquals("Jackson", jane.getLastName());
         assertTrue(jane.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER")));
         assertTrue(actual.isEnabled());
-    }
-
-    @Test
-    void shouldNotCreateInvalid(){
-        AppUser
     }
 
     @Test
