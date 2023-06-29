@@ -2,15 +2,15 @@ package favorite.security;
 
 public class Credentials {
 
-    private String email;
+    private String username;
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String email) {
+        this.username = email;
     }
 
     public String getPassword() {

@@ -38,7 +38,7 @@ public class AuthController {
     public ResponseEntity<Object> authenticate(@RequestBody Credentials credentials) {
 
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                credentials.getEmail(), credentials.getPassword());
+                credentials.getUsername(), credentials.getPassword());
 
         try {
             Authentication authentication = authenticationManager.authenticate(authToken);

@@ -44,7 +44,7 @@ public class AppUserService implements UserDetailsService {
         String hashedPassword = encoder.encode(credentials.getPassword());
 
         AppUser appUser = new AppUser(BigInteger.ZERO, null, null, null, null,
-                credentials.getEmail(), hashedPassword, null, null, true,
+                credentials.getUsername(), hashedPassword, null, null, true,
                 List.of("USER"));
 
         try {
@@ -59,7 +59,7 @@ public class AppUserService implements UserDetailsService {
 
     private Result<AppUser> validate(Credentials credentials) {
         Result<AppUser> result = new Result<>();
-        if (credentials.getEmail() == null || credentials.getEmail().isBlank()) {
+        if (credentials.getUsername() == null || credentials.getUsername().isBlank()) {
             result.addMessage("email is required");
             return result;
         }
@@ -69,7 +69,7 @@ public class AppUserService implements UserDetailsService {
             return result;
         }
 
-        if (credentials.getEmail().length() > 50) {
+        if (credentials.getUsername().length() > 50) {
             result.addMessage("email must be less than 50 characters");
         }
 
