@@ -102,6 +102,16 @@ create table favorite_tag (
         references tag(tag_id)
 );
 
+create table email (
+    email_id bigint primary key auto_increment,
+    app_user_id bigint not null,
+    url varchar(500) not null,
+    sent_on datetime not null,
+    constraint fk_email_app_user_id
+        foreign key (app_user_id)
+        references `app_user`(app_user_id)
+);
+
 delimiter //
 create procedure set_known_good_state()
 begin
@@ -112,14 +122,16 @@ begin
     delete from role_permission;
     delete from `app_role`;
     alter table `app_role` auto_increment = 1;
-    delete from `app_user`;
-    alter table `app_user` auto_increment = 1;
+	delete from email;
+    alter table email auto_increment = 1;
     delete from permission;
     alter table permission auto_increment = 1;
---     delete from favorite_tag;
---     delete from tag;
---     alter table tag auto_increment = 1;
-    
+    delete from favorite_tag;
+    delete from tag;
+    alter table tag auto_increment = 1;
+    delete from `app_user`;
+    alter table `app_user` auto_increment = 1;
+   
 	insert into `app_role` (title, `description`, enabled, created_on, updated_on) values
     ('USER', 'Manages own favorites', 1, '2023-06-26','2023-06-26'),
     ('ADMIN', 'Manages all user favorites', 1, '2023-06-26','2023-06-26');
@@ -163,6 +175,12 @@ insert into favorite (app_user_id, url, `source`, creator, `type`, title, `descr
         comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips 
         the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-10-10',
         '2023-11-11', 1, 1, 1, 1);
+        
+insert into email (app_user_id, url, sent_on)
+	values
+		(1,'https://www.youtube.com/watch?v=xtZI23hxetw','2023-11-11 11:11:11.11'),
+        (1,'https://www.youtube.com/watch?v=j7q8Zzw46oQ','2023-11-11 12:12:12.12'),
+        (2,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13');
     end //
 -- 4. Change the statement terminator back to the original.
 delimiter ;
