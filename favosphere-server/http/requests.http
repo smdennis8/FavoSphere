@@ -11,20 +11,28 @@ GET {{url}}/2
 
 POST {{url}}
 Content-Type: application/json
+# Authorization: Bearer {{token}}
 
 {
-    "title": "The Game of Life",
-    "description": "A game that mimics all of life's major decisions",
-    "categories": "Development, Family, Dice-Oriented",
-    "playerMin": 2,
-    "playerMax": 8,
-    "releaseYear": 1860,
-    "imageUrl": "https://cf.geekdo-images.com/c4S2XDRb_DCYCAV-ZAzDpg__itemrep/img/3NPhqG3Emz0QukNRqVFBb_hsYQk=/fit-in/246x300/filters:strip_icc()/pic288405.jpg"
+    "url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+    "source": "Wikipedia",
+    "creator": null,
+    "type": "Reading",
+    "title": "Ada Lovelace",
+    "description": null,
+    "gifUrl": null,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Ada_Byron_daguerreotype_by_Antoine_Claudet_1843_or_1850_-_cropped.png",
+    "createdOn": "2000-01-01",
+    "updatedOn": "2020-12-31",
+    "isCustomTitle": true,
+    "isCustomDescription": true,
+    "isCustomImage": true,
+    "isCustomGif": true
 }
 
 ###
 
-GET {{url}}/4
+GET {{url}}/3
 
 ###
 
