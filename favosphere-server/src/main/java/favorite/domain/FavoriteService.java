@@ -98,20 +98,26 @@ public class FavoriteService {
             result.addMessage("Created on date is required");
         }
 
-        if (favorite.getCreatedOn().isAfter(LocalDate.now())) {
-            result.addMessage("Created on date cannot be in the future");
-        }
-
-        if (favorite.getUpdatedOn().isAfter(LocalDate.now())) {
-            result.addMessage("Updated on date cannot be in the past");
-        }
-
         if (favorite.getUpdatedOn() == null) {
             result.addMessage("Updated on date is required");
         }
 
-        if (favorite.getUpdatedOn().isBefore(favorite.getCreatedOn())) {
-            result.addMessage("Updated on date cannot be before created on date");
+        if (favorite.getCreatedOn() != null) {
+            if (favorite.getCreatedOn().isAfter(LocalDate.now())) {
+                result.addMessage("Created on date cannot be in the future");
+            }
+        }
+
+        if (favorite.getUpdatedOn() != null) {
+            if (favorite.getUpdatedOn().isAfter(LocalDate.now())) {
+                result.addMessage("Updated on date cannot be in the future");
+            }
+        }
+
+        if (favorite.getCreatedOn() != null && favorite.getUpdatedOn() != null) {
+            if (favorite.getUpdatedOn().isBefore(favorite.getCreatedOn())) {
+                result.addMessage("Updated on date cannot be before created on date");
+            }
         }
 
         return result;
