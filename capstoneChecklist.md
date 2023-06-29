@@ -351,11 +351,11 @@ src
 
 ### Part 2: Testing
 
-- [X] Write `FavoriteControllerTest` (4 hrs)
+- [ ] Write `FavoriteControllerTest` (4 hrs)
 - [X] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
-- [ ] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
+- [X] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
 - [X] Write `FavoriteServiceTest` (3 hrs)
-- [ ] Write `AppUserServiceTest` (4 hrs)
+- [X] Write `AppUserServiceTest` (4 hrs)
 
 ## Part 3: Make http requests to the server
 

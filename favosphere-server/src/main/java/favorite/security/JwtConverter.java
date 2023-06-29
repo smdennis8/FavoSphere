@@ -29,6 +29,15 @@ public class JwtConverter {
                 .setIssuer(ISSUER)
                 .setSubject(user.getEmail())
                 .claim("app_user_id", user.getAppUserId())
+                .claim("first_name", user.getFirstName())
+                .claim("middle_name", user.getMiddleName())
+                .claim("last_name", user.getLastName())
+                .claim("phone", user.getPhone())
+                .claim("email", user.getEmail())
+                .claim("password", user.getPassword())
+                .claim("registered_on", String.valueOf(user.getRegisteredOn()))
+                .claim("last_login", String.valueOf(user.getLastLogin()))
+                .claim("user_enabled", user.isEnabled())
                 .claim("authorities", authorities)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_MILLIS))
                 .signWith(key)
@@ -48,15 +57,15 @@ public class JwtConverter {
                     .build()
                     .parseClaimsJws(token.substring(7));
 
-            BigInteger appUserId = BigInteger.valueOf((Long) jws.getBody().get("app_user_id"));
-            String firstName = jws.getBody().getSubject();
-            String middleName = jws.getBody().getSubject();
-            String lastName = jws.getBody().getSubject();
-            String phone = jws.getBody().getSubject();
-            String email = jws.getBody().getSubject();
-            String password = jws.getBody().getSubject();
-            LocalDate registeredOn = (LocalDate) jws.getBody().get("registered_on");
-            LocalDate lastLogin = (LocalDate) jws.getBody().get("last_login");
+            BigInteger appUserId = new BigInteger(jws.getBody().get("app_user_id").toString());
+            String firstName = (String) jws.getBody().get("first_name");
+            String middleName = (String) jws.getBody().get("middle_name");
+            String lastName = (String) jws.getBody().get("last_name");
+            String phone = (String) jws.getBody().get("phone");
+            String email = (String) jws.getBody().get("email");
+            String password = (String) jws.getBody().get("password");
+            LocalDate registeredOn = LocalDate.parse(jws.getBody().get("registered_on").toString());
+            LocalDate lastLogin = LocalDate.parse(jws.getBody().get("last_login").toString());
             Boolean userEnabled = (Boolean) jws.getBody().get("user_enabled");
             String authStr = (String) jws.getBody().get("authorities");
 

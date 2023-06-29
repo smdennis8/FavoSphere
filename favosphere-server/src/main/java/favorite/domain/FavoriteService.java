@@ -86,11 +86,11 @@ public class FavoriteService {
             result.addMessage("Url must be a valid url");
         }
 
-        if (!Validations.isValidUrl(favorite.getGifUrl())) {
+        if (favorite.getGifUrl() != null && !Validations.isValidUrl(favorite.getGifUrl())) {
             result.addMessage("Gif url must be a valid url");
         }
 
-        if (!Validations.isValidUrl(favorite.getImageUrl())) {
+        if (favorite.getImageUrl() != null && !Validations.isValidUrl(favorite.getImageUrl())) {
             result.addMessage("Image url must be a valid url");
         }
 

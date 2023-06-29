@@ -1,12 +1,12 @@
-@url = http://localhost:8080
+@url = http://localhost:8080/security
 
-### Bad credentials... returns 403
+### Bad credentials... returns 401
 
 POST {{url}}/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "bad-username",
+    "email": "bad-username",
     "password": "bad-password"
 }
 
@@ -16,7 +16,7 @@ POST {{url}}/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "john@smith.com",
+    "email": "john@smith.com",
     "password": "P@ssw0rd!"
 }
 
@@ -26,7 +26,7 @@ POST {{url}}/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "sally@jones.com",
+    "email": "sally@jones.com",
     "password": "P@ssw0rd!"
 }
 
@@ -41,6 +41,6 @@ POST {{url}}/create_account HTTP/1.1
 Content-Type: application/json
 
 {
-  "username": "bob@jones.com",
-  "password": "P@ssw0rd!"
+    "email": "bob@jones.com",
+    "password": "P@ssw0rd!"
 }
