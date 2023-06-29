@@ -44,14 +44,14 @@ public class AppUserService implements UserDetailsService {
         String hashedPassword = encoder.encode(credentials.getPassword());
 
         AppUser appUser = new AppUser(BigInteger.ZERO, null, null, null, null,
-                credentials.getUsername(), hashedPassword, null, null, true,
+                credentials.getEmail(), hashedPassword, null, null, true,
                 List.of("USER"));
 
         try {
             appUser = repository.create(appUser);
             result.setPayload(appUser);
         } catch (DuplicateKeyException e) {
-            result.addMessage("The provided username already exists", ResultType.INVALID);
+            result.addMessage("The provided email already exists", ResultType.INVALID);
         }
 
         return result;
@@ -59,7 +59,7 @@ public class AppUserService implements UserDetailsService {
 
     private Result<AppUser> validate(Credentials credentials) {
         Result<AppUser> result = new Result<>();
-        if (credentials.getUsername() == null || credentials.getUsername().isBlank()) {
+        if (credentials.getEmail() == null || credentials.getEmail().isBlank()) {
             result.addMessage("email is required");
             return result;
         }
@@ -69,8 +69,8 @@ public class AppUserService implements UserDetailsService {
             return result;
         }
 
-        if (credentials.getUsername().length() > 50) {
-            result.addMessage("email must be less than 50 characters");
+        if (credentials.getEmail().length() > 50) {
+            result.addMessage("email must be less than 255 characters");
         }
 
         if (!isValidPassword(credentials.getPassword())) {

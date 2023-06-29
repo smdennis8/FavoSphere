@@ -2,7 +2,6 @@ package favorite.security;
 
 import favorite.data.AppUserRepository;
 import favorite.domain.Result;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,7 +47,7 @@ class AppUserServiceTest {
                 LocalDate.of(2010,01,11), LocalDate.of(2023,06,26), true, List.of("ADMIN"));
 
         Credentials credentials = new Credentials();
-        credentials.setUsername("john@smith.com");
+        credentials.setEmail("john@smith.com");
         credentials.setPassword("$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa");
         when(repository.create(any())).thenReturn(expected);
         Result<AppUser> result = service.create(credentials);
@@ -62,9 +61,9 @@ class AppUserServiceTest {
     }
 
     @Test
-    void shouldNotCreateWithNullUsername(){
+    void shouldNotCreateWithNullEmail(){
         Credentials credentials = new Credentials();
-        credentials.setUsername(null);
+        credentials.setEmail(null);
         credentials.setPassword("$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa");
         Result<AppUser> result = service.create(credentials);
 
@@ -75,9 +74,9 @@ class AppUserServiceTest {
     }
 
     @Test
-    void shouldNotCreateWithBlankUsername() {
+    void shouldNotCreateWithBlankEmail() {
         Credentials credentials = new Credentials();
-        credentials.setUsername("");
+        credentials.setEmail("");
         credentials.setPassword("$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa");
         Result<AppUser> result = service.create(credentials);
 
@@ -90,20 +89,20 @@ class AppUserServiceTest {
     @Test
     void shouldNotCreateWithUsernameGreaterThan50Chars() {
         Credentials credentials = new Credentials();
-        credentials.setUsername("a".repeat(51));
+        credentials.setEmail("a".repeat(256));
         credentials.setPassword("$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa");
         Result<AppUser> result = service.create(credentials);
 
         assertFalse(result.isSuccess());
         assertNull(result.getPayload());
         assertEquals(1, result.getMessages().size());
-        assertEquals("email must be less than 50 characters", result.getMessages().get(0));
+        assertEquals("email must be less than 255 characters", result.getMessages().get(0));
     }
 
     @Test
-    void shouldNotCreateAppUserWithExistingUsername() {
+    void shouldNotCreateAppUserWithExistingEmail() {
         Credentials credentials = new Credentials();
-        credentials.setUsername("john@smith.com");
+        credentials.setEmail("john@smith.com");
         credentials.setPassword("Val1dP@ssw0rd!\"");
 
         when(repository.create(any())).thenThrow(DuplicateKeyException.class);
@@ -113,13 +112,13 @@ class AppUserServiceTest {
         assertFalse(result.isSuccess());
         assertNull(result.getPayload());
         assertEquals(1, result.getMessages().size());
-        assertEquals("The provided username already exists", result.getMessages().get(0));
+        assertEquals("The provided email already exists", result.getMessages().get(0));
     }
 
     @Test
     void shouldNotCreateWithNullPassword() {
         Credentials credentials = new Credentials();
-        credentials.setUsername("test@test.com");
+        credentials.setEmail("test@test.com");
         credentials.setPassword(null);
 
         Result<AppUser> result = service.create(credentials);
@@ -133,7 +132,7 @@ class AppUserServiceTest {
     @Test
     void shouldNotCreateWithLessThan8CharsInPassword() {
         Credentials credentials = new Credentials();
-        credentials.setUsername("test@test.com");
+        credentials.setEmail("test@test.com");
         credentials.setPassword("invalid");
 
         Result<AppUser> result = service.create(credentials);
@@ -148,7 +147,7 @@ class AppUserServiceTest {
     @Test
     void shouldNotCreateWithoutNumberInPassword() {
         Credentials credentials = new Credentials();
-        credentials.setUsername("test@test.com");
+        credentials.setEmail("test@test.com");
         credentials.setPassword("invalidp@ssword!");
 
         Result<AppUser> result = service.create(credentials);
@@ -163,7 +162,7 @@ class AppUserServiceTest {
     @Test
     void shouldNotCreateWithoutSpecialCharInPassword() {
         Credentials credentials = new Credentials();
-        credentials.setUsername("test@test.com");
+        credentials.setEmail("test@test.com");
         credentials.setPassword("invalidp4ssword");
 
         Result<AppUser> result = service.create(credentials);
