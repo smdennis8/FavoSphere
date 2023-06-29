@@ -124,7 +124,7 @@ insert into permission (title, `description`, created_on, updated_on, enabled)
     ('READ_ALL', 'View and read all favorites.', '2010-03-11', '2023-03-11', 1),
     ('WRITE_ALL', 'Create and edit all favorites.', '2020-04-22', '2023-04-22', 1);
     
-insert into role_permissions
+insert into role_permission
     values
     (1, 1),
     (1, 2),
