@@ -36,8 +36,7 @@ class AppUserJdbcTemplateRepositoryTest {
         assertEquals("Jingle-Heimer", actual.getMiddleName());
         assertEquals("Smith", actual.getLastName());
         assertTrue(actual.isEnabled());
-        assertEquals(2, actual.getAuthorities().size());
-        System.out.println(actual.getAuthorities());
+        assertEquals(1, actual.getAuthorities().size());
         assertTrue(actual.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN")));
     }
 

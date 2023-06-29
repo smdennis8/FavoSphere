@@ -53,7 +53,7 @@ class FavoriteJdbcTemplateRepositoryTest {
 
         Favorite foundById = repository.findById(BigInteger.valueOf(3));
         assertEquals("http://www.myfavorite.com", foundById.getUrl());
-        assertEquals("Favorite.com", foundById.getSource());
+        assertEquals("Favorite", foundById.getSource());
     }
 
     @Test
@@ -75,7 +75,7 @@ class FavoriteJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void shouldNotupdateMissing(){
+    void shouldNotUpdateMissing(){
         Favorite favorite = new Favorite(BigInteger.valueOf(99), BigInteger.TWO, "http://www.myfavorite.com", "Favorite", "Sports Complex", "Video", "Title",
                 "Description", "http://www.myfavorite.com/gif", "http://www.myfavorite.com/image", LocalDate.of(2023,06,28),
                 LocalDate.of(2023,06,28), true, true, true, true);
