@@ -150,6 +150,9 @@ src
 
 - `private ResponseEntity<?> reportException(String message)` -- Displays a list of the errors
 
+### controllers.TestHelpers
+
+
 ### data.mappers.AppUserMapper
 
 - `public AppUser mapRow(ResultSet rs, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
@@ -330,6 +333,7 @@ src
 - [ ] Write `EmailController` class (4 hrs)
 - [X] Write `FavoriteController` class (1.5 hrs)
 - [X] Write `GlobalExceptionHandler` class (0.25 hrs)
+- [ ] Write `TestHelpers` class (0.5 hrs)
 - [X] Write `AppUsermapper` (0.25 hrs)
 - [X] Write `FavoriteMapper` (0.25 hrs)
 - [X] Write `AppUserJdbcTemplateRepository` (0.5 hrs)
