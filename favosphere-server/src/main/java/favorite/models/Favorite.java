@@ -24,6 +24,8 @@ public class Favorite {
     private Boolean isCustomImage;
     private Boolean isCustomGif;
 
+    public Favorite() {}
+
     public Favorite(BigInteger favoriteId, BigInteger userId, String url, String source, String creator,
                     String type, String title, String description, String gifUrl, String imageUrl, LocalDate createdOn,
                     LocalDate updatedOn, Boolean isCustomTitle, Boolean isCustomDescription, Boolean isCustomImage,
