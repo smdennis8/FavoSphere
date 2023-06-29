@@ -84,8 +84,8 @@ create table favorite (
 create table tag (
     tag_id int primary key auto_increment,
     title varchar(50) not null unique,
-    created_on datetime not null,
-    updated_on datetime not null,
+    created_on date not null,
+    updated_on date not null,
     is_custom bit not null default(0)
 );
 

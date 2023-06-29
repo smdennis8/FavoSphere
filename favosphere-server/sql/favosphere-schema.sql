@@ -10,8 +10,8 @@ create table `app_user` (
     phone varchar(50),
     email varchar(255) not null unique,
     password_hash varchar(2048) not null,
-    registered_on datetime not null,
-    last_login datetime not null,
+    registered_on date not null,
+    last_login date not null,
     user_enabled bit not null default(1)
 );
 
@@ -20,8 +20,8 @@ create table `app_role` (
     title varchar(50) not null unique,
     `description` varchar(255) not null,
     enabled bit not null default(1),
-    created_on datetime not null,
-    updated_on datetime not null
+    created_on date not null,
+    updated_on date not null
 );
 
 create table app_user_role (
@@ -41,8 +41,8 @@ create table permission (
     permission_id int primary key auto_increment,
     title varchar(50) not null unique,
     `description` varchar(255) not null,
-    created_on datetime not null,
-    updated_on datetime not null,
+    created_on date not null,
+    updated_on date not null,
     enabled bit not null default(1)
 );
 
@@ -70,8 +70,8 @@ create table favorite (
     `description` text,
     gif_url varchar(500),
     image_url varchar(500),
-    created_on datetime not null,
-    updated_on datetime not null,
+    created_on date not null,
+    updated_on date not null,
 	is_custom_title bit default(null),
 	is_custom_description bit default(null),
     is_custom_image bit default(null),
@@ -84,8 +84,8 @@ create table favorite (
 create table tag (
     tag_id int primary key auto_increment,
     title varchar(50) not null unique,
-    created_on datetime not null,
-    updated_on datetime not null,
+    created_on date not null,
+    updated_on date not null,
     is_custom bit not null default(0)
 );
 
@@ -124,7 +124,7 @@ insert into permission (title, `description`, created_on, updated_on, enabled)
     ('READ_ALL', 'View and read all favorites.', '2010-03-11', '2023-03-11', 1),
     ('WRITE_ALL', 'Create and edit all favorites.', '2020-04-22', '2023-04-22', 1);
     
-insert into role_permission
+insert into role_permissions
     values
     (1, 1),
     (1, 2),
