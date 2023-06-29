@@ -1,6 +1,6 @@
 
 @url = http://localhost:8080/favorite
-@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYXZvcml0ZSIsInN1YiI6ImpvaG5Ac21pdGguY29tIiwiYXBwX3VzZXJfaWQiOjEsImZpcnN0X25hbWUiOiJKb2huIiwibWlkZGxlX25hbWUiOiJKaW5nbGUtSGVpbWVyIiwibGFzdF9uYW1lIjoiU21pdGgiLCJwaG9uZSI6IjEtMTExLTExMS0xMTExIiwiZW1haWwiOiJqb2huQHNtaXRoLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJG50QjdDc1JLUXp1TG9LWTNyZm9BUWVuNW5OeWlDL1U2MHdCc1dubllydFFRaThaM0laelFhIiwicmVnaXN0ZXJlZF9vbiI6IjIwMTAtMDEtMTEiLCJsYXN0X2xvZ2luIjoiMjAyMy0wNi0yNiIsInVzZXJfZW5hYmxlZCI6dHJ1ZSwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY4ODA2NDEzN30.lPtAA2ToV_l_OkooqX0ZsSVV9FoDU7JHBkxgsBuWlyE
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYXZvcml0ZSIsInN1YiI6ImpvaG5Ac21pdGguY29tIiwiYXBwX3VzZXJfaWQiOjEsImZpcnN0X25hbWUiOiJKb2huIiwibWlkZGxlX25hbWUiOiJKaW5nbGUtSGVpbWVyIiwibGFzdF9uYW1lIjoiU21pdGgiLCJwaG9uZSI6IjEtMTExLTExMS0xMTExIiwiZW1haWwiOiJqb2huQHNtaXRoLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJG50QjdDc1JLUXp1TG9LWTNyZm9BUWVuNW5OeWlDL1U2MHdCc1dubllydFFRaThaM0laelFhIiwicmVnaXN0ZXJlZF9vbiI6IjIwMTAtMDEtMTEiLCJsYXN0X2xvZ2luIjoiMjAyMy0wNi0yNiIsInVzZXJfZW5hYmxlZCI6dHJ1ZSwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY4ODA3MzE5NX0.gYJmj8c5DRc6YgA4j4Rjc6dgN2sIXw_qYtXzBqi8xso
 
 GET {{url}}
 
@@ -23,10 +23,10 @@ Authorization: Bearer {{token}}
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Ada_Byron_daguerreotype_by_Antoine_Claudet_1843_or_1850_-_cropped.png",
     "createdOn": "2000-01-01",
     "updatedOn": "2020-12-31",
-    "isCustomTitle": true,
-    "isCustomDescription": true,
-    "isCustomImage": true,
-    "isCustomGif": true
+    "customTitle": true,
+    "customDescription": true,
+    "customImage": true,
+    "customGif": true
 }
 
 ###

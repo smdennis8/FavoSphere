@@ -43,9 +43,9 @@ class FavoriteControllerTest {
     String token;
 
     private Favorite makeFavorite(BigInteger favoriteId) {
-        return new Favorite(favoriteId, BigInteger.valueOf(69), "http://favorite.url@website.com",
+        return new Favorite(favoriteId, BigInteger.valueOf(69), "http://favorite-url@website.com",
                 "source", "creator", "type", "title", "description",
-                "http://favorite.gifUrl@website.com", "http://favorite.imageUrl@website.com",
+                "http://favorite-gifUrl@website.com", "http://favorite-imageUrl@website.com",
                 LocalDate.of(2000,1,1), LocalDate.of(2020,12,31),
                 true, true, true, true);
     }
@@ -117,6 +117,7 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldAddValidAndReturn201() throws Exception {
         Favorite favorite = makeFavorite(BigInteger.ZERO);
         Favorite expected = makeFavorite(BigInteger.valueOf(7));
