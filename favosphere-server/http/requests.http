@@ -1,0 +1,47 @@
+
+@url = http://localhost:8080/favorite
+
+GET {{url}}
+
+###
+
+GET {{url}}/2
+
+###
+
+POST {{url}}
+Content-Type: application/json
+
+{
+    "title": "The Game of Life",
+    "description": "A game that mimics all of life's major decisions",
+    "categories": "Development, Family, Dice-Oriented",
+    "playerMin": 2,
+    "playerMax": 8,
+    "releaseYear": 1860,
+    "imageUrl": "https://cf.geekdo-images.com/c4S2XDRb_DCYCAV-ZAzDpg__itemrep/img/3NPhqG3Emz0QukNRqVFBb_hsYQk=/fit-in/246x300/filters:strip_icc()/pic288405.jpg"
+}
+
+###
+
+GET {{url}}/4
+
+###
+
+PUT {{url}}/4
+Content-Type: application/json
+
+{
+    "id": 4,
+    "title": "The Game of Life 60th ANNIVERSARY!",
+    "description": "A game that mimics all of life's major decisions",
+    "categories": "Development, Family, Dice-Oriented",
+    "playerMin": 2,
+    "playerMax": 8,
+    "releaseYear": 1960,
+    "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/403120/header.jpg?t=1682353184"
+}
+
+###
+
+DELETE {{url}}/4

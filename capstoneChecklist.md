@@ -354,23 +354,23 @@ src
 - [X] Write `FavoriteControllerTest` (4 hrs)
 - [X] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
 - [ ] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
-- [ ] Write `FavoriteServiceTest` (3 hrs)
+- [X] Write `FavoriteServiceTest` (3 hrs)
 - [ ] Write `AppUserServiceTest` (4 hrs)
 
 ## Part 3: Make http requests to the server
 
-- [ ] Create requests.http in http directory (0.17 hrs)
-- [ ] Retrieve a favorite using a  `GET` request (0.17 hrs)
+- [X] Create requests.http in http directory (0.17 hrs)
+- [X] Retrieve a favorite using a  `GET` request (0.17 hrs)
 - [ ] Use `POST` to add a favorite (0.25 hrs)
 - [ ] Use `PUT` to edit a favorite with an ID (0.25 hrs)
 - [ ] Display a list of all favorites for an authorized user (0.25 hrs)
 
 ### Part 4: Frontend
 
-- [ ] Create react app and set-up client side (0.17 hrs)
-  - Remove unnecessary files (0.067 hrs)
+- [X] Create react app and set-up client side (0.17 hrs)
+- [X] Remove unnecessary files (0.067 hrs)
 
-- [ ] Create an `index.html` and `main.js` file as a starting point for your project (0.25 hrs)
+- [X] Create an `index.html` and `App.js` file as a starting point for your project (0.25 hrs)
 - [ ] Add Bootstrap to the `public/index.html` file (0.08 hrs)
 - [ ] Components:
 
