@@ -255,10 +255,10 @@ src
 - `private String imageUrl`
 - `private LocalDate createdOn`
 - `private LocalDate updatedOn`
-- `private Boolean isCustomTitle`
-- `private Boolean isCustomDescription`
-- `private Boolean isCustomImage`
-- `private Boolean isCustomGif`
+- `private boolean isCustomTitle`
+- `private boolean isCustomDescription`
+- `private boolean isCustomImage`
+- `private boolean isCustomGif`
 
 - Empty Constructor and "All of the Above" Constructor
 
@@ -268,7 +268,7 @@ src
 
 ### security.AppUser
 
-- `private int appUserId`
+- `private BigInteger appUserId`
 - `private final String username`
 - `private final String password`
 - `private boolean enabled`
@@ -290,10 +290,10 @@ src
 
 ### security.Credentials
 
-- `private String username`
+- `private String email`
 - `private String password`
-- `public String getUsername()`
-- `public void setUsername(String username)`
+- `public String getEmail()`
+- `public void setEmail(String email)`
 - `public String getPassword()`
 - `public void setPassword(String password)`
 
@@ -353,13 +353,13 @@ src
 
 - [X] Write `FavoriteControllerTest` (4 hrs)
 - [X] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
-- [ ] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
-- [ ] Write `FavoriteServiceTest` (3 hrs)
-- [ ] Write `AppUserServiceTest` (4 hrs)
+- [X] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
+- [X] Write `FavoriteServiceTest` (3 hrs)
+- [X] Write `AppUserServiceTest` (4 hrs)
 
 ## Part 3: Make http requests to the server
 
-- [ ] Create requests.http in http directory (0.17 hrs)
+- [X] Create requests.http in http directory (0.17 hrs)
 - [ ] Retrieve a favorite using a  `GET` request (0.17 hrs)
 - [ ] Use `POST` to add a favorite (0.25 hrs)
 - [ ] Use `PUT` to edit a favorite with an ID (0.25 hrs)
@@ -367,12 +367,12 @@ src
 
 ### Part 4: Frontend
 
-- [ ] Create react app and set-up client side (0.17 hrs)
+- [X] Create react app and set-up client side (0.17 hrs)
   - Remove unnecessary files (0.067 hrs)
 
-- [ ] Create an `index.html` and `main.js` file as a starting point for your project (0.25 hrs)
-- [ ] Add Bootstrap to the `public/index.html` file (0.08 hrs)
-- [ ] Components:
+- [X] Create an `index.html` and `main.js` file as a starting point for your project (0.25 hrs)
+- [X] Add Bootstrap to the `public/index.html` file (0.08 hrs)
+- [X] Components:
 
   - [ ] Navigation Panel Wrapper (0.5 hrs)
   - [ ] Filter Bar Component (3 hrs)
