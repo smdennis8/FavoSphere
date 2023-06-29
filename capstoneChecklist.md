@@ -150,6 +150,9 @@ src
 
 - `private ResponseEntity<?> reportException(String message)` -- Displays a list of the errors
 
+### controllers.TestHelpers
+
+
 ### data.mappers.AppUserMapper
 
 - `public AppUser mapRow(ResultSet rs, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
@@ -255,10 +258,10 @@ src
 - `private String imageUrl`
 - `private LocalDate createdOn`
 - `private LocalDate updatedOn`
-- `private Boolean isCustomTitle`
-- `private Boolean isCustomDescription`
-- `private Boolean isCustomImage`
-- `private Boolean isCustomGif`
+- `private boolean isCustomTitle`
+- `private boolean isCustomDescription`
+- `private boolean isCustomImage`
+- `private boolean isCustomGif`
 
 - Empty Constructor and "All of the Above" Constructor
 
@@ -268,7 +271,7 @@ src
 
 ### security.AppUser
 
-- `private int appUserId`
+- `private BigInteger appUserId`
 - `private final String username`
 - `private final String password`
 - `private boolean enabled`
@@ -290,10 +293,10 @@ src
 
 ### security.Credentials
 
-- `private String username`
+- `private String email`
 - `private String password`
-- `public String getUsername()`
-- `public void setUsername(String username)`
+- `public String getEmail()`
+- `public void setEmail(String email)`
 - `public String getPassword()`
 - `public void setPassword(String password)`
 
@@ -330,6 +333,7 @@ src
 - [ ] Write `EmailController` class (4 hrs)
 - [X] Write `FavoriteController` class (1.5 hrs)
 - [X] Write `GlobalExceptionHandler` class (0.25 hrs)
+- [ ] Write `TestHelpers` class (0.5 hrs)
 - [X] Write `AppUsermapper` (0.25 hrs)
 - [X] Write `FavoriteMapper` (0.25 hrs)
 - [X] Write `AppUserJdbcTemplateRepository` (0.5 hrs)
