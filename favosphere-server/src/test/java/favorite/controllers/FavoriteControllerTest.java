@@ -16,6 +16,8 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -33,6 +35,14 @@ class FavoriteControllerTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
+    private Favorite makeFavorite(BigInteger favoriteId) {
+        return new Favorite(favoriteId, BigInteger.valueOf(69), "http://favorite.url@website.com",
+                "source", "creator", "type", "title", "description",
+                "http://favorite.gifUrl@website.com", "http://favorite.imageUrl@website.com",
+                LocalDate.of(2000,1,1), LocalDate.of(2020,12,31),
+                true, true, true, true);
+    }
 
     @Test
     void shouldFindAllAndReturnHttpOK() throws Exception {
@@ -99,6 +109,46 @@ class FavoriteControllerTest {
         mvc.perform(get("/favorite/99"))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void shouldAddValidAndReturn201() throws Exception {
+        Favorite favorite = makeBugSighting(0);
+        BugSighting expected = makeBugSighting(7);
+
+        // pass validation
+        when(bugOrderRepository.findById(anyInt())).thenReturn(makeBugOrder());
+        // add successful
+        when(repository.add(any())).thenReturn(expected);
+
+        String jsonIn = TestHelpers.serializeObjectToJson(sighting);
+        String expectedJson = TestHelpers.serializeObjectToJson(expected);
+
+        var request = post("/sighting")
+                .header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(request)
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(expectedJson));
+    }
+
+//    @Test
+//    void shouldNotAddInvalidSightingAndReturn412() throws Exception {
+//        BugSighting sighting = makeBugSighting(0);
+//        sighting.setInterest(-1);
+//
+//        String jsonIn = TestHelpers.serializeObjectToJson(sighting);
+//
+//        var request = post("/sighting")
+//                .header("Authorization", "Bearer " + token)
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(jsonIn);
+//
+//        mvc.perform(request)
+//                .andExpect(status().isPreconditionFailed());
+//    }
 
     @Test
     @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")

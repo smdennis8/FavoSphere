@@ -19,17 +19,17 @@ public class Favorite {
     private LocalDate createdOn;
     private LocalDate updatedOn;
 
-    private Boolean isCustomTitle;
-    private Boolean isCustomDescription;
-    private Boolean isCustomImage;
-    private Boolean isCustomGif;
+    private boolean isCustomTitle;
+    private boolean isCustomDescription;
+    private boolean isCustomImage;
+    private boolean isCustomGif;
 
     public Favorite() {}
 
     public Favorite(BigInteger favoriteId, BigInteger userId, String url, String source, String creator,
                     String type, String title, String description, String gifUrl, String imageUrl, LocalDate createdOn,
-                    LocalDate updatedOn, Boolean isCustomTitle, Boolean isCustomDescription, Boolean isCustomImage,
-                    Boolean isCustomGif) {
+                    LocalDate updatedOn, boolean isCustomTitle, boolean isCustomDescription, boolean isCustomImage,
+                    boolean isCustomGif) {
         this.favoriteId = favoriteId;
         this.userId = userId;
         this.url = url;
@@ -144,35 +144,35 @@ public class Favorite {
         this.updatedOn = updatedOn;
     }
 
-    public Boolean getCustomTitle() {
+    public boolean getCustomTitle() {
         return isCustomTitle;
     }
 
-    public void setCustomTitle(Boolean customTitle) {
+    public void setCustomTitle(boolean customTitle) {
         isCustomTitle = customTitle;
     }
 
-    public Boolean getCustomDescription() {
+    public boolean getCustomDescription() {
         return isCustomDescription;
     }
 
-    public void setCustomDescription(Boolean customDescription) {
+    public void setCustomDescription(boolean customDescription) {
         isCustomDescription = customDescription;
     }
 
-    public Boolean getCustomImage() {
+    public boolean getCustomImage() {
         return isCustomImage;
     }
 
-    public void setCustomImage(Boolean customImage) {
+    public void setCustomImage(boolean customImage) {
         isCustomImage = customImage;
     }
 
-    public Boolean getCustomGif() {
+    public boolean getCustomGif() {
         return isCustomGif;
     }
 
-    public void setCustomGif(Boolean customGif) {
+    public void setCustomGif(boolean customGif) {
         isCustomGif = customGif;
     }
 
@@ -192,10 +192,10 @@ public class Favorite {
                 getImageUrl().equalsIgnoreCase(favorite.getImageUrl()) &&
                 getCreatedOn().equals(favorite.getCreatedOn()) &&
                 getUpdatedOn().equals(favorite.getUpdatedOn()) &&
-                isCustomTitle.equals(favorite.isCustomTitle) &&
-                isCustomDescription.equals(favorite.isCustomDescription) &&
-                isCustomImage.equals(favorite.isCustomImage) &&
-                isCustomGif.equals(favorite.isCustomGif);
+                isCustomTitle == favorite.isCustomTitle &&
+                isCustomDescription == favorite.isCustomDescription &&
+                isCustomImage == favorite.isCustomImage &&
+                isCustomGif == favorite.isCustomGif;
     }
 
     @Override
