@@ -36,8 +36,15 @@ class AppUserJdbcTemplateRepositoryTest {
         assertEquals("Jingle-Heimer", actual.getMiddleName());
         assertEquals("Smith", actual.getLastName());
         assertTrue(actual.isEnabled());
-        assertEquals(1, actual.getAuthorities().size());
+        assertEquals(2, actual.getAuthorities().size());
+        System.out.println(actual.getAuthorities());
         assertTrue(actual.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN")));
+    }
+
+    @Test
+    void shouldNotFindMissingUsername(){
+        AppUser actual = repository.findByEmail("test@test.com");
+        assertNull(actual);
     }
 
     @Test
@@ -53,6 +60,11 @@ class AppUserJdbcTemplateRepositoryTest {
         assertEquals("Jackson", jane.getLastName());
         assertTrue(jane.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER")));
         assertTrue(actual.isEnabled());
+    }
+
+    @Test
+    void shouldNotCreateInvalid(){
+        AppUser
     }
 
     @Test

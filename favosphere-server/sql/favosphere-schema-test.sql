@@ -132,6 +132,7 @@ insert into `app_user` (first_name, middle_name, last_name, phone, email, passwo
 
 insert into app_user_role
     values
+    (1, 1),
     (1, 2),
     (2, 1);
     
