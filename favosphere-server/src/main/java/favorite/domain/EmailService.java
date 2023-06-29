@@ -2,12 +2,15 @@ package favorite.domain;
 
 import favorite.data.EmailRepository;
 import favorite.models.Email;
+import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
+@Service
 public class EmailService {
 
     private final EmailRepository repository;
@@ -74,7 +77,7 @@ public class EmailService {
         }
 
         if (email.getTime() != null) {
-            if (email.getTime().isAfter(ChronoLocalDateTime.from(LocalDate.now()))) {
+            if (email.getTime().isAfter(ChronoLocalDateTime.from(LocalDateTime.now()))) {
                 result.addMessage("Email sent date cannot be in the future");
             }
         }

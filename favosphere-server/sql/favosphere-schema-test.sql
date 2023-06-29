@@ -84,8 +84,8 @@ create table favorite (
 create table tag (
     tag_id int primary key auto_increment,
     title varchar(50) not null unique,
-    created_on date not null,
-    updated_on date not null,
+    created_on datetime not null,
+    updated_on datetime not null,
     is_custom bit not null default(0)
 );
 
@@ -122,14 +122,16 @@ begin
     delete from role_permission;
     delete from `app_role`;
     alter table `app_role` auto_increment = 1;
-    delete from `app_user`;
-    alter table `app_user` auto_increment = 1;
+	delete from email;
+    alter table email auto_increment = 1;
     delete from permission;
     alter table permission auto_increment = 1;
---     delete from favorite_tag;
---     delete from tag;
---     alter table tag auto_increment = 1;
-    
+    delete from favorite_tag;
+    delete from tag;
+    alter table tag auto_increment = 1;
+    delete from `app_user`;
+    alter table `app_user` auto_increment = 1;
+   
 	insert into `app_role` (title, `description`, enabled, created_on, updated_on) values
     ('USER', 'Manages own favorites', 1, '2023-06-26','2023-06-26'),
     ('ADMIN', 'Manages all user favorites', 1, '2023-06-26','2023-06-26');
