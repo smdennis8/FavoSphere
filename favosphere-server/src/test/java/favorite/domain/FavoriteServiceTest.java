@@ -357,6 +357,17 @@ class FavoriteServiceTest {
 
     @Test
     void shouldNotDeleteNonExistingFavorite() {
+        Favorite dummy = new Favorite(
+                BigInteger.valueOf(0), BigInteger.valueOf(11), "http://url.example01@test.com",
+                "sourceExample01", "creatorExample01", "typeExample01",
+                "titleExample01","descriptionExample01", "http://gifUrl.Example01@test.com",
+                "http://imageUrl.Example01@test.com", LocalDate.of(2001, 1, 1),
+                LocalDate.of(2011, 11, 11), true,
+                false, true, true);
 
+        when(repository.deleteById(dummy.getFavoriteId())).thenReturn(true);
+        Result<Favorite> actual = service.deleteById(BigInteger.TEN);
+        assertFalse(actual.isSuccess());
+        assertEquals("Favorite: 10 doesn't exist", actual.getMessages().get(0));
     }
 }
