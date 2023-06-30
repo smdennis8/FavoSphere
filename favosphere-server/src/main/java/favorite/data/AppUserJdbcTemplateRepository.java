@@ -1,6 +1,7 @@
 package favorite.data;
 
 import favorite.data.mappers.AppUserMapper;
+import favorite.data.mappers.UserMapper;
 import favorite.security.AppUser;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -34,6 +35,14 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
         return jdbcTemplate.query(sql, new AppUserMapper(roles), email)
                 .stream()
                 .findFirst().orElse(null);
+    }
+
+    public List<AppUser> findAll() {
+        final String sql = """
+                select *
+                from app_user;
+                """;
+        return jdbcTemplate.query(sql, new UserMapper());
     }
 
     @Override
