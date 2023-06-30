@@ -1,17 +1,15 @@
-# FavoSphere Capstone Application
-
-## Tasks
+# Tasks
 
 ## Part 1: Project Setup, Planning, and Wireframing
 
 - [X] Create a team name.
   - [X] DNA: Developers Need Arrays
+
 - [x] Setup Github project repository for FavoSphere application (0.17 hrs)
 - [x] Add team members as read/write collaborators. (0.03 hrs)
 - [x] Add sample markdown files from cohort-56 repo (0.08 hrs)
 - [x] Add README.md for tasklist (0.03 hrs)
 - [x] Add `BrityHemming` and `scertian` as read/write collaborators to repo. (0.03 hrs)
-
 - [x] Edit .gitignore and file management setup (0.17 hrs)
 - [x] Detail discussion on application purpose and user flow. (0.17 hrs)
 - [x] Detail discussion on application MVP, features, and stretch goals by milestone/release version. (0.17 hrs)
@@ -25,7 +23,6 @@
   - Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
 
 - [x] Create a database schema diagram (2 hrs)
-
   - [x] Upload schema/ERD diagram to Github
 
 - [ ] Construct a wireframe
@@ -38,7 +35,8 @@
 
 ### Package/Class Overview
 
-```
+```text
+
 src
 ├───main
     ├───java
@@ -105,7 +103,6 @@ src
                 |
     └───reources
         |       application.properties
-
 ```
 
 ### App
@@ -119,9 +116,7 @@ src
 ### controllers.AuthController
 
 - `public ResponseEntity<Map<String, String>> authenticate(@RequestBody Map<String, String> credentials)` -- Checks for a valid user
-
 - `public ResponseEntity<Map<String, String>> refreshToken(@AuthenticationPrincipal AppUser appUser)` -- Refreshes the JWT Token
-
 - `public ResponseEntity<?> createAccount(@RequestBody Map<String, String> credentials)` -- Accepts a username and email from user to create an account
 
 ### controllers.EmailController
@@ -129,25 +124,17 @@ src
 ### controllers.FavoriteController
 
 - `public List<Favorite> findAll()` -- Finds all of the existing Favorites
-
 - `public ResponseEntity<Favorite> findById(@PathVariable int favoriteId)` -- Finds a particular Favorite by its ID
-
 - `public ResponseEntity<Favorite> add(@RequestBody Favorite favorite)` -- Adds a new Favorite
-
 - `public ResponseEntity<Void> update(@PathVariable int favoriteId, @RequestBody Favorite favorite)` -- Edits an existing Favorite
-
 - `public ResponseEntity<Void> delete(@PathVariable int favoriteId)` -- Upon Confirmation, Deletes an existing Favorite
-
 - `private HttpStatus getStatus(Result<Favorite> result, HttpStatus statusDefault)` -- Returns a particular HttpStatus depending on the result.getStatus() value
 
 ### controllers.GlobalExceptionHandler
 
 - `public ResponseEntity<?> handleException(DuplicateKeyException ex)` -- Checks for a duplicate entry
-
 - `public ResponseEntity<?> handleException(HttpMessageNotReadableException ex)` -- Checks for a JSON error
-
 - `public ResponseEntity<?> handleException(Exception ex)` -- Generic error ("Something went wrong")
-
 - `private ResponseEntity<?> reportException(String message)` -- Displays a list of the errors
 
 ### controllers.TestHelpers
@@ -169,19 +156,14 @@ src
 ### data.AppUserJdbcTemplateRepository
 
 - `public AppUser findByUsername(String username)` -- Searches for a user by their username
-
 - `public AppUser create(AppUser user)` -- Creates a new user from the credentials passed to it
-
 - `public boolean update(AppUser user)` -- Updates an existing user
-
 - `private void updateRoles(AppUser user)` -- Updates the roles that an existing user has
-
 - `private List<String> getRolesByUsername(String username)` -- Returns a list of all the roles that a given username has
 
 ### data.AppUserRepository
 
 - `AppUser findByUsername(String username)`
-
 - `AppUser create(AppUser user)`
 
 - `boolean update(AppUser user)`
@@ -213,57 +195,39 @@ src
 ### data.FavoriteJdbcTemplateRepository
 
 - `public List<Favorite> findAll()` -- Displays all of the favorites
-
 - `public Favorite findById(int favoriteId)` -- Finds a particular Favorite by its ID
-
 - `public Favorite add(Favorite favorite)` -- Adds a new Favorite
-
 - `public boolean update(Favorite favorite)` -- Updates an existing Favorite
-
 - `public boolean deleteById(int favoriteId)` -- Upon Confirmation, Deletes an existing Favorite
 
 ### data.FavoriteRepository
 
 - `List<Favorite> findAll()`
-
 - `Favorite findById(int favoriteId)`
-
 - `Favorite add(Favorite favorite)`
-
 - `boolean update(Favorite favorite)`
-
 - `boolean deleteById(int favoriteId)`
 
 ### domain.FavoriteResult
 
 - `public void addMessage(String message)`
-
 - `public void addMessage(String message, ResultType resultType)`
-
 - `public boolean isSuccess()`
 
 ### domain.FavoriteService
 
 - `public List<Favorite> findAll()` -- Displays all of the Favorites
-
 - `public Favorite findById(int favoriteId)` -- Finds a particular Favorite based on its ID
-
 - `public Result<Favorite> add(Favorite favorite)` -- Adds a new Favorite
-
 - `public Result<Favorite> update(Favorite favorite)` -- Updates an existing Favorite
-
 - `public Result<Favorite> deleteById(int favoriteId)` -- Upon Confirmation, Deletes an existing Favorite
-
 - `private Result<Favorite> validate(Favorite favorite)` -- Ensures that all of the required inputs are filled in, no incorrect information is inputted, and no duplicates are created
 
 ### domain.Result
 
 - `private ActionStatus status`
-
 - `private ArrayList<String> messages`
-
 - `private T payload`
-
 - `public boolean isSuccess()` -- Success if the messages field length is 0; failure otherwise
 
 ### domain.ResultType
@@ -291,11 +255,8 @@ src
 - `private boolean isCustomDescription`
 - `private boolean isCustomImage`
 - `private boolean isCustomGif`
-
 - Empty Constructor and "All of the Above" Constructor
-
 - Full Getters and Setters
-
 - Override equals and hashcode
 
 ### security.AppUser
@@ -372,13 +333,13 @@ src
 - [X] Extract `EmailRepository` (0.5 hrs)
 - [X] Write `FavoriteJdbcTemplateRepository` (0.5 hrs)
 - [X] Extract `FavoriteRepository` (0.5 hrs)
+- [ ] Write `AppGmail` (3 hrs)
 - [X] Write `EmailService` (1 hr)
 - [X] Write `FavoriteResult`  (0.25 hrs)
 - [X] Write `FavoriteService` (1.5 hrs)
 - [X] Write `Result` (0.33 hrs)
 - [X] Write `ResultType` (0.1 hrs)
 - [X] Write `Validations` (0.1 hrs)
-- [ ] Write `AppGmail` (3 hrs)
 - [X] Write `Email` (0.5 hrs)
 - [X] Write `Favorite` (0.25 hrs)
 - [X] Write `Link` (0.5 hrs)
@@ -391,7 +352,7 @@ src
 
 ### Part 3: Testing
 
-- [ ] Write `FavoriteControllerTest` (4 hrs)
+- [X] Write `FavoriteControllerTest` (4 hrs)
 - [X] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
 - [X] Write `EmailJdbcTemplateRepositoryTest` (1 hr)
 - [X] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
@@ -399,7 +360,7 @@ src
 - [X] Write `FavoriteServiceTest` (3 hrs)
 - [X] Write `AppUserServiceTest` (4 hrs)
 
-## Part 4: HTTP Requests
+### Part 4: HTTP Requests
 
 - [X] Create requests.http in http directory (0.17 hrs)
 - [X] Retrieve a favorite using a  `GET` request (0.17 hrs)
@@ -411,11 +372,9 @@ src
 
 - [X] Create react app and set-up client side (0.17 hrs)
 - [X] Remove unnecessary files (0.067 hrs)
-
 - [X] Create an `index.html` and `App.js` file as a starting point for your project (0.25 hrs)
 - [ ] Add Bootstrap to the `public/index.html` file (0.08 hrs)
 - [ ] Components:
-
   - [ ] Navigation Panel Wrapper (0.5 hrs)
   - [ ] Filter Bar Component (3 hrs)
   - [ ] Home Component - Gallery View (3 hrs)
@@ -424,7 +383,6 @@ src
   - [ ] Favorites Staging/Inbox Component (1.5 hrs)
   - [ ] Edit Favorite Page (1.5 hrs)
   - [ ] Stub out click event handlers for the "Add Favorite", "Edit Favorite", and "Delete Favorite" buttons (1 hr)
-
 - [ ] Conditionally render sections of the page (1.5 hr)
   - [ ] Add a state variable to track the current view
   - [ ] Add a method to update the current view and conditionally render the list or the form
@@ -437,12 +395,10 @@ src
   - [ ] Style all buttons (0.5 hrs)
   - [ ] Style the favorites list (grid) in gallery view (0.75 hrs)
   - [ ] Style the form (0.75 hrs)
-
   - [ ] Add onsubmit event handler to the form element (be sure to prevent the form from submitting!) (0.25 hrs)
   - [ ] Create a favorite object (0.25 hrs)
   - [ ] Use `fetch` to `POST` the new favorite’s information to the FavoSphere API (0.5 hrs)
   - [ ] On success, refresh the favorites list, or on failure, display any validation errors from the API in the UI (1 hr)
-
 - [ ] Support deleting favorites
   - [ ] Confirm the deletion with the user (0.25 hrs)
   - [ ] Use `fetch` to `DELETE` the favorite from the FavoSphere API (0.33 hrs)
@@ -451,7 +407,7 @@ src
 
 ## High-Level Requirements
 
-Implement a full CRUD UI for favorites.
+Implement a full CRUD UI for favorites:
 
 - Display all favorites (user, admin)
 - Add a favorite (user, admin)
