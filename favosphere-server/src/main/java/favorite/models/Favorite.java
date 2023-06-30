@@ -181,21 +181,8 @@ public class Favorite {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Favorite favorite = (Favorite) o;
-        return getFavoriteId().equals(favorite.getFavoriteId()) &&
-                getUserId().equals(favorite.getUserId()) &&
-                getUrl().equalsIgnoreCase(favorite.getUrl()) &&
-                getSource().equalsIgnoreCase(favorite.getSource()) &&
-                getCreator().equalsIgnoreCase(favorite.getCreator()) &&
-                getTitle().equalsIgnoreCase(favorite.getTitle()) &&
-                getDescription().equalsIgnoreCase(favorite.getDescription()) &&
-                getGifUrl().equalsIgnoreCase(favorite.getGifUrl()) &&
-                getImageUrl().equalsIgnoreCase(favorite.getImageUrl()) &&
-                getCreatedOn().equals(favorite.getCreatedOn()) &&
-                getUpdatedOn().equals(favorite.getUpdatedOn()) &&
-                isCustomTitle == favorite.isCustomTitle &&
-                isCustomDescription == favorite.isCustomDescription &&
-                isCustomImage == favorite.isCustomImage &&
-                isCustomGif == favorite.isCustomGif;
+        return getUserId().equals(favorite.getUserId()) &&
+                getUrl().equalsIgnoreCase(favorite.getUrl());
     }
 
     @Override
