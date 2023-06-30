@@ -2,13 +2,10 @@
 
 ## Tasks
 
-## Part 1: Project Setup
+## Part 1: Project Setup, Planning, and Wireframing
 
-- [ ] Create a team name.
-  - [ ] Please Wreck My House!
-
-## Part 2: Planning and Wireframing
-
+- [X] Create a team name.
+  - [X] DNA: Developers Need Arrays
 - [x] Setup Github project repository for FavoSphere application (0.17 hrs)
 - [x] Add team members as read/write collaborators. (0.03 hrs)
 - [x] Add sample markdown files from cohort-56 repo (0.08 hrs)
@@ -25,7 +22,6 @@
   - As an authenticated user, I would like to be able to save different forms of media (videos, articles, blog posts, etc…) that I find on the internet so that I can reference them later in an organized manner.
   - As an authenticated user, I would like to be able to view all of the favorites I have saved and edit and delete any such favorite.
   - As an admin, in addition to all of the capabilities of an authenticated user, I would also like to be able to view all users’ favorites so I can scan for any nefarious links a user may post to there; as such, I would like to be able to edit and delete all users’ favorites
-
   - Stretch Goal: As a group user, I will be able to view the favorites of any other user within my group; I will only be able to add, edit, and delete for myself and/or to the group’s page
 
 - [x] Create a database schema diagram (2 hrs)
@@ -39,8 +35,6 @@
   - [ ] Editing a favorite user flow (0.75 hrs)
   - [ ] Searching a favorite user flow (0.75 hrs)
   - [ ] Sharing a favorite user flow (0.75 hrs)
-
-## Part 3: Backend
 
 ### Package/Class Overview
 
@@ -58,18 +52,23 @@ src
                │       EmailController.java
                │       FavoriteController.java
                │       GlobalExceptionHandler.java
+               |       TestHelpers.java
                │
                ├───data
                     └───mappers
                         │    AppUserMapper.java
                         │    FavoriteMapper.java
+                        │    EmailMapper.java
                         |
                │       AppUserJdbcTemplateRepository.java
                │       AppUserRepostiroy.java (Interface)
+               |       EmailJdbcTemplateRepository.java
+               |       EmailRepository.java (Interface)
                │       FavoriteJdbcTemplateRepository.java
                │       FavoriteRepository.java (Interface)
                │
                ├───domain
+               |       EmailService.java
                │       FavoriteResult.java
                │       FavoriteService.java
                │       Result.java
@@ -77,6 +76,7 @@ src
                │       Validations.java
                │
                ├───models
+               |       Email.java
                |       Favorite.java
                |
                ├───security
@@ -152,6 +152,7 @@ src
 
 ### controllers.TestHelpers
 
+- `public static String serializeObjectToJson(Object o) throws JsonProcessingException`
 
 ### data.mappers.AppUserMapper
 
@@ -160,6 +161,10 @@ src
 ### data.mappers.FavoriteMapper
 
 - `public Favorite mapRow(ResultSet resultSet, int i) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
+
+### data.mappers.EmailMapper
+
+- `public Email mapRow(ResultSet rs, int rowNum) throws SQLException` -- Vacillates between IntelliJ and MySQL Workbench
 
 ### data.AppUserJdbcTemplateRepository
 
@@ -180,6 +185,30 @@ src
 - `AppUser create(AppUser user)`
 
 - `boolean update(AppUser user)`
+
+### data.EmailJdbcTemplateRepository
+
+- `List<Email> findAll()` -- Finds all the emails
+
+- `Email findById(BigInteger emailId)` -- Finds one particular email
+
+- `List<Email> findByUserId(BigInteger emailId)` -- Finds a user by Id
+
+- `Email create(Email email)` -- Creates an email from email
+
+- `boolean deleteById(BigInteger emailId)` -- Deletes an email
+
+### data.EmailRepository
+
+- `List<Email> findAll()`
+
+- `Email findById(BigInteger emailId)`
+
+- `List<Email> findByUserId(BigInteger emailId)`
+
+- `Email create(Email email)`
+
+- `boolean deleteById(BigInteger emailId)`
 
 ### data.FavoriteJdbcTemplateRepository
 
@@ -324,27 +353,32 @@ src
 - `public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig)`
 - `public AuthenticationManager authenticationManager(AuthenticationConfiguration config)`
 
-### Part 1: Steps for the backend
+### Part 2: Backend
 
 - [X] Set-up project backend (Maven project; packages & classes) (0.17 hrs)
-- [X] Write `App.java` class - with dependency injection handled by SpringBootApplication (0.17 hrs)
-- [X] Write `AppConfig` class (0.17 hrs)
-- [X] Write `AuthController` class (0.25 hrs)
-- [ ] Write `EmailController` class (4 hrs)
-- [X] Write `FavoriteController` class (1.5 hrs)
-- [X] Write `GlobalExceptionHandler` class (0.25 hrs)
-- [ ] Write `TestHelpers` class (0.5 hrs)
+- [X] Write `App.java` (0.17 hrs)
+- [X] Write `AppConfig` (0.17 hrs)
+- [X] Write `AuthController` (0.25 hrs)
+- [ ] Write `EmailController` (4 hrs)
+- [X] Write `FavoriteController` (1.5 hrs)
+- [X] Write `GlobalExceptionHandler` (0.25 hrs)
+- [X] Write `TestHelpers` (0.1 hrs)
 - [X] Write `AppUsermapper` (0.25 hrs)
+- [ ] Write `EmailMapper` (4 hrs)
 - [X] Write `FavoriteMapper` (0.25 hrs)
 - [X] Write `AppUserJdbcTemplateRepository` (0.5 hrs)
 - [X] Extract `AppUserRepository` (0.25 hrs)
+- [ ] Write `EmailJdbcTemplateRepository` (4 hrs)
+- [ ] Extract `EmailRepository` (4 hrs)
 - [X] Write `FavoriteJdbcTemplateRepository` (0.5 hrs)
 - [X] Extract `FavoriteRepository` (0.5 hrs)
+- [ ] Write `EmailService` (4 hrs)
 - [X] Write `FavoriteResult`  (0.25 hrs)
 - [X] Write `FavoriteService` (1.5 hrs)
 - [X] Write `Result` (0.33 hrs)
 - [X] Write `ResultType` (0.1 hrs)
 - [X] Write `Validations` (0.1 hrs)
+- [ ] Write `Email` (4 hrs)
 - [X] Write `Favorite` (0.25 hrs)
 - [X] Write `AppUser` (0.25 hrs)
 - [X] Write `AppUserService` (1 hr)
@@ -353,23 +387,25 @@ src
 - [X] Write `JwtRequestFilter` (0.5 hr)
 - [X] Write `SecurityConfig` (0.75 hr)
 
-### Part 2: Testing
+### Part 3: Testing
 
 - [ ] Write `FavoriteControllerTest` (4 hrs)
 - [X] Write `AppUserJdbcTemplateRepositoryTest` (4 hrs)
+- [ ] Write `EmailJdbcTemplateRepositoryTest` (4 hrs)
 - [X] Write `FavoriteJdbcTemplateRepositoryTest` (3 hrs)
+- [ ] Write `EmailServiceTest` (4 hrs)
 - [X] Write `FavoriteServiceTest` (3 hrs)
 - [X] Write `AppUserServiceTest` (4 hrs)
 
-## Part 3: Make http requests to the server
+## Part 4: HTTP Requests
 
 - [X] Create requests.http in http directory (0.17 hrs)
 - [X] Retrieve a favorite using a  `GET` request (0.17 hrs)
-- [ ] Use `POST` to add a favorite (0.25 hrs)
-- [ ] Use `PUT` to edit a favorite with an ID (0.25 hrs)
-- [ ] Display a list of all favorites for an authorized user (0.25 hrs)
+- [X] Use `POST` to add a favorite (0.25 hrs)
+- [X] Use `PUT` to edit a favorite with an ID (0.25 hrs)
+- [X] Display a list of all favorites for an authorized user (0.25 hrs)
 
-### Part 4: Frontend
+### Part 5: Frontend
 
 - [X] Create react app and set-up client side (0.17 hrs)
 - [X] Remove unnecessary files (0.067 hrs)
@@ -392,7 +428,7 @@ src
   - [ ] Add a method to update the current view and conditionally render the list or the form
   - [ ] Call the method to update the current where needed
 
-### Part 5: Finishing Touches
+### Part 6: Finishing Touches
 
 - [ ] Choose an appropriate CSS framework for the style desired and implement (0.25 hrs)
 
