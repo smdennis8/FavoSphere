@@ -16,6 +16,5 @@ public interface EmailRepository {
 
     Email create(Email email);
 
-
     boolean deleteById(BigInteger emailId);
 }
