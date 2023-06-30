@@ -1,6 +1,7 @@
 package favorite.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import favorite.security.JwtConverter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,19 +28,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class FavoriteControllerTest {
 
+    @Autowired
+    MockMvc mvc;
+
     @MockBean
     FavoriteRepository repository;
 
     @Autowired
-    MockMvc mvc;
-
-    @Autowired
     ObjectMapper objectMapper;
 
+    @Autowired
+    JwtConverter jwtConverter;
+
+    String token;
+
     private Favorite makeFavorite(BigInteger favoriteId) {
-        return new Favorite(favoriteId, BigInteger.valueOf(69), "http://favorite.url@website.com",
+        return new Favorite(favoriteId, BigInteger.valueOf(69), "http://favorite-url@website.com",
                 "source", "creator", "type", "title", "description",
-                "http://favorite.gifUrl@website.com", "http://favorite.imageUrl@website.com",
+                "http://favorite-gifUrl@website.com", "http://favorite-imageUrl@website.com",
                 LocalDate.of(2000,1,1), LocalDate.of(2020,12,31),
                 true, true, true, true);
     }
@@ -111,19 +117,17 @@ class FavoriteControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldAddValidAndReturn201() throws Exception {
-        Favorite favorite = makeBugSighting(0);
-        BugSighting expected = makeBugSighting(7);
+        Favorite favorite = makeFavorite(BigInteger.ZERO);
+        Favorite expected = makeFavorite(BigInteger.valueOf(7));
 
-        // pass validation
-        when(bugOrderRepository.findById(anyInt())).thenReturn(makeBugOrder());
-        // add successful
-        when(repository.add(any())).thenReturn(expected);
+        when(repository.create(any())).thenReturn(expected);
 
-        String jsonIn = TestHelpers.serializeObjectToJson(sighting);
+        String jsonIn = TestHelpers.serializeObjectToJson(favorite);
         String expectedJson = TestHelpers.serializeObjectToJson(expected);
 
-        var request = post("/sighting")
+        var request = post("/favorite")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonIn);

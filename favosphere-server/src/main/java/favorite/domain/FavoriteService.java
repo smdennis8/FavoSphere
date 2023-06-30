@@ -32,18 +32,18 @@ public class FavoriteService {
     public Result<Favorite> create(Favorite favorite) {
         Result<Favorite> result = validate(favorite);
 
+
         if (!result.isSuccess()) {
             return result;
         }
 
-
-        if (favorite.getFavoriteId().compareTo(BigInteger.ZERO) > 0) {
+        if (favorite.getFavoriteId() != null && favorite.getFavoriteId().compareTo(BigInteger.ZERO) > 0) {
             result.addMessage("Cannot create existing favorite");
             return result;
         }
 
-        favorite = repository.create(favorite);
-        result.setPayload(favorite);
+        Favorite newFavorite = repository.create(favorite);
+        result.setPayload(newFavorite);
         return result;
     }
 
