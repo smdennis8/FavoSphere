@@ -78,6 +78,10 @@ public class FavoriteService {
             return result;
         }
 
+        if(favorite.getUserId() == null){
+            result.addMessage("User ID is required");
+        }
+
         if (favorite.getUrl() == null || favorite.getUrl().isBlank()) {
             result.addMessage("Url is required");
         }
@@ -119,7 +123,33 @@ public class FavoriteService {
                 result.addMessage("Updated on date cannot be before created on date");
             }
         }
+        if (isDuplicate(favorite)) {
+            result.addMessage("Favorite cannot be a duplicate");
+        }
+
 
         return result;
+    }
+
+    private boolean isDuplicate(Favorite favorite) {
+        if(favorite.getFavoriteId() == null) {
+            List<Favorite> all = repository.findAll();
+            for(Favorite f : all){
+                if(favorite.equals(f)){
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            BigInteger favoriteId = favorite.getFavoriteId();
+            List<Favorite> listWithoutCurrentObject = repository.findAll().stream().filter(f -> !f.getFavoriteId().equals(favoriteId)).toList();
+            for(Favorite f : listWithoutCurrentObject){
+                if(favorite.equals(f)){
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }
