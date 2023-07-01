@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+
 import FavoriteForm from "./components/FavoriteForm";
 import LoginForm from "./components/LoginForm";
-import NotFound from "./NotFound";
 import AuthContext from "./contexts/AuthContext";
 import { refreshToken, signOut } from "./services/AuthApi";
-
+import NotFound from "./NotFound";
 
 const EMPTY_USER = {
   email: '',
@@ -81,6 +81,5 @@ function App() {
     </AuthContext.Provider>
   </>);
 }
-
 
 export default App;
