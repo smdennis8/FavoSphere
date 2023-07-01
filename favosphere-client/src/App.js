@@ -8,7 +8,7 @@ import { refreshToken, signOut } from "./services/AuthApi";
 import NotFound from "./NotFound";
 
 const EMPTY_USER = {
-  username: '',
+  email: '',
   roles: []
 };
 
@@ -51,12 +51,12 @@ function App() {
     }
   };
 
-  const maybeRedirect = (component, role) => {
-    if (!auth.isLoggedIn() || (role && !auth.hasRole(role))) {
-      return <Navigate to="/" />;
-    }
-    return component;
-  }
+  // const maybeRedirect = (component, role) => {
+  //   if (!auth.isLoggedIn() || (role && !auth.hasRole(role))) {
+  //     return <Navigate to="/" />;
+  //   }
+  //   return component;
+  // }
 
   return (<>
     <AuthContext.Provider value={auth}>

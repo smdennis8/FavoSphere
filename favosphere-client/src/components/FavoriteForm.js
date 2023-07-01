@@ -16,10 +16,10 @@ const EMPTY_FAVORITE = {
     imageUrl: "",
     createdOn: null,
     updatedOn: null,
-    isCustomTitle: false,
-    isCustomDescription: false,
-    isCustomImage: false,
-    isCustomGif: false
+    customTitle: false,
+    customDescription: false,
+    customImage: false,
+    customGif: false
 };
 
 function FavoriteForm() {
