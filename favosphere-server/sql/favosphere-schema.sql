@@ -120,12 +120,14 @@ insert into `app_role` (title, `description`, enabled, created_on, updated_on) v
 insert into `app_user` (first_name, middle_name, last_name, phone, email, password_hash, registered_on, last_login, user_enabled)
     values
     ('John', 'Jingle-Heimer', 'Smith', '1-111-111-1111', 'john@smith.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2010-01-11', '2023-06-26', 1),
-    ('Sally', 'Wally', 'Jones', '1-222-222-2222', 'sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2020-02-22', '2023-06-26', 1);
+    ('Sally', 'Wally', 'Jones', '1-222-222-2222', 'sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2020-02-22', '2023-06-26', 1),
+    ('Admin', 'Service', 'Account', '1-210-843-0428', 'favosphere.app.inbox@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2023-06-30', '2023-06-30', 1);
 
 insert into app_user_role
     values
     (1, 2),
-    (2, 1);
+    (2, 1),
+    (3, 1);
     
 insert into permission (title, `description`, created_on, updated_on, enabled)
     values

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -25,12 +26,14 @@ public class EmailController {
     }
 
     @GetMapping("/refresh")
-    public List<Email> findAll() {
+    public List<Email> findAll() throws IOException {
+        emailService.createFromExternalAll();
         return emailService.findAll();
     }
 
     @GetMapping("/refresh/{appUserId}")
-    public ResponseEntity<Object> findById(@PathVariable BigInteger appUserId) {
+    public ResponseEntity<Object> findById(@PathVariable BigInteger appUserId) throws IOException {
+        emailService.createFromExternalByUser(appUserId, true);
         List<Email> emails = emailService.findByUserId(appUserId);
         if (emails != null) {
             return new ResponseEntity<>(emails, HttpStatus.OK);
