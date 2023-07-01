@@ -63,7 +63,7 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path="/"
+            path="/login"
             element={<LoginForm />} />
           <Route
             path="/add"
