@@ -112,6 +112,7 @@ class FavoriteControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+
     @Test
     @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
     void shouldAddValidFavoriteAndReturn201() throws Exception {

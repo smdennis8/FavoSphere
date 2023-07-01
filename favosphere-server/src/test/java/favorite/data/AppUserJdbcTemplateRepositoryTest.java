@@ -62,7 +62,7 @@ class AppUserJdbcTemplateRepositoryTest {
         AppUser actual = repository.create(user);
         AppUser jane = repository.findByEmail("jjjackson@jmail.jom");
 
-        assertEquals(BigInteger.valueOf(3), actual.getAppUserId());
+        assertEquals(BigInteger.valueOf(4), actual.getAppUserId());
         assertNotNull(actual);
         assertEquals("Jane", jane.getFirstName());
         assertEquals("John", jane.getMiddleName());

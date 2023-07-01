@@ -1,6 +1,7 @@
 package favorite.data;
 
 import favorite.models.Email;
+import favorite.models.Link;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,14 +44,29 @@ class EmailJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldFindEmailByUserId(){
+        String actual = repository.findEmailByUserId(BigInteger.TWO);
+        assertEquals("sally@jones.com", actual);
+    }
+
+    @Test
     void shouldCreate(){
         Email email = new Email(BigInteger.ZERO, BigInteger.TWO, "http://www.sallysfavorite.com",
                  LocalDateTime.of(2022,02,22,22,22,22));
         Email actual = repository.create(email);
         assertEquals(BigInteger.valueOf(4), actual.getEmailId());
-
         Email foundById = repository.findById(BigInteger.valueOf(4));
         assertEquals("http://www.sallysfavorite.com", foundById.getUrl());
+    }
+
+    @Test
+    void shouldCreateFromLink(){
+        Link link = new Link("sally@jones.com","http://www.sallyslink.com",
+                LocalDateTime.of(2022,02,22,22,22,22));
+        Email newEmail = repository.createEmailFromLink(link);
+        Email foundByIdEmail = repository.findById(BigInteger.valueOf(4));
+        assertTrue(newEmail.equals(foundByIdEmail));
+        assertEquals("http://www.sallyslink.com", foundByIdEmail.getUrl());
     }
 
     @Test
