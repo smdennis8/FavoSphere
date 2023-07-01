@@ -2,10 +2,11 @@ package favorite.domain;
 
 import favorite.data.EmailRepository;
 import favorite.models.Email;
+import favorite.models.Link;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.math.BigInteger;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
@@ -14,9 +15,36 @@ import java.util.List;
 public class EmailService {
 
     private final EmailRepository repository;
+    private final AppGmail appGmail;
 
-    public EmailService(EmailRepository repository) {
+    public EmailService(EmailRepository repository, AppGmail appGmail) {
         this.repository = repository;
+        this.appGmail = appGmail;
+    }
+
+    public void createFromExternalAll() throws IOException {
+        try {
+            List<Link> newValidLinks = appGmail.getAllInboxLinks(true);
+            for (Link link : newValidLinks) {
+                repository.createEmailFromLink(link);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void createFromExternalByUser(BigInteger appUserId, boolean deleteReadMsgs) throws IOException {
+        try {
+            List<Link> newValidLinks = appGmail.getUserInboxLinks(
+                    repository.findEmailByUserId(appUserId),
+                    deleteReadMsgs);
+
+            for (Link link : newValidLinks) {
+                repository.createEmailFromLink(link);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Email> findAll() {

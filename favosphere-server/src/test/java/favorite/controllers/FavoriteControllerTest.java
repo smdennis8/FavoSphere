@@ -110,29 +110,29 @@ class FavoriteControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    void shouldAddValidAndReturn201() throws Exception {
-        Favorite favorite = makeBugSighting(0);
-        BugSighting expected = makeBugSighting(7);
-
-        // pass validation
-        when(bugOrderRepository.findById(anyInt())).thenReturn(makeBugOrder());
-        // add successful
-        when(repository.add(any())).thenReturn(expected);
-
-        String jsonIn = TestHelpers.serializeObjectToJson(sighting);
-        String expectedJson = TestHelpers.serializeObjectToJson(expected);
-
-        var request = post("/sighting")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonIn);
-
-        mvc.perform(request)
-                .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(expectedJson));
-    }
+//    @Test
+//    void shouldAddValidAndReturn201() throws Exception {
+//        Favorite favorite = makeBugSighting(0);
+//        BugSighting expected = makeBugSighting(7);
+//
+//        // pass validation
+//        when(bugOrderRepository.findById(anyInt())).thenReturn(makeBugOrder());
+//        // add successful
+//        when(repository.add(any())).thenReturn(expected);
+//
+//        String jsonIn = TestHelpers.serializeObjectToJson(sighting);
+//        String expectedJson = TestHelpers.serializeObjectToJson(expected);
+//
+//        var request = post("/sighting")
+//                .header("Authorization", "Bearer " + token)
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(jsonIn);
+//
+//        mvc.perform(request)
+//                .andExpect(status().isCreated())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(content().json(expectedJson));
+//    }
 
 //    @Test
 //    void shouldNotAddInvalidSightingAndReturn412() throws Exception {

@@ -1,7 +1,10 @@
 package favorite.data;
 
 import favorite.data.mappers.EmailMapper;
+import favorite.data.mappers.UserMapper;
 import favorite.models.Email;
+import favorite.models.Link;
+import favorite.security.AppUser;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -9,7 +12,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -20,7 +22,8 @@ import java.util.List;
 public class EmailJdbcTemplateRepository implements EmailRepository{
 
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Email> rowMapper = new EmailMapper();
+    private final RowMapper<Email> emailRowMapper = new EmailMapper();
+    private final RowMapper<AppUser> userRowMapper = new UserMapper();
 
     public EmailJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -32,7 +35,7 @@ public class EmailJdbcTemplateRepository implements EmailRepository{
                 select *
                 from email;
                 """;
-        return jdbcTemplate.query(sql, rowMapper);
+        return jdbcTemplate.query(sql, emailRowMapper);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class EmailJdbcTemplateRepository implements EmailRepository{
                 from email
                 where email_id = ?;
                 """;
-        return jdbcTemplate.query(sql, rowMapper, emailId)
+        return jdbcTemplate.query(sql, emailRowMapper, emailId)
                 .stream()
                 .findFirst()
                 .orElse(null);
@@ -50,7 +53,35 @@ public class EmailJdbcTemplateRepository implements EmailRepository{
 
     @Override
     public List<Email> findByUserId(BigInteger emailId) {
+
         return null;
+    }
+
+    @Override
+    public String findEmailByUserId(BigInteger appUserId) {
+        String sql = "select * from app_user where app_user_id = ?;";
+        AppUser user = jdbcTemplate.query(sql, userRowMapper, appUserId)
+                .stream()
+                .findFirst()
+                .orElse(null);
+        if(user != null){ return user.getEmail(); }
+        else{ return null; }
+    }
+
+    @Override
+    public Email createEmailFromLink(Link link){
+        String sql = "select * from app_user where email = ?;";
+
+        AppUser user = jdbcTemplate.query(sql, userRowMapper, link.getFrom())
+                .stream()
+                .findFirst()
+                .orElse(null);
+
+        if(user != null) {
+            return create(new Email(BigInteger.ZERO, user.getAppUserId(), link.getUrl(), link.getSentOn()));
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -62,10 +93,7 @@ public class EmailJdbcTemplateRepository implements EmailRepository{
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, (email.getUserId()).intValue());
             ps.setString(2, email.getUrl());
-            java.util.Date date = java.util.Date
-                    .from(email.getTime().atZone(ZoneId.systemDefault())
-                            .toInstant());
-            ps.setDate(3, new java.sql.Date(date.getTime()));
+            ps.setTimestamp(3, Timestamp.valueOf(email.getTime()));
             return ps;
         }, keyHolder);
 

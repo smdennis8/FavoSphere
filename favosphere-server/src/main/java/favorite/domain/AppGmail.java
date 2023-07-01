@@ -9,17 +9,19 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.json.GoogleJsonError;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.Base64;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
-import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePartHeader;
 import favorite.models.Link;
 import org.apache.commons.validator.routines.UrlValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Session;
@@ -39,20 +41,13 @@ import java.util.*;
 import static com.google.api.services.gmail.GmailScopes.MAIL_GOOGLE_COM;
 import static javax.mail.Message.RecipientType.TO;
 
-@Service
+@Component
 public class AppGmail {
 
     private final String APP_INBOX_EMAIL = "favosphere.app.inbox@gmail.com";
-    private final String APPLICATION_NAME = "FavoSphere";
-
-    private final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-
-    private final String TOKENS_DIRECTORY_PATH = "tokens";
-    private final String CREDENTIALS_FILE_PATH = "/credentials.json";
-    private final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_LABELS);
     private final Gmail service;
 
-    public AppGmail(Gmail service) throws Exception {
+    public AppGmail() throws Exception {
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         GsonFactory jsonFactory = GsonFactory.getDefaultInstance();
         this.service = new Gmail.Builder(httpTransport, jsonFactory,
@@ -116,17 +111,56 @@ public class AppGmail {
         }
     }
 
-    public List<Link> getAllInboxLinks() throws IOException {
+    public List<Link> getAllInboxLinks(boolean deleteRead) throws IOException {
+
         ArrayList<Link> linkList = new ArrayList<>();
         List<String> msgIds = findAllInboxMessageIds();
+
         for (String msgId : msgIds) {
+
             Message msg = service.users().messages().get(APP_INBOX_EMAIL,msgId).execute();
             String snippet = msg.getSnippet().split(" ")[0];
+
             if(isValidURL(snippet)) {
                 Link msgData = getEmailMessageData(msg);
                 linkList.add(msgData);
             }
         }
+
+        if(deleteRead) deleteGmailInboxMessages(msgIds);
+
+        return linkList;
+    }
+
+    public List<Link> getUserInboxLinks(String userEmail, boolean deleteRead) throws IOException {
+
+        ArrayList<Link> linkList = new ArrayList<>();
+        List<String> msgIds = findAllInboxMessageIds();
+        List<String> userMsgIds = new ArrayList<>();
+
+        for (String msgId : msgIds) {
+
+            Message msg = service.users().messages().get(APP_INBOX_EMAIL, msgId).execute();
+
+            String emailSender = null;
+            for (MessagePartHeader mph : msg.getPayload().getHeaders()) {
+                if (mph.getName().equalsIgnoreCase("From")) {
+                    emailSender = mph.getValue().split("<")[1].split(">")[0];
+                }
+            }
+
+            if (emailSender.equalsIgnoreCase(userEmail)) {
+                userMsgIds.add(msgId);
+                String snippet = msg.getSnippet().split(" ")[0];
+                if (isValidURL(snippet)) {
+                    Link msgData = getEmailMessageData(msg);
+                    linkList.add(msgData);
+                }
+            }
+        }
+
+        if(deleteRead) deleteGmailInboxMessages(userMsgIds);
+
         return linkList;
     }
 
