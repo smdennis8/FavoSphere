@@ -1,5 +1,18 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 
+import FavoriteForm from "./components/FavoriteForm";
+import LoginForm from "./components/LoginForm";
+import AuthContext from "./contexts/AuthContext";
+import { refreshToken, signOut } from "./services/AuthApi";
+import NotFound from "./NotFound";
 
+const EMPTY_USER = {
+  username: '',
+  roles: []
+};
+
+const WAIT_TIME = 1000 * 60 * 14;
 
 function App() {
 
@@ -38,19 +51,19 @@ function App() {
     }
   };
 
-  // const maybeRedirect = (component, role) => {
-  //   if (!auth.isLoggedIn() || (role && !auth.hasRole(role))) {
-  //     return <Navigate to="/" />;
-  //   }
-  //   return component;
-  // }
+  const maybeRedirect = (component, role) => {
+    if (!auth.isLoggedIn() || (role && !auth.hasRole(role))) {
+      return <Navigate to="/" />;
+    }
+    return component;
+  }
 
   return (<>
     <AuthContext.Provider value={auth}>
       <Router>
         <Routes>
           <Route
-            path="/"
+            path="/login"
             element={<LoginForm />} />
           <Route
             path="/add"
@@ -68,6 +81,5 @@ function App() {
     </AuthContext.Provider>
   </>);
 }
-
 
 export default App;

@@ -7,13 +7,13 @@ export async function findAllFavorites() {
     }
 }
 
-export async function findFavoriteById(id) {
-    const response = await fetch(`${API_URL}/${id}`);
+export async function findFavoriteById(favoriteId) {
+    const response = await fetch(`${API_URL}/${favoriteId}`);
     if (response.status === 200) {
         return response.json();
     } 
     else {
-        return Promise.reject(`Favorite: ${id} was not found.`);
+        return Promise.reject(`Favorite: ${favoriteId} was not found.`);
     }
 }
 
@@ -37,10 +37,10 @@ export async function createFavorite(favorite) {
 export async function updateFavorite(favorite) {
 
     const init = makeFavoriteInit('PUT', favorite);
-    const response = await fetch(`${API_URL}/${favorite.id}`, init);
+    const response = await fetch(`${API_URL}/${favorite.favoriteId}`, init);
 
     if (response.status === 404) {
-        return Promise.reject(`Favorite: ${favorite.id} was not found.`);
+        return Promise.reject(`Favorite: ${favorite.favoriteId} was not found.`);
     } 
     else if (response.status === 400) {
         const errors = await response.json();
@@ -70,7 +70,7 @@ function makeFavoriteInit(method, favorite) {
     return init;
 }
 
-export async function deleteFavoriteById(id) {
+export async function deleteFavoriteById(favoriteId) {
     const jwtToken = localStorage.getItem('jwt_token');
     const init = {
     method: 'DELETE',
@@ -78,10 +78,10 @@ export async function deleteFavoriteById(id) {
         'Authorization': `Bearer ${jwtToken}`
     },
     }
-    const response = await fetch(`${API_URL}/${id}`, init);
+    const response = await fetch(`${API_URL}/${favoriteId}`, init);
 
     if (response.status === 404) {
-        return Promise.reject(`Favorite: ${id} was not found.`);
+        return Promise.reject(`Favorite: ${favoriteId} was not found.`);
     } 
     else if (response.status === 403) {
         return Promise.reject('Unauthorized');
