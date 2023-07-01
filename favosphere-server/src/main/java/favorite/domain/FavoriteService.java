@@ -32,18 +32,18 @@ public class FavoriteService {
     public Result<Favorite> create(Favorite favorite) {
         Result<Favorite> result = validate(favorite);
 
+
         if (!result.isSuccess()) {
             return result;
         }
 
-
-        if (favorite.getFavoriteId().compareTo(BigInteger.ZERO) > 0) {
+        if (favorite.getFavoriteId() != null && favorite.getFavoriteId().compareTo(BigInteger.ZERO) > 0) {
             result.addMessage("Cannot create existing favorite");
             return result;
         }
 
-        favorite = repository.create(favorite);
-        result.setPayload(favorite);
+        Favorite newFavorite = repository.create(favorite);
+        result.setPayload(newFavorite);
         return result;
     }
 
@@ -76,6 +76,10 @@ public class FavoriteService {
         if (favorite == null) {
             result.addMessage("Favorite cannot be null");
             return result;
+        }
+
+        if(favorite.getUserId() == null){
+            result.addMessage("User ID is required");
         }
 
         if (favorite.getUrl() == null || favorite.getUrl().isBlank()) {
@@ -119,7 +123,33 @@ public class FavoriteService {
                 result.addMessage("Updated on date cannot be before created on date");
             }
         }
+        if (isDuplicate(favorite)) {
+            result.addMessage("Favorite cannot be a duplicate");
+        }
+
 
         return result;
+    }
+
+    private boolean isDuplicate(Favorite favorite) {
+        if(favorite.getFavoriteId() == null) {
+            List<Favorite> all = repository.findAll();
+            for(Favorite f : all){
+                if(favorite.equals(f)){
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            BigInteger favoriteId = favorite.getFavoriteId();
+            List<Favorite> listWithoutCurrentObject = repository.findAll().stream().filter(f -> !f.getFavoriteId().equals(favoriteId)).toList();
+            for(Favorite f : listWithoutCurrentObject){
+                if(favorite.equals(f)){
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

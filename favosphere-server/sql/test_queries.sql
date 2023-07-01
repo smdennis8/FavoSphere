@@ -12,8 +12,8 @@ from app_user;
 -- -- where email = "jjjackson@jmail.jom";
 -- set sql_safe_updates = 1;
 
--- select *
--- from favorite;
+select *
+from favorite;
 
 -- select au.email, au.app_user_id, ar.title
 -- from app_user_role ur

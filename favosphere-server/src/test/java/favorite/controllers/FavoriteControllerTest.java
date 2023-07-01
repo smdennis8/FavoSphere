@@ -1,6 +1,7 @@
 package favorite.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import favorite.security.JwtConverter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,7 +18,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -27,19 +27,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class FavoriteControllerTest {
 
+    @Autowired
+    MockMvc mvc;
+
     @MockBean
     FavoriteRepository repository;
 
     @Autowired
-    MockMvc mvc;
-
-    @Autowired
     ObjectMapper objectMapper;
 
+    String token;
+
     private Favorite makeFavorite(BigInteger favoriteId) {
-        return new Favorite(favoriteId, BigInteger.valueOf(69), "http://favorite.url@website.com",
+        return new Favorite(favoriteId, BigInteger.valueOf(69), "http://www.favorite-url@website.com",
                 "source", "creator", "type", "title", "description",
-                "http://favorite.gifUrl@website.com", "http://favorite.imageUrl@website.com",
+                "http://www.favorite-gifUrl@website.com", "http://www.favorite-imageUrl@website.com",
                 LocalDate.of(2000,1,1), LocalDate.of(2020,12,31),
                 true, true, true, true);
     }
@@ -110,45 +112,77 @@ class FavoriteControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-//    @Test
-//    void shouldAddValidAndReturn201() throws Exception {
-//        Favorite favorite = makeBugSighting(0);
-//        BugSighting expected = makeBugSighting(7);
-//
-//        // pass validation
-//        when(bugOrderRepository.findById(anyInt())).thenReturn(makeBugOrder());
-//        // add successful
-//        when(repository.add(any())).thenReturn(expected);
-//
-//        String jsonIn = TestHelpers.serializeObjectToJson(sighting);
-//        String expectedJson = TestHelpers.serializeObjectToJson(expected);
-//
-//        var request = post("/sighting")
-//                .header("Authorization", "Bearer " + token)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(jsonIn);
-//
-//        mvc.perform(request)
-//                .andExpect(status().isCreated())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(content().json(expectedJson));
-//    }
 
-//    @Test
-//    void shouldNotAddInvalidSightingAndReturn412() throws Exception {
-//        BugSighting sighting = makeBugSighting(0);
-//        sighting.setInterest(-1);
-//
-//        String jsonIn = TestHelpers.serializeObjectToJson(sighting);
-//
-//        var request = post("/sighting")
-//                .header("Authorization", "Bearer " + token)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(jsonIn);
-//
-//        mvc.perform(request)
-//                .andExpect(status().isPreconditionFailed());
-//    }
+    @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
+    void shouldAddValidFavoriteAndReturn201() throws Exception {
+        Favorite favorite = makeFavorite(BigInteger.ZERO);
+        Favorite expected = makeFavorite(BigInteger.valueOf(7));
+
+        when(repository.create(any())).thenReturn(expected);
+
+        String jsonIn = TestHelpers.serializeObjectToJson(favorite);
+        String expectedJson = TestHelpers.serializeObjectToJson(expected);
+
+        var request = post("/favorite")
+                .header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(request)
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(expectedJson));
+    }
+
+    @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
+    void shouldNotAddInvalidFavoriteAndReturn400() throws Exception {
+        Favorite favorite = makeFavorite(BigInteger.ZERO);
+        favorite.setGifUrl("INVALID GIF URL");
+
+        String jsonIn = TestHelpers.serializeObjectToJson(favorite);
+
+        var request = post("/favorite")
+                .header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(request)
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")
+    void shouldNotAddDuplicateFavoriteAndReturnX() throws Exception {
+        Favorite favorite = makeFavorite(BigInteger.TEN);
+        Favorite favoriteDuplicate = makeFavorite(BigInteger.TEN);
+
+        when(repository.create(any())).thenReturn(favorite);
+        when(repository.create(any())).thenReturn(favoriteDuplicate);
+
+        String jsonIn = TestHelpers.serializeObjectToJson(favorite);
+        String expectedJson = TestHelpers.serializeObjectToJson(favorite);
+
+        String jsonInDuplicate = TestHelpers.serializeObjectToJson(favoriteDuplicate);
+        String expectedJsonDuplicate = TestHelpers.serializeObjectToJson(favoriteDuplicate);
+
+        var request = post("/favorite")
+                .header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        var requestDuplicate = post("/favorite")
+                .header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonInDuplicate);
+
+        mvc.perform(request)
+                .andExpect(status().isBadRequest());
+
+        mvc.perform(requestDuplicate)
+                .andExpect(status().isBadRequest());
+    }
 
     @Test
     @WithMockUser(username = "john@smith.com", password = "P@ssw0rd!", authorities = "ADMIN")

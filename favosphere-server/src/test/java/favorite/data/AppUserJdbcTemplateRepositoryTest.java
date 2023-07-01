@@ -41,6 +41,14 @@ class AppUserJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldFindAll() {
+        List<AppUser> all = repository.findAll();
+        assertEquals(2, all.size());
+        assertEquals("john@smith.com", all.get(0).getEmail());
+        assertEquals("sally@jones.com", all.get(1).getEmail());
+    }
+
+    @Test
     void shouldNotFindMissingUsername(){
         AppUser actual = repository.findByEmail("test@test.com");
         assertNull(actual);
