@@ -7,6 +7,7 @@ import LeftPanel from "./components/LeftPanel";
 import LoginForm from "./components/LoginForm";
 import AuthContext from "./contexts/AuthContext";
 import { refreshToken, signOut } from "./services/AuthApi";
+import './App.css'
 import NotFound from "./NotFound";
 
 const EMPTY_USER = {
@@ -16,7 +17,7 @@ const EMPTY_USER = {
 
 const WAIT_TIME = 1000 * 60 * 14;
 
-function App() {
+function App(props, state) {
 
   const [user, setUser] = useState(EMPTY_USER);
 
@@ -63,26 +64,29 @@ function App() {
   return (<>
     <AuthContext.Provider value={auth}>
       <Router>
-        <LeftPanel/>
-        <Routes>
-          <Route
-            path="/login"
-            element={<LoginForm />} />
-          <Route
-            path="/add"
-            element={auth.isLoggedIn()
-              ? <FavoriteForm />
-              : <Navigate to="/" />} />
-          <Route
-            path="/edit/:id"
-            element={auth.isLoggedIn()
-              ? <FavoriteForm />
-              : <Navigate to="/login" />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/gallery" element={<FavoriteGallery/>}/>   //Add Auth Login Back
-        </Routes>
-      </Router>
-    </AuthContext.Provider>
+        <div className="container">
+          <LeftPanel />
+          <div className="content">
+            <Routes>
+              <Route
+                path="/login" element={<LoginForm />} />
+              <Route
+                path="/add"
+                element={auth.isLoggedIn()
+                  ? <FavoriteForm />
+                  : <Navigate to="/" />} />
+              <Route
+                path="/edit/:id"
+                element={auth.isLoggedIn()
+                  ? <FavoriteForm />
+                  : <Navigate to="/login" />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/gallery" element={<FavoriteGallery/>}/>   //Add Auth Login Back
+            </Routes>
+            </div>
+          </div>
+        </Router>
+      </AuthContext.Provider>
   </>);
 }
 
