@@ -9,6 +9,8 @@ public interface FavoriteRepository {
 
     List<Favorite> findAll();
 
+    List<Favorite> findAllByUserId(BigInteger appUserId);
+
     Favorite findById(BigInteger favoriteId);
 
     Favorite create(Favorite favorite);

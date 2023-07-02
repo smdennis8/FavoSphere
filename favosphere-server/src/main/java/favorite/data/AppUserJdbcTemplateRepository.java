@@ -37,6 +37,7 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
                 .findFirst().orElse(null);
     }
 
+    @Override
     public List<AppUser> findAll() {
         final String sql = """
                 select *
