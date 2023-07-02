@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { useCallback, useEffect, useState } from "react";
 
 import FavoriteForm from "./components/FavoriteForm";
+import FavoriteGallery from "./components/FavoriteGallery";
+import LeftPanel from "./components/LeftPanel";
 import LoginForm from "./components/LoginForm";
 import AuthContext from "./contexts/AuthContext";
 import { refreshToken, signOut } from "./services/AuthApi";
@@ -61,6 +63,7 @@ function App() {
   return (<>
     <AuthContext.Provider value={auth}>
       <Router>
+        <LeftPanel/>
         <Routes>
           <Route
             path="/login"
@@ -76,6 +79,7 @@ function App() {
               ? <FavoriteForm />
               : <Navigate to="/login" />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/gallery" element={<FavoriteGallery/>}/>   //Add Auth Login Back
         </Routes>
       </Router>
     </AuthContext.Provider>
