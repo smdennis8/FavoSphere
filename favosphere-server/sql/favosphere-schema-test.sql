@@ -147,7 +147,7 @@ insert into app_user_role
     values
     (1, 2),
     (2, 1),
-    (3, 1);
+    (3, 2);
     
 insert into permission (title, `description`, created_on, updated_on, enabled)
     values
