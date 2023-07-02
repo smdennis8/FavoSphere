@@ -30,8 +30,8 @@ function FavoriteGallery() {
                         <img src={f.imageUrl} className="card-img-top" alt={"Title image for " + f.title} />
                         <div className="card-body">
                             <h5 className="card-title">{f.title}</h5>
-                            {auth.isLoggedIn() &&
-                                <Link to={`/edit/${f.favoriteId}`} className="btn btn-primary">Edit</Link>}
+                            {auth.hasRole('ADMIN') &&
+                                <Link to={`/card/${f.favoriteId}`} className="btn btn-primary">Edit</Link>}
                             {auth.hasRole('ADMIN') &&
                                 <Link to={`/delete/${f.favoriteId}`} className="btn btn-danger">Delete</Link>}
                         </div>

@@ -7,8 +7,8 @@ import LeftPanel from "./components/LeftPanel";
 import LoginForm from "./components/LoginForm";
 import AuthContext from "./contexts/AuthContext";
 import { refreshToken, signOut } from "./services/AuthApi";
-import './App.css'
 import NotFound from "./NotFound";
+import FavoriteCard from "./components/FavoriteCard";
 
 const EMPTY_USER = {
   email: '',
@@ -17,7 +17,7 @@ const EMPTY_USER = {
 
 const WAIT_TIME = 1000 * 60 * 14;
 
-function App(props, state) {
+function App() {
 
   const [user, setUser] = useState(EMPTY_USER);
 
@@ -76,17 +76,17 @@ function App(props, state) {
                   ? <FavoriteForm />
                   : <Navigate to="/" />} />
               <Route
-                path="/edit/:id"
+                path="/card/:id"
                 element={auth.isLoggedIn()
                   ? <FavoriteForm />
-                  : <Navigate to="/login" />} />
+                  : <Navigate to="/card/:id" />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/gallery" element={<FavoriteGallery/>}/>   //Add Auth Login Back
             </Routes>
-            </div>
           </div>
-        </Router>
-      </AuthContext.Provider>
+        </div>
+      </Router>
+    </AuthContext.Provider>
   </>);
 }
 
