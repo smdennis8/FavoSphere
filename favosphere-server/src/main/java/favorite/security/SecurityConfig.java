@@ -35,7 +35,7 @@ public class SecurityConfig {
                         "/favorite", "/favorite/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/favorite").authenticated()
                 .antMatchers(HttpMethod.PUT, "/favorite/*").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/favorite/*").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/favorite/*").authenticated()
                 .antMatchers("/**").denyAll()
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(authConfig), jwtConverter))

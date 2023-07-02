@@ -94,17 +94,17 @@ function FavoriteForm() {
 
             <div className="mb-3">
                 <label htmlFor="source" className="form-label">Source</label>
-                <input type="text" className="form-control" id="source" name="source" value={favorite.source} onChange={handleChange} required />
+                <input type="text" className="form-control" id="source" name="source" value={favorite.source} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="creator" className="form-label">Creator</label>
-                <input type="text" className="form-control" id="creator" name="creator" value={favorite.creator} onChange={handleChange} required />
+                <input type="text" className="form-control" id="creator" name="creator" value={favorite.creator} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="type" className="form-label">Type</label>
-                <input type="text" className="form-control" id="type" name="type" value={favorite.type} onChange={handleChange} required />
+                <input type="text" className="form-control" id="type" name="type" value={favorite.type} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
@@ -119,12 +119,12 @@ function FavoriteForm() {
 
             <div className="mb-3">
                 <label htmlFor="gifUrl" className="form-label">Gif URL</label>
-                <input type="text" className="form-control" id="gifUrl" name="gifUrl" value={favorite.gifUrl} onChange={handleChange} required />
+                <input type="text" className="form-control" id="gifUrl" name="gifUrl" value={favorite.gifUrl} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="imageUrl" className="form-label">Image URL</label>
-                <input type="text" className="form-control" id="imageUrl" name="imageUrl" value={favorite.imageUrl} onChange={handleChange} required />
+                <input type="text" className="form-control" id="imageUrl" name="imageUrl" value={favorite.imageUrl} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
@@ -139,27 +139,27 @@ function FavoriteForm() {
 
             <div className="mb-3">
                 <label htmlFor="customTitle" className="form-label">Custom Title</label>
-                <input type="checkbox" className="form-control" id="customTitle" name="customTitle" value={favorite.customTitle} onChange={handleChange} required />
+                <input type="checkbox" className="form-control" id="customTitle" name="customTitle" value={favorite.customTitle} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customDescription" className="form-label">Custom Description</label>
-                <input type="checkbox" className="form-control" id="customDescription" name="customDescription" value={favorite.customDescription} onChange={handleChange} required />
+                <input type="checkbox" className="form-control" id="customDescription" name="customDescription" value={favorite.customDescription} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customImage" className="form-label">Custom Image</label>
-                <input type="checkbox" className="form-control" id="customImage" name="customImage" value={favorite.customImage} onChange={handleChange} required />
+                <input type="checkbox" className="form-control" id="customImage" name="customImage" value={favorite.customImage} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customGif" className="form-label">Custom Gif</label>
-                <input type="checkbox" className="form-control" id="customGif" name="customGif" value={favorite.customGif} onChange={handleChange} required />
+                <input type="checkbox" className="form-control" id="customGif" name="customGif" value={favorite.customGif} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <button type="submit" className="btn btn-primary">Save</button>
-                <Link to="/" type="button" className="btn btn-secondary">Cancel</Link>
+                <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
             </div>
             
         </form>

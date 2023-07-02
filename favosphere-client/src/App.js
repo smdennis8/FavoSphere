@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
-
+import ConfirmDeleteFavorite from "./components/ConfirmDeleteFavorite";
 import FavoriteForm from "./components/FavoriteForm";
 import FavoriteGallery from "./components/FavoriteGallery";
 import LeftPanel from "./components/LeftPanel";
@@ -8,10 +8,10 @@ import LoginForm from "./components/LoginForm";
 import AuthContext from "./contexts/AuthContext";
 import { refreshToken, signOut } from "./services/AuthApi";
 import NotFound from "./NotFound";
-import FavoriteCard from "./components/FavoriteCard";
+// import FavoriteCard from "./components/FavoriteCard";
 
 const EMPTY_USER = {
-  email: '',
+  username: '',
   roles: []
 };
 
@@ -39,7 +39,7 @@ function App() {
   const auth = {
     user: user,
     isLoggedIn() {
-      return !!user.email;
+      return !!user.username;
     },
     hasRole(role) {
       return user.roles.includes(role);
@@ -80,8 +80,13 @@ function App() {
                 element={auth.isLoggedIn()
                   ? <FavoriteForm />
                   : <Navigate to="/card/:id" />} />
+              <Route
+                path="/delete/:id"
+                element={auth.isLoggedIn()
+                  ? <ConfirmDeleteFavorite />
+                  : <Navigate to="/card/:id" />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="/gallery" element={<FavoriteGallery/>}/>   //Add Auth Login Back
+              <Route path="/gallery" element={<FavoriteGallery/>}/>   {/*Add Auth Login Back*/}
             </Routes>
           </div>
         </div>

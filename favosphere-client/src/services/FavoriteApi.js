@@ -8,7 +8,7 @@ export async function findAllFavorites() {
 }
 
 export async function findFavoriteById(favoriteId) {
-    const response = await fetch(`${API_URL}/card/${favoriteId}`);
+    const response = await fetch(`${API_URL}/${favoriteId}`);
     if (response.status === 200) {
         return response.json();
     } 

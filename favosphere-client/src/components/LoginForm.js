@@ -26,13 +26,13 @@ function LoginForm() {
         evt.preventDefault();
         authenticate(credentials).then(user => {
             auth.onAuthenticated(user);
-            navigate('/');
+            navigate('/gallery');
         })
             .catch(err => setErrors(err));
     };
 
     return <div className="container-fluid">
-        <h1>{auth.user.email}</h1>
+        <h1>{auth.user.username}</h1>
         <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="email" className="form-label">Email</label>

@@ -21,7 +21,7 @@ function FavoriteCard() {
                 <h5 className="card-title">{favorite.title}</h5>
                 {auth.isLoggedIn() &&
                     <Link to={`/edit/${favorite.favoriteId}`} className="btn btn-primary">Edit</Link>}
-                {auth.hasRole('ADMIN') &&
+                {auth.isLoggedIn() &&
                     <Link to={`/delete/${favorite.favoriteId}`} className="btn btn-danger">Delete</Link>}
             </div>
         </div>
