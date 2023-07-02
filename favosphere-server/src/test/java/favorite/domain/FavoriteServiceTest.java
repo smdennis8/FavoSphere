@@ -23,31 +23,30 @@ class FavoriteServiceTest {
     @Autowired
     FavoriteService service;
 
+    List<Favorite> favorites = List.of(
+            new Favorite(
+                    BigInteger.valueOf(1), BigInteger.valueOf(11), "url.example01@test.com",
+                    "sourceExample01", "creatorExample01", "typeExample01",
+                    "titleExample01","descriptionExample01", "gifUrlExample01",
+                    "imageUrlExample01", LocalDate.of(2001, 1, 1),
+                    LocalDate.of(2011, 11, 11), true,
+                    false, true, true),
+            new Favorite(
+                    BigInteger.valueOf(2), BigInteger.valueOf(22), "url.example02@test.com",
+                    "sourceExample02", "creatorExample02", "typeExample02",
+                    "titleExample02","descriptionExample02", "gifUrlExample02",
+                    "imageUrlExample02", LocalDate.of(2002, 2, 2),
+                    LocalDate.of(2022, 12, 22), true,
+                    true, false, true),
+            new Favorite(
+                    BigInteger.valueOf(3), BigInteger.valueOf(22), "url.example03@test.com",
+                    "sourceExample03", "creatorExample03", "typeExample03",
+                    "titleExample03","descriptionExample03", "gifUrlExample03",
+                    "imageUrlExample03", LocalDate.of(2003, 3, 3),
+                    LocalDate.of(2013, 3, 13), false,
+                    true, true, false));
     @Test
     void shouldFindAll() {
-        List<Favorite> favorites = List.of(
-                new Favorite(
-                        BigInteger.valueOf(1), BigInteger.valueOf(11), "url.example01@test.com",
-                        "sourceExample01", "creatorExample01", "typeExample01",
-                        "titleExample01","descriptionExample01", "gifUrlExample01",
-                        "imageUrlExample01", LocalDate.of(2001, 1, 1),
-                        LocalDate.of(2011, 11, 11), true,
-                        false, true, true),
-                new Favorite(
-                        BigInteger.valueOf(2), BigInteger.valueOf(22), "url.example02@test.com",
-                        "sourceExample02", "creatorExample02", "typeExample02",
-                        "titleExample02","descriptionExample02", "gifUrlExample02",
-                        "imageUrlExample02", LocalDate.of(2002, 2, 2),
-                        LocalDate.of(2022, 12, 22), true,
-                        true, false, true),
-                new Favorite(
-                        BigInteger.valueOf(3), BigInteger.valueOf(33), "url.example03@test.com",
-                        "sourceExample03", "creatorExample03", "typeExample03",
-                        "titleExample03","descriptionExample03", "gifUrlExample03",
-                        "imageUrlExample03", LocalDate.of(2003, 3, 3),
-                        LocalDate.of(2013, 3, 13), false,
-                        true, true, false)        );
-
         when(repository.findAll()).thenReturn(favorites);
 
         List<Favorite> actual = service.findAll();
@@ -71,6 +70,18 @@ class FavoriteServiceTest {
         assertFalse(favorite.getCustomDescription());
         assertTrue(favorite.getCustomImage());
         assertTrue(favorite.getCustomGif());
+    }
+
+    @Test
+    void shouldFindAllByUserId() {
+        when(repository.findAllByUserId(BigInteger.valueOf(22))).thenReturn(List.of(favorites.get(1), favorites.get(2)));
+        List<Favorite>  actual = service.findAllByUserId(BigInteger.valueOf(22));
+
+        assertTrue(actual.size() == 2);
+        assertEquals(BigInteger.valueOf(2), actual.get(0).getFavoriteId());
+        assertEquals("url.example02@test.com", actual.get(0).getUrl());
+        assertEquals(BigInteger.valueOf(3), actual.get(1).getFavoriteId());
+        assertEquals("url.example03@test.com", actual.get(1).getUrl());
     }
 
     @Test

@@ -41,6 +41,23 @@ class AppUserServiceTest {
     }
 
     @Test
+    void shouldFindAll() {
+        AppUser user1 = new AppUser(BigInteger.valueOf(1),"Jane", "John", "Jackson",
+                "800-800-8000", "jjjackson@jmail.jom", "pAsSwOrD", LocalDate.of(2023,06,28),
+                LocalDate.of(2023,06,28), true, List.of("USER"));
+        AppUser user2 = new AppUser(BigInteger.TWO, "John", "Jingle-Heimer", "Smith",
+                "1-111-111-1111", "john@smith.com", "$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa",
+                LocalDate.of(2010,01,11), LocalDate.of(2023,06,26), true, List.of("ADMIN"));
+        when(repository.findAll()).thenReturn(List.of(user1, user2));
+        List<AppUser> actual = service.findAll();
+        assertTrue(actual.size() == 2);
+        assertEquals(BigInteger.ONE, actual.get(0).getAppUserId());
+        assertEquals("Jane", actual.get(0).getFirstName());
+        assertEquals(BigInteger.TWO, actual.get(1).getAppUserId());
+        assertEquals("John", actual.get(1).getFirstName());
+    }
+
+    @Test
     void shouldCreate(){
         AppUser expected = new AppUser(BigInteger.ONE, "John", "Jingle-Heimer", "Smith",
                 "1-111-111-1111", "john@smith.com", "$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa",

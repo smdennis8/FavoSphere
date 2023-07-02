@@ -44,6 +44,14 @@ class FavoriteJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldFindAllByUserId() {
+        List<Favorite> actual = repository.findAllByUserId(BigInteger.ONE);
+        assertTrue(actual.size() == 1);
+        assertEquals(BigInteger.ONE, actual.get(0).getFavoriteId());
+        assertEquals("https://www.youtube.com/watch?v=R6EFebizEKs", actual.get(0).getUrl());
+    }
+
+    @Test
     void shouldCreate(){
         Favorite favorite = new Favorite(BigInteger.ZERO, BigInteger.TWO, "http://www.myfavorite.com", "Favorite", "Sports Complex", "Video", "Title",
                 "Description", "http://www.myfavorite.com/gif", "http://www.myfavorite.com/image", LocalDate.of(2023,06,28),

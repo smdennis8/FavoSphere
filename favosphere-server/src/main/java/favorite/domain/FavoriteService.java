@@ -25,6 +25,10 @@ public class FavoriteService {
         return repository.findAll();
     }
 
+    public List<Favorite> findAllByUserId(BigInteger appUserId) {
+        return repository.findAllByUserId(appUserId);
+    }
+
     public Favorite findById(BigInteger favoriteId) {
         return repository.findById(favoriteId);
     }

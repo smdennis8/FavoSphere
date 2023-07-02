@@ -35,6 +35,10 @@ public class AppUserService implements UserDetailsService {
         return appUser;
     }
 
+    public List<AppUser> findAll() {
+        return repository.findAll();
+    }
+
     public Result<AppUser> create(Credentials credentials) {
         Result<AppUser> result = validate(credentials);
         if (!result.isSuccess()) {
