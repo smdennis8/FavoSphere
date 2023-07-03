@@ -4,10 +4,10 @@ use favosphere_test;
 
 create table `app_user` (
     app_user_id bigint primary key auto_increment,
-    first_name varchar(50) not null,
-    middle_name varchar(50) not null,
-    last_name varchar(50) not null ,
-    phone varchar(50) not null,
+    first_name varchar(50),
+    middle_name varchar(50),
+    last_name varchar(50),
+    phone varchar(50),
     email varchar(255) not null unique,
     password_hash varchar(2048) not null,
     registered_on date not null,
