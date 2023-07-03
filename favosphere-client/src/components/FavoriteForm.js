@@ -26,6 +26,7 @@ const EMPTY_FAVORITE = {
 function FavoriteForm() {
 
     const [favorite, setFavorite] = useState(EMPTY_FAVORITE);
+    const [favorites, setFavorites] = useState([]);
     const [errors, setErrors] = useState([]);
 
     const { id } = useParams();
@@ -91,6 +92,25 @@ function FavoriteForm() {
             .catch(err => setErrors(err));
         }
     }
+
+    const handleDeleteFavorite = (favoriteId) => {
+        if (window.confirm(`CONFIRM DELETE:\n"${favorite.title}" ?`)) {
+            const init = {
+                method: 'DELETE'
+            };
+            fetch(`${URL}/${favoriteId}`, init)
+                .then(response => {
+                    if (response.status === 204) {
+                        const newFavorites = favorites.filter(favorites => favorites.favoriteId !== favoriteId);
+                        setFavorites(newFavorites);
+                    } else {
+                        return Promise.reject(`Unexpected Status code: ${response.status}`);
+                    }
+                })
+                .catch(console.log);
+        }
+    }
+    
 
     return <div className="container-fluid">
         <form onSubmit={handleSaveFavorite}>
@@ -169,9 +189,10 @@ function FavoriteForm() {
                 <button type="submit" className="btn btn-primary">Submit</button>
                 <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
                 {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
-                <Link to={`/delete/${favorite.favoriteId}`} className="btn btn-danger">Delete</Link>}
+                <button className="btn btn-danger btn-sm" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
+                    <i className="bi bi-trash"></i> Delete
+                </button>}            
             </div>
-            
         </form>
         <Errors errors={errors} />
     </div>;

@@ -32,6 +32,9 @@ function FavoriteGallery() {
                     <img src={f.imageUrl} className="card-img-top" alt={"Title image for " + f.title} />
                     <div className="card-body">
                         <h5 className="card-title">{f.title}</h5>
+                        <h6 className="card-source">{f.source}</h6>
+                        <h6 className="card-creator">{f.creator}</h6>
+                        <h6 className="card-type">{f.type}</h6>
                     </div>
                 </Link>
             }
