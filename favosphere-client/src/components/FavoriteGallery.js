@@ -35,8 +35,8 @@ function FavoriteGallery() {
                     <div className="card-body">
                         <h5 className="card-title">{f.title}</h5>
                         <h6 className="card-source">{f.source}</h6>
-                        <h6 className="card-creator">{f.creator}</h6>
-                        <h6 className="card-type">{f.type}</h6>
+                        <h6 className="card-creator">by: {f.creator}</h6>
+                        <h6 className="card-type">type: {f.type}</h6>
                     </div>
                 </Link>
             }

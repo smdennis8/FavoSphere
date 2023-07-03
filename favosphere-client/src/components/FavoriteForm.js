@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { findFavoriteById, createFavorite, updateFavorite } from "../services/FavoriteApi";
 import Errors from "./Errors";
-import AuthContext from "../contexts/AuthContext";
+// import AuthContext from "../contexts/AuthContext";
 
 const EMPTY_FAVORITE = {
     favoriteId: 0,
@@ -32,8 +32,9 @@ function FavoriteForm() {
     const { id } = useParams();
 
     const navigate = useNavigate();
+    const API_URL = 'http://localhost:8080/favorite';
 
-    const auth = useContext(AuthContext);
+    // const auth = useContext(AuthContext);
 
     useEffect(() => {
         if (id) {
@@ -66,15 +67,15 @@ function FavoriteForm() {
         setFavorite(nextFavorite);
     }
 
-    const handleSaveFavorite = (event) => {
-        event.preventDefault();
-
+    const handleSaveFavorite = (favorite) => {
         if (favorite.favoriteId === 0) {
-
             createFavorite(favorite)
             .then(() => {
                 navigate("/favorite", {
-                    state: { msg: `Favorite #${favorite.favoriteId} was added!` }
+                    state: {
+                        msgType: 'success',
+                        msg: `Favorite #${favorite.favoriteId} was updated!`
+                    }
                 });
             })
             .catch(err => setErrors(err))
@@ -98,7 +99,7 @@ function FavoriteForm() {
             const init = {
                 method: 'DELETE'
             };
-            fetch(`${URL}/${favoriteId}`, init)
+            fetch(`${API_URL}/${favorite.favoriteId}`, init)
                 .then(response => {
                     if (response.status === 204) {
                         const newFavorites = favorites.filter(favorites => favorites.favoriteId !== favoriteId);
@@ -191,10 +192,10 @@ function FavoriteForm() {
             <div className="mb-3">
                 <Link to="/gallery" type="button" className="btn btn-primary" onClick={() => handleSaveFavorite(favorite.favoriteId)}>Submit</Link>
                 <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
-                {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
-                <Link to="/gallery" type="button" className="btn btn-danger btn-sm" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
+                {favorite.favoriteId !== 0 &&
+                <button className="btn btn-danger" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
                     <i className="bi bi-trash"></i> Delete
-                </Link>}            
+                </button>}            
             </div>
         </form>
         <Errors errors={errors} />
