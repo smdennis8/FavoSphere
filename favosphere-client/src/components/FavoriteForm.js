@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { findFavoriteById, createFavorite, updateFavorite } from "../services/FavoriteApi";
 import Errors from "./Errors";
+import AuthContext from "../contexts/AuthContext";
 
 const EMPTY_FAVORITE = {
     favoriteId: 0,
@@ -30,6 +31,8 @@ function FavoriteForm() {
     const { id } = useParams();
 
     const navigate = useNavigate();
+
+    const auth = useContext(AuthContext);
 
     useEffect(() => {
         if (id) {
@@ -68,7 +71,7 @@ function FavoriteForm() {
         if (favorite.favoriteId === 0) {
 
             createFavorite(favorite)
-            .then(data => {
+            .then(() => {
                 navigate("/favorite", {
                     state: { msg: `Favorite #${favorite.favoriteId} was added!` }
                 });
@@ -163,8 +166,10 @@ function FavoriteForm() {
             </div>
 
             <div className="mb-3">
-                <button type="submit" className="btn btn-primary">Save</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
                 <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
+                {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
+                <Link to={`/delete/${favorite.favoriteId}`} className="btn btn-danger">Delete</Link>}
             </div>
             
         </form>
