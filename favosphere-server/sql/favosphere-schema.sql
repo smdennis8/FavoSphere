@@ -149,14 +149,14 @@ insert into favorite (app_user_id, url, `source`, creator, `type`, title, `descr
         'Watch the Best Cats Work From Home News Bloopers! In this unique video with original commentary, we comment and react to the best cats news bloopers that happened during working from 
         home as part of a critical review. Voiceover by Kezhal Dashti. Subscribe: / newsbefunny About News Be Funny: News Be Funny creates unique videos with original commentary to react and 
         comment on a diverse array of topics as part of a critical review. News Be Funny has been featured in media outlets worldwide including Buzzfeed, Rolling Stone, Mashable, Time Magazine, 
-        and the Washington Post.', null, 'https://i.ytimg.com/vi/R6EFebizEKs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1IWSdfmEDIaLu-t6NPVRooTx52A', '2023-10-10', 
-        '2023-11-11', 1, 1, 1, 1),
+        and the Washington Post.', null, 'https://i.ytimg.com/vi/R6EFebizEKs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1IWSdfmEDIaLu-t6NPVRooTx52A', '2023-07-02', 
+        '2023-07-02', 1, 1, 1, 1),
         (2, 'https://www.youtube.com/watch?v=GmneUncWZMg', 'Youtube', 'Sports Complex', 'Video', 'Most Unexpected Animal Interference Moments in Sports | Funny Invasions & Interruption',
         '(All rights go to the original leagues and their broadcasters, no copyright infringement intended.  If I feature clips that you own and that you don\'t want me to feature, contact me via
         my business email and I\'ll take it down as soon as I can) \"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for \"fair use\" for purposes such as criticism,
         comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips 
-        the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-10-10',
-        '2023-11-11', 1, 1, 1, 1);
+        the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-07-02',
+        '2023-07-02', 1, 1, 1, 1);
         
 insert into email (app_user_id, url, sent_on)
 	values
