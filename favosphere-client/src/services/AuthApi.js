@@ -63,6 +63,7 @@ const makeUserFromJwt = (jwtToken) => {
     if (tokenParts.length > 1) {
         const userData = tokenParts[1];
         const decodedUserData = JSON.parse(atob(userData));
+        localStorage.setItem('appUserId', decodedUserData.app_user_id)
         return {
             appUserId: decodedUserData.app_user_id,
             username: decodedUserData.sub,
