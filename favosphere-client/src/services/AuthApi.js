@@ -1,3 +1,6 @@
+import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
 const url = 'http://localhost:8080/security';
 
 export async function authenticate(credentials) {
@@ -44,11 +47,14 @@ export async function refreshToken() {
 
 export function signOut() {
     localStorage.removeItem('jwt_token');
+    localStorage.removeItem('jwt_decoded');
 }
 
 const makeUser = (authResponse) => {
     const jwtToken = authResponse.jwt_token;
     localStorage.setItem('jwt_token', jwtToken);
+    localStorage.setItem('jwt_decoded', jwtDecode(jwtToken,{ header: true }));
+    console.log(localStorage.getItem('jwt_decoded'));
     return makeUserFromJwt(jwtToken);
 };
 
