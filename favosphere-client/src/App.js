@@ -69,7 +69,7 @@ function App() {
           <div className="content">
             <Routes>
               <Route
-                path="/login" element={<LoginForm />} />
+                path="/" element={<LoginForm />} />
               <Route
                 path="/add"
                 element={auth.isLoggedIn()
@@ -85,7 +85,7 @@ function App() {
                 element={auth.isLoggedIn()
                   ? <ConfirmDeleteFavorite />
                   : <Navigate to="/card/:id" />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="/notfound" element={<NotFound />} />
               <Route path="/gallery" element={<FavoriteGallery/>}/>   {/*Add Auth Login Back*/}
             </Routes>
           </div>

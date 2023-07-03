@@ -1,8 +1,8 @@
 function Errors(){
     return(<>
-    <main className="container">
+    <main className="errors">
         <div>
-            <p>Log in errors conditionally displayed here</p>
+            <p></p>
         </div>
     </main>
     </>)
