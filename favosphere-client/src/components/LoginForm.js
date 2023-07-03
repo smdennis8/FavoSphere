@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import AuthContext from "../contexts/AuthContext";
 import { authenticate } from "../services/AuthApi";
+import jwt_decode from "jwt-decode";
+import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
+
 
 function LoginForm() {
 
@@ -31,28 +34,58 @@ function LoginForm() {
             .catch(err => setErrors(err));
     };
 
-    return <div className="container-fluid">
-        <h1>{auth.user.username}</h1>
-        <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email</label>
-                <input type="text" className="form-control" id="email"
-                    name="email" value={credentials.email}
-                    onChange={handleChange} required />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password</label>
-                <input type="password" className="form-control" id="password"
-                    name="password" value={credentials.password}
-                    onChange={handleChange} required />
-            </div>
-            <div className="mb-3">
-                <button type="submit" className="btn btn-primary">Log In</button>
-                <Link to="/" type="button" className="btn btn-secondary">Cancel</Link>
-            </div>
-        </form>
-        <Errors errors={errors} />
-    </div>;
-}
+    const ColoredLine = ({ color }) => (
+        <hr
+            style={{
+                color: color,
+                backgroundColor: color,
+                height: 2,
+                marginRight: 20
+            }}
+        />
+    );
 
-export default LoginForm;
+    return(
+        <div className="center-all-full-page">
+            <div className="login-input">
+                <h2>Login</h2>
+            <div className="google-login">
+                {/* {profile ? (navigate('/gallery')) : (<button onClick={() => login()}>Sign in with Google 🚀 </button>)} */}
+                {/* <button className="external-login-btn" onClick={() => login()}>Login with Google</button> */}
+                <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                        console.log(jwt_decode(credentialResponse.credential,{ header: true }));
+    
+                    }}
+                    onError={() => {console.log("Login Failed");}}
+                    theme="filled_blue"
+                    shape="circle"
+                />
+                </div>
+                <ColoredLine color="black" />
+                <div className="container-fluid">
+                    <h1>{auth.user.email}</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="">Email</label>
+                            <input type="text" className="form-control" id="email"
+                                name="email" value={credentials.email} placeholder="youremail@domain.com"
+                                onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label">Password</label>
+                            <input type="password" className="form-control" id="password"
+                                name="password" value={credentials.password} placeholder="************"
+                                onChange={handleChange} required />
+                        </div>
+                        <div className="forgot-sumbit-ctn">
+                            <button type="submit" className="btn btn-primary">Log In</button>
+                        </div>
+                    </form>
+                    <Errors errors={errors} />
+                </div>
+            </div>
+        </div>);
+    }
+    
+    export default LoginForm;
