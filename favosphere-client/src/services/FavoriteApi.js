@@ -25,10 +25,6 @@ export async function createFavorite(favorite) {
     if (response.status === 201) {
         return response.json();
     } 
-    else if (response.status === 400) {
-        const errors = await response.json();
-        return Promise.reject(errors);
-    } 
     else if (response.status === 403) {
         return Promise.reject('Unauthorized');
     } 

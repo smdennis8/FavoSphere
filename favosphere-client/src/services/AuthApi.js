@@ -1,3 +1,6 @@
+import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
 const url = 'http://localhost:8080/security';
 
 export async function authenticate(credentials) {
@@ -44,11 +47,14 @@ export async function refreshToken() {
 
 export function signOut() {
     localStorage.removeItem('jwt_token');
+    localStorage.removeItem('jwt_decoded');
 }
 
 const makeUser = (authResponse) => {
     const jwtToken = authResponse.jwt_token;
     localStorage.setItem('jwt_token', jwtToken);
+    localStorage.setItem('jwt_decoded', jwtDecode(jwtToken,{ header: true }));
+    console.log(localStorage.getItem('jwt_decoded'));
     return makeUserFromJwt(jwtToken);
 };
 
@@ -57,6 +63,7 @@ const makeUserFromJwt = (jwtToken) => {
     if (tokenParts.length > 1) {
         const userData = tokenParts[1];
         const decodedUserData = JSON.parse(atob(userData));
+        localStorage.setItem('appUserId', decodedUserData.app_user_id)
         return {
             appUserId: decodedUserData.app_user_id,
             username: decodedUserData.sub,
