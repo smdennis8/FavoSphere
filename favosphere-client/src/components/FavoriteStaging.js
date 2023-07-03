@@ -19,7 +19,7 @@ useEffect(() => {
 }, []); 
 
 const handleDeleteEmail = (emailId) => {
-    if (window.confirm(`CONFIRM DELETE\n\nEmail with address:\n"${emailId}"?`)) {
+    if (window.confirm(`CONFIRM DELETE\n\nEmail with ID:\n"${emailId}"?`)) {
         deleteEmailById(emailId)
         .then(() => {
             navigate("/gallery", {

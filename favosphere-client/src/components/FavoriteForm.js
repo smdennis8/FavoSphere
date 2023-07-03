@@ -94,7 +94,6 @@ function FavoriteForm() {
     }
 
     const handleDeleteFavorite = (favoriteId) => {
-
         if (window.confirm(`CONFIRM DELETE\n\nFavorite with title:\n"${favorite.title}"?`)) {
             deleteFavoriteById(favoriteId)
             .then(() => {
