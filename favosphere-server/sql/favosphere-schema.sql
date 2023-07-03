@@ -121,13 +121,19 @@ insert into `app_user` (first_name, middle_name, last_name, phone, email, passwo
     values
     ('John', 'Jingle-Heimer', 'Smith', '1-111-111-1111', 'john@smith.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2010-01-11', '2023-06-26', 1),
     ('Sally', 'Wally', 'Jones', '1-222-222-2222', 'sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2020-02-22', '2023-06-26', 1),
-    ('Admin', 'Service', 'Account', '1-210-843-0428', 'favosphere.app.inbox@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2023-06-30', '2023-06-30', 1);
+    ('Admin', 'Service', 'Account', '1-210-843-0428', 'favosphere.app.inbox@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2023-06-30', '2023-06-30', 1),
+    ('Seth', 'Matthew', 'Dennis', '1-210-843-0428', 'sethmatthews90@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2023-07-03', '2023-07-03', 1),
+    ('Zack', '', 'Alexander', '1-222-222-2222', 'zda1994@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2023-07-03', '2023-07-03', 1),
+    ('Sirak', '', 'Negash', '1-222-222-2222', 'srkneg@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', '2023-07-03', '2023-07-03', 1);
 
 insert into app_user_role
     values
     (1, 2),
     (2, 1),
-    (3, 2);
+    (3, 2),
+    (4, 1),
+    (5, 1),
+    (6, 1);
     
 insert into permission (title, `description`, created_on, updated_on, enabled)
     values
@@ -156,10 +162,49 @@ insert into favorite (app_user_id, url, `source`, creator, `type`, title, `descr
         my business email and I\'ll take it down as soon as I can) \"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for \"fair use\" for purposes such as criticism,
         comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips 
         the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-07-02',
+        '2023-07-02', 1, 1, 1, 1),
+        (4, 'https://www.youtube.com/watch?v=R6EFebizEKs', 'Youtube', 'News Be Funny', 'Video', 'Best Cats Work From Home News Bloopers',
+        'Watch the Best Cats Work From Home News Bloopers! In this unique video with original commentary, we comment and react to the best cats news bloopers that happened during working from 
+        home as part of a critical review. Voiceover by Kezhal Dashti. Subscribe: / newsbefunny About News Be Funny: News Be Funny creates unique videos with original commentary to react and 
+        comment on a diverse array of topics as part of a critical review. News Be Funny has been featured in media outlets worldwide including Buzzfeed, Rolling Stone, Mashable, Time Magazine, 
+        and the Washington Post.', null, 'https://i.ytimg.com/vi/R6EFebizEKs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1IWSdfmEDIaLu-t6NPVRooTx52A', '2023-07-02', 
+        '2023-07-02', 1, 1, 1, 1),
+        (4, 'https://www.youtube.com/watch?v=GmneUncWZMg', 'Youtube', 'Sports Complex', 'Video', 'Most Unexpected Animal Interference Moments in Sports | Funny Invasions & Interruption',
+        '(All rights go to the original leagues and their broadcasters, no copyright infringement intended.  If I feature clips that you own and that you don\'t want me to feature, contact me via
+        my business email and I\'ll take it down as soon as I can) \"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for \"fair use\" for purposes such as criticism,
+        comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips 
+        the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-07-02',
+        '2023-07-02', 1, 1, 1, 1),
+        (5, 'https://www.youtube.com/watch?v=R6EFebizEKs', 'Youtube', 'News Be Funny', 'Video', 'Best Cats Work From Home News Bloopers',
+        'Watch the Best Cats Work From Home News Bloopers! In this unique video with original commentary, we comment and react to the best cats news bloopers that happened during working from 
+        home as part of a critical review. Voiceover by Kezhal Dashti. Subscribe: / newsbefunny About News Be Funny: News Be Funny creates unique videos with original commentary to react and 
+        comment on a diverse array of topics as part of a critical review. News Be Funny has been featured in media outlets worldwide including Buzzfeed, Rolling Stone, Mashable, Time Magazine, 
+        and the Washington Post.', null, 'https://i.ytimg.com/vi/R6EFebizEKs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1IWSdfmEDIaLu-t6NPVRooTx52A', '2023-07-02', 
+        '2023-07-02', 1, 1, 1, 1),
+        (5, 'https://www.youtube.com/watch?v=GmneUncWZMg', 'Youtube', 'Sports Complex', 'Video', 'Most Unexpected Animal Interference Moments in Sports | Funny Invasions & Interruption',
+        '(All rights go to the original leagues and their broadcasters, no copyright infringement intended.  If I feature clips that you own and that you don\'t want me to feature, contact me via
+        my business email and I\'ll take it down as soon as I can) \"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for \"fair use\" for purposes such as criticism,
+        comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips 
+        the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-07-02',
+        '2023-07-02', 1, 1, 1, 1),
+        (6, 'https://www.youtube.com/watch?v=R6EFebizEKs', 'Youtube', 'News Be Funny', 'Video', 'Best Cats Work From Home News Bloopers',
+        'Watch the Best Cats Work From Home News Bloopers! In this unique video with original commentary, we comment and react to the best cats news bloopers that happened during working from 
+        home as part of a critical review. Voiceover by Kezhal Dashti. Subscribe: / newsbefunny About News Be Funny: News Be Funny creates unique videos with original commentary to react and 
+        comment on a diverse array of topics as part of a critical review. News Be Funny has been featured in media outlets worldwide including Buzzfeed, Rolling Stone, Mashable, Time Magazine, 
+        and the Washington Post.', null, 'https://i.ytimg.com/vi/R6EFebizEKs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1IWSdfmEDIaLu-t6NPVRooTx52A', '2023-07-02', 
+        '2023-07-02', 1, 1, 1, 1),
+        (6, 'https://www.youtube.com/watch?v=GmneUncWZMg', 'Youtube', 'Sports Complex', 'Video', 'Most Unexpected Animal Interference Moments in Sports | Funny Invasions & Interruption',
+        '(All rights go to the original leagues and their broadcasters, no copyright infringement intended.  If I feature clips that you own and that you don\'t want me to feature, contact me via
+        my business email and I\'ll take it down as soon as I can) \"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for \"fair use\" for purposes such as criticism,
+        comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips 
+        the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-07-02',
         '2023-07-02', 1, 1, 1, 1);
         
 insert into email (app_user_id, url, sent_on)
 	values
 		(1,'https://www.youtube.com/watch?v=xtZI23hxetw','2023-11-11 11:11:11.11'),
         (1,'https://www.youtube.com/watch?v=j7q8Zzw46oQ','2023-11-11 12:12:12.12'),
-        (2,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13');
+        (2,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13'),
+        (4,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13'),
+        (5,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13'),
+        (6,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13');

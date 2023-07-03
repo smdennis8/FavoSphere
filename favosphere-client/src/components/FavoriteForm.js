@@ -7,14 +7,14 @@ import AuthContext from "../contexts/AuthContext";
 const EMPTY_FAVORITE = {
     favoriteId: 0,
     userId: 0,
-    url: "",
-    source: "",
-    creator: "",
-    type: "",
-    title: "",
-    description: "",
-    gifUrl: "",
-    imageUrl: "",
+    url: null,
+    source: null,
+    creator: null,
+    type: null,
+    title: null,
+    description: null,
+    gifUrl: null,
+    imageUrl: null,
     createdOn: null,
     updatedOn: null,
     customTitle: false,
@@ -34,7 +34,6 @@ function FavoriteForm() {
     const navigate = useNavigate();
 
     const auth = useContext(AuthContext);
-
     useEffect(() => {
         if (id) {
             findFavoriteById(id)
@@ -46,7 +45,8 @@ function FavoriteForm() {
             });
         } 
         else {
-            setFavorite(EMPTY_FAVORITE);
+            
+            setFavorite(EMPTY_FAVORITE);           
         }
     }, [id, navigate]);
 
@@ -70,11 +70,11 @@ function FavoriteForm() {
         event.preventDefault();
 
         if (favorite.favoriteId === 0) {
-
+            favorite.userId = localStorage.getItem('appUserId');
             createFavorite(favorite)
             .then(() => {
-                navigate("/favorite", {
-                    state: { msg: `Favorite #${favorite.favoriteId} was added!` }
+                navigate("/gallery", {
+                    state: { msg: `Your favorite titled: '${favorite.title}' was added!` }
                 });
             })
             .catch(err => setErrors(err))
@@ -82,10 +82,10 @@ function FavoriteForm() {
         else {
             updateFavorite(favorite)
             .then(() => {
-                navigate("/favorite", {
+                navigate("/gallery", {
                     state: {
                         msgType: 'success',
-                        msg: `Favorite #${favorite.favoriteId} was updated!`
+                        msg: `Your favorite titled: '${favorite.title}' was updated!`
                     }
                 });
             })
@@ -127,12 +127,12 @@ function FavoriteForm() {
 
             <div className="mb-3">
                 <label htmlFor="creator" className="form-label">Creator</label>
-                <input type="text" className="form-control" id="creator" name="creator" value={favorite.creator} onChange={handleChange} />
+                <input type="text" className="form-control" id="creator" name="creator" value={favorite.creator} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="type" className="form-label">Type</label>
-                <input type="text" className="form-control" id="type" name="type" value={favorite.type} onChange={handleChange} />
+                <input type="text" className="form-control" id="type" name="type" value={favorite.type} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
