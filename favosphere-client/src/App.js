@@ -85,7 +85,7 @@ function App() {
                 element={auth.isLoggedIn()
                   ? <ConfirmDeleteFavorite />
                   : <Navigate to="/card/:id" />} />
-              <Route path="notFound" element={<NotFound />} />
+              <Route path="/notfound" element={<NotFound />} />
               <Route path="/gallery" element={<FavoriteGallery/>}/>   {/*Add Auth Login Back*/}
             </Routes>
           </div>
