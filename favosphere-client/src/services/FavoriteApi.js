@@ -40,7 +40,7 @@ export async function createFavorite(favorite) {
 
 export async function updateFavorite(favorite) {
 
-    const init = makeFavoriteInit('PUT', favorite.favoriteId);
+    const init = makeFavoriteInit('PUT', favorite);
     const response = await fetch(`${API_URL}/${favorite.favoriteId}`, init);
     console.log(init);
 

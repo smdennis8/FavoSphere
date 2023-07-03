@@ -19,11 +19,11 @@ useEffect(() => {
 }, []); 
 
 const handleDeleteEmail = (emailId) => {
-    if (window.confirm(`CONFIRM DELETE\n\nEmail with ID:\n"${emailId}"?`)) {
-        deleteEmailById(emailId)
+    const email = emails.find(email => email.emailId === emailId);
+    if (window.confirm(`Delete email Id ${emailId}: \nURL: ${email.url}\nTime: ${email.time}?`)) {        deleteEmailById(emailId)
         .then(() => {
             navigate("/gallery", {
-                state: { msg: `"${emailId}" was deleted.` }
+                state: { msg: `"${email.url}" was deleted.` }
             });
         })
         const init = {
@@ -33,7 +33,7 @@ const handleDeleteEmail = (emailId) => {
             .then(response => {
                 if (response.status === 204) {
                     const newEmails = emails.filter(emails => emails.emailId !== emailId);
-                    setEmail(newEmails);
+                    setEmails(newEmails);
                 } else {
                     return Promise.reject(`Unexpected Status code: ${response.status}`);
                 }
