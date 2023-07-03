@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { findFavoriteById, createFavorite, updateFavorite } from "../services/FavoriteApi";
+import { findFavoriteById, createFavorite, updateFavorite, deleteFavoriteById } from "../services/FavoriteApi";
 import Errors from "./Errors";
-// import AuthContext from "../contexts/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 
 const EMPTY_FAVORITE = {
     favoriteId: 0,
@@ -28,13 +28,12 @@ function FavoriteForm() {
     const [favorite, setFavorite] = useState(EMPTY_FAVORITE);
     const [favorites, setFavorites] = useState([]);
     const [errors, setErrors] = useState([]);
-
+    const url = 'http://localhost:8080/favorite';
     const { id } = useParams();
 
     const navigate = useNavigate();
-    const API_URL = 'http://localhost:8080/favorite';
 
-    // const auth = useContext(AuthContext);
+    const auth = useContext(AuthContext);
 
     useEffect(() => {
         if (id) {
@@ -67,15 +66,15 @@ function FavoriteForm() {
         setFavorite(nextFavorite);
     }
 
-    const handleSaveFavorite = (favorite) => {
+    const handleSaveFavorite = (event) => {
+        event.preventDefault();
+
         if (favorite.favoriteId === 0) {
+
             createFavorite(favorite)
             .then(() => {
                 navigate("/favorite", {
-                    state: {
-                        msgType: 'success',
-                        msg: `Favorite #${favorite.favoriteId} was updated!`
-                    }
+                    state: { msg: `Favorite #${favorite.favoriteId} was added!` }
                 });
             })
             .catch(err => setErrors(err))
@@ -95,26 +94,30 @@ function FavoriteForm() {
     }
 
     const handleDeleteFavorite = (favoriteId) => {
-        if (window.confirm(`CONFIRM DELETE:\n"${favorite.title}" ?`)) {
+
+        // const favorite = findFavoriteById(id);
+        if (window.confirm(`CONFIRM DELETE\n\nFavorite with title:\n"${favorite.title}"?`)) {
+            deleteFavoriteById(favoriteId)
+            .then(() => {
+                navigate("/gallery", {
+                    state: { msg: `"${favorite.title}" was deleted.` }
+                });
+            })
             const init = {
                 method: 'DELETE'
             };
-            fetch(`${API_URL}/${favorite.favoriteId}`, init)
+            fetch(`${url}/${favoriteId}`, init)
                 .then(response => {
                     if (response.status === 204) {
                         const newFavorites = favorites.filter(favorites => favorites.favoriteId !== favoriteId);
-                        setFavorites(newFavorites);
+                        setFavorite(newFavorites);
                     } else {
                         return Promise.reject(`Unexpected Status code: ${response.status}`);
                     }
                 })
                 .catch(console.log);
         }
-        else {
-
-        }
-    }
-    
+    }    
 
     return <div className="container-fluid">
         <form onSubmit={handleSaveFavorite}>
@@ -190,13 +193,15 @@ function FavoriteForm() {
             </div>
 
             <div className="mb-3">
-                <Link to="/gallery" type="button" className="btn btn-primary" onClick={() => handleSaveFavorite(favorite.favoriteId)}>Submit</Link>
+                <button type="submit" className="btn btn-primary">Submit</button>
                 <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
-                {favorite.favoriteId !== 0 &&
-                <button className="btn btn-danger" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
+                {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
+                <button className="btn btn-danger btn-sm" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
                     <i className="bi bi-trash"></i> Delete
-                </button>}            
+                </button>
+            }
             </div>
+            
         </form>
         <Errors errors={errors} />
     </div>;
