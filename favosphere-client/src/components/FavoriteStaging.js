@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../contexts/AuthContext";
-import { findAllEmails } from '../services/EmailApi';
+import { deleteEmailById, findAllEmails } from '../services/EmailApi';
 
 function FavoriteStaging(){
 // state variables
+const [email, setEmail] = useState([]);
 const [emails, setEmails] = useState([]);
 const navigate = useNavigate();
 
@@ -18,8 +19,13 @@ useEffect(() => {
 }, []); 
 
 const handleDeleteEmail = (emailId) => {
-    const email = emails.find(email => email.emailId === emailId);
-    if (window.confirm(`Delete email Id ${email.emailId}: ${email.url} ${email.time} ${email.url}?`)) {
+    if (window.confirm(`CONFIRM DELETE\n\nEmail with address:\n"${emailId}"?`)) {
+        deleteEmailById(emailId)
+        .then(() => {
+            navigate("/gallery", {
+                state: { msg: `"${emailId}" was deleted.` }
+            });
+        })
         const init = {
             method: 'DELETE'
         };
@@ -27,7 +33,7 @@ const handleDeleteEmail = (emailId) => {
             .then(response => {
                 if (response.status === 204) {
                     const newEmails = emails.filter(emails => emails.emailId !== emailId);
-                    setEmails(newEmails);
+                    setEmail(newEmails);
                 } else {
                     return Promise.reject(`Unexpected Status code: ${response.status}`);
                 }

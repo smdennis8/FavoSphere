@@ -95,7 +95,6 @@ function FavoriteForm() {
 
     const handleDeleteFavorite = (favoriteId) => {
 
-        // const favorite = findFavoriteById(id);
         if (window.confirm(`CONFIRM DELETE\n\nFavorite with title:\n"${favorite.title}"?`)) {
             deleteFavoriteById(favoriteId)
             .then(() => {
@@ -196,7 +195,7 @@ function FavoriteForm() {
                 <button type="submit" className="btn btn-primary">Submit</button>
                 <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
                 {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
-                <button className="btn btn-danger btn-sm" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
+                <button className="btn btn-danger" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
                     <i className="bi bi-trash"></i> Delete
                 </button>
             }
