@@ -7,9 +7,7 @@ const LeftPanel = () => {
                 <Link to={'/gallery'} href="home">Home</Link>
                 <Link to={'/notFound'} href="profile">Profile</Link>
                 <Link to={'/gallery'} href="gallery">Favorites Gallery</Link>
-                <Link to={'/gallery'} href="table">Favorites Table</Link>
-                <Link to={'/notFound'} href="share">Share Favorites</Link>
-                <Link to={'/gallery'} href="staging">Favorites Staging</Link>
+                <Link to={'/staging'} href="staging">Favorites Staging</Link>
         </div>
     );
 };

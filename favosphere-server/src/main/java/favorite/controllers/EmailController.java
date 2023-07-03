@@ -25,8 +25,13 @@ public class EmailController {
         this.favoriteService = favoriteService;
     }
 
+    @GetMapping
+    public List<Email> findAll() {
+        return emailService.findAll();
+    }
+
     @GetMapping("/refresh")
-    public List<Email> findAll() throws IOException {
+    public List<Email> refreshAndFindAll() throws IOException {
         emailService.createFromExternalAll();
         return emailService.findAll();
     }
