@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { findFavoriteById, createFavorite, updateFavorite } from "../services/FavoriteApi";
+import { findFavoriteById, createFavorite, updateFavorite, deleteFavoriteById } from "../services/FavoriteApi";
 import Errors from "./Errors";
 import AuthContext from "../contexts/AuthContext";
 
@@ -26,8 +26,9 @@ const EMPTY_FAVORITE = {
 function FavoriteForm() {
 
     const [favorite, setFavorite] = useState(EMPTY_FAVORITE);
+    const [favorites, setFavorites] = useState([]);
     const [errors, setErrors] = useState([]);
-
+    const url = 'http://localhost:8080/favorite';
     const { id } = useParams();
 
     const navigate = useNavigate();
@@ -91,6 +92,30 @@ function FavoriteForm() {
             .catch(err => setErrors(err));
         }
     }
+
+    const handleDeleteFavorite = (favoriteId) => {
+        if (window.confirm(`CONFIRM DELETE\n\nFavorite with title:\n"${favorite.title}"?`)) {
+            deleteFavoriteById(favoriteId)
+            .then(() => {
+                navigate("/gallery", {
+                    state: { msg: `"${favorite.title}" was deleted.` }
+                });
+            })
+            const init = {
+                method: 'DELETE'
+            };
+            fetch(`${url}/${favoriteId}`, init)
+                .then(response => {
+                    if (response.status === 204) {
+                        const newFavorites = favorites.filter(favorites => favorites.favoriteId !== favoriteId);
+                        setFavorite(newFavorites);
+                    } else {
+                        return Promise.reject(`Unexpected Status code: ${response.status}`);
+                    }
+                })
+                .catch(console.log);
+        }
+    }    
 
     return <div className="container-fluid">
         <form onSubmit={handleSaveFavorite}>
@@ -169,7 +194,10 @@ function FavoriteForm() {
                 <button type="submit" className="btn btn-primary">Submit</button>
                 <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
                 {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
-                <Link to={`/delete/${favorite.favoriteId}`} className="btn btn-danger">Delete</Link>}
+                <button className="btn btn-danger" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
+                    <i className="bi bi-trash"></i> Delete
+                </button>
+            }
             </div>
             
         </form>
