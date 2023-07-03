@@ -72,6 +72,15 @@ class AppUserJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldCreateWithCredentialsOnly(){
+        AppUser user = new AppUser(BigInteger.valueOf(0),null, null, null,
+                null, "jjjackson@jmail.jom", "pAsSwOrD", LocalDate.of(2023,06,28),
+                LocalDate.of(2023,06,28), true, List.of("USER"));
+        AppUser actual = repository.create(user);
+        AppUser jane = repository.findByEmail("jjjackson@jmail.jom");
+    }
+
+    @Test
     void shouldUpdate(){
         AppUser john = repository.findByEmail("john@smith.com");
 

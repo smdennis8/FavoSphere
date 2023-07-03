@@ -72,6 +72,8 @@ function App() {
               <Route
                 path="/" element={<LoginForm />} />
               <Route
+                path="/create-account" element={<CreateAccountForm />} />
+              <Route
                 path="/staging"
                 element={auth.isLoggedIn()
                   ? <FavoriteStaging />

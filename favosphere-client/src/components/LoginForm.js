@@ -45,6 +45,11 @@ function LoginForm() {
         />
     );
 
+    const handleCreateAccount = (evt) => {
+        evt.preventDefault();
+
+    }
+
     return(
         <div className="center-all-full-page">
             <div className="login-input">
@@ -80,6 +85,9 @@ function LoginForm() {
                         </div>
                         <div className="forgot-sumbit-ctn">
                             <button type="submit" className="btn btn-primary">Log In</button>
+                        </div>
+                        <div className="forgot-sumbit-ctn">
+                            <button className="btn btn-secondary" onClick={() => {handleCreateAccount(); navigate("/create-account");}}>Create Account</button>
                         </div>
                     </form>
                     <Errors errors={errors} />

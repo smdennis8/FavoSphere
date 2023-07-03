@@ -1,42 +1,40 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../contexts/AuthContext";
-import { findAllEmails } from '../services/EmailApi';
+import { findAllEmails, deleteEmailById } from '../services/EmailApi';
 
-function FavoriteStaging(){
-// state variables
-const [emails, setEmails] = useState([]);
-const navigate = useNavigate();
+function FavoriteStaging() {
+    // state variables
+    const [emails, setEmails] = useState([]);
+    const navigate = useNavigate();
 
-const url = 'http://localhost:8080/email';
+    const url = 'http://localhost:8080/email';
 
-const auth = useContext(AuthContext);
+    const auth = useContext(AuthContext);
 
-useEffect(() => {
-    findAllEmails()
+    useEffect(() => {
+        findAllEmails()
             .then(data => setEmails(data));
-}, []); 
+    }, []);
 
-const handleDeleteEmail = (emailId) => {
-    const email = emails.find(email => email.emailId === emailId);
-    if (window.confirm(`Delete email Id ${email.emailId}: ${email.url} ${email.time} ${email.url}?`)) {
-        const init = {
-            method: 'DELETE'
-        };
-        fetch(`${url}/${emailId}`, init)
-            .then(response => {
-                if (response.status === 204) {
-                    const newEmails = emails.filter(emails => emails.emailId !== emailId);
-                    setEmails(newEmails);
-                } else {
-                    return Promise.reject(`Unexpected Status code: ${response.status}`);
-                }
-            })
-            .catch(console.log);
+    const handleDeleteEmail = (emailId) => {
+        const email = emails.find(email => email.emailId === emailId);
+        if (window.confirm(`Delete email Id ${email.emailId}: \nURL: ${email.url}\nTime: ${email.time}?`)) {
+            deleteEmailById(emailId)
+                .then(res => {
+                    navigate("/staging", {
+                        state: { msg: `Email: ${emailId} was deleted.` }
+                    });
+                })
+                .catch(() => {
+                    navigate("/staging", {
+                        state: { msg: `Email: ${emailId}} was not found.` }
+                    });
+                })
+            }
     }
-}
 
-return(<>
+    return (<>
         <section id="listContainer" className='list'>
             <table>
                 <thead>
@@ -66,7 +64,7 @@ return(<>
                 </tbody>
             </table>
         </section>
-</>);
+    </>);
 }
 
 export default FavoriteStaging;

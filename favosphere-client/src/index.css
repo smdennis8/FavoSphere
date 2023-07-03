@@ -52,7 +52,7 @@ section, footer{
   justify-content: flex-start;
   align-items: flex-start;
   width: 200px;
-  background-color: lightgray;
+  background-color: rgb(253, 251, 251);
   padding: 16px;
 }
 
