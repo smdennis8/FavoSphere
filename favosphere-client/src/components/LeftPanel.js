@@ -10,7 +10,6 @@ const LeftPanel = () => {
                 <Link to={'/gallery'} href="table">Favorites Table</Link>
                 <Link to={'/notFound'} href="share">Share Favorites</Link>
                 <Link to={'/gallery'} href="staging">Favorites Staging</Link>
-                <Link to={'/notFound'} href="contact">Contact</Link>
         </div>
     );
 };
