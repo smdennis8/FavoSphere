@@ -32,6 +32,8 @@ public class SecurityConfig {
                         "/security/authenticate", "/security/create-account").permitAll()
                 .antMatchers(HttpMethod.POST, "/security/refresh-token").authenticated()
                 .antMatchers(HttpMethod.GET,
+                        "/refresh", "/refresh/*", "/email", "/email/*").permitAll()
+                .antMatchers(HttpMethod.GET,
                         "/favorite", "/favorite/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/favorite").authenticated()
                 .antMatchers(HttpMethod.PUT, "/favorite/*").authenticated()

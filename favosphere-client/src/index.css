@@ -105,3 +105,131 @@ section, footer{
 .S9gUrf-YoZ4jf > iframe {
   margin: 0 !important;
 }
+
+.list div{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.list{
+  text-align:center;
+}
+.list table{
+  width:50%;
+}
+table {
+  /*table behaviors*/
+  width: 90%;
+  border-collapse: collapse;
+
+   /*table stylings*/
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  
+  /*text stylings*/
+  color: #334;
+  font-family: Arial, sans-serif;
+  font-size: 1.4rem;
+  
+  /*text behavior*/
+  text-align: center;
+  margin: auto;
+  margin-bottom: 40px;
+} 
+table th {
+  /*text stylings*/
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  /*table stylings*/
+  background-color: #324da4;
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #fff;   
+}
+table tr:nth-child(even) td {
+  background-color: #f2f2f2;
+}
+
+table tr:hover td {
+  background-color: #96bcfa;
+}
+table td {
+  /*text stylings*/
+  font-weight: bold;
+  
+  /*cell stylings*/
+  padding: 8px;
+  background-color: #fff;
+  border-bottom: 1px solid #fff;  
+}
+button{
+  /*text stylings*/
+  font-size: 1.6rem;
+  transition: 1s;
+  color: #ffffff;
+  
+  /*button stylings*/
+  margin: 2% 2%;
+  padding: 1% 1%;
+  border-radius: 10px;
+  border: 3px solid rgb(100, 100, 100);
+  background-color: rgb(61, 65, 178);  
+}
+button:hover{
+  background-color: white;
+  color: black;
+}
+
+#formPlacer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#formContainer{
+  width: 60%;
+  margin-left: 4%;
+  border: 2px solid black;
+  padding: 1%;
+  border-radius: 1rem;
+}
+#formContainer #formHeading{
+  color: #334;
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+
+}
+#error{
+  /*text stylings*/
+  color: rgb(235, 0, 0);
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  
+  /*item stylings*/
+  margin: 2% 5% 1% 5%;  
+}
+.errItem{
+  margin: 4% 2% 4% 2%;
+}
+
+ul{
+  margin-left: 2%;
+}
+
+#btnPlacer{
+  margin-left: 5%;
+}
+
+.form-group{
+  /*item stylings*/
+  margin-left: 4%;
+  margin-top: 1%;
+  margin-bottom: 1%; 
+
+  /*text stylings*/
+  color: #334;
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+}
