@@ -109,6 +109,9 @@ function FavoriteForm() {
                 })
                 .catch(console.log);
         }
+        else {
+
+        }
     }
     
 
@@ -186,12 +189,12 @@ function FavoriteForm() {
             </div>
 
             <div className="mb-3">
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <Link to="/gallery" type="button" className="btn btn-primary" onClick={() => handleSaveFavorite(favorite.favoriteId)}>Submit</Link>
                 <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
                 {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
-                <button className="btn btn-danger btn-sm" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
+                <Link to="/gallery" type="button" className="btn btn-danger btn-sm" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
                     <i className="bi bi-trash"></i> Delete
-                </button>}            
+                </Link>}            
             </div>
         </form>
         <Errors errors={errors} />
