@@ -65,7 +65,7 @@ function App() {
     <AuthContext.Provider value={auth}>
       <Router>
         <div className="container">
-          <LeftPanel />
+          { auth.isLoggedIn() ? <LeftPanel /> : <div></div>}
           <div className="content">
             <Routes>
               <Route

@@ -1,15 +1,45 @@
-body {
-  margin: 0;
+*{
+  box-sizing: border-box;
+  padding:0;
+  margin:0;
+  max-width:100%;
+}
+
+html{
+  font-size:62.5%;
+}
+
+body{
+  font-size:1.8rem;
+  line-height:1.5;
+  /* font-family: 'Arvo', serif; */
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #3c3c3c;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1, h2, h3, h4{
+  font-family: 'Oswald', sans-serif;
+  letter-spacing:3px;
+}
+h1{
+  font-size:5rem;
+}
+h2{
+  font-size:3rem;
+  text-align:center;
+}
+section, footer{
+  padding: 4% 0;
 }
 
 #LeftPanel {
@@ -34,4 +64,44 @@ code {
 .content {
   flex: 1;
   padding: 16px;
+}
+
+
+.login-input{
+  border-radius: 18px;
+  margin: auto;
+  width: 70%;
+  background-color: white;
+  border: 1px solid;
+  box-shadow: 2px 5px #888888;
+}
+.center-all-full-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.google-login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forgot-sumbit-ctn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.external-login-btn{
+  background-color: #7CABE8;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #707070;
+  margin: 2% 2%;
+  padding: 2% 12%;
+}
+
+.S9gUrf-YoZ4jf > iframe {
+  margin: 0 !important;
 }
