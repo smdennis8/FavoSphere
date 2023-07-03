@@ -118,6 +118,11 @@ function FavoriteForm() {
             </div>
 
             <div className="mb-3">
+                <label htmlFor="url" className="form-label">URL</label>
+                <input type="text" className="form-control" id="url" name="url" value={favorite.url} onChange={handleChange} required />
+            </div>
+
+            <div className="mb-3">
                 <label htmlFor="gifUrl" className="form-label">Gif URL</label>
                 <input type="text" className="form-control" id="gifUrl" name="gifUrl" value={favorite.gifUrl} onChange={handleChange} />
             </div>
