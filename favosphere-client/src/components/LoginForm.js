@@ -82,7 +82,6 @@ function LoginForm() {
                 <div className="login-logo-container">
                     <img src={default_icon} alt="Logo" />
                 </div>
-                <h2>Login</h2>
             <div className="google-login">
                 {/* {profile ? (navigate('/gallery')) : (<button onClick={() => login()}>Sign in with Google 🚀 </button>)} */}
                 {/* <button className="external-login-btn" onClick={() => login()}>Login with Google</button> */}
@@ -101,7 +100,7 @@ function LoginForm() {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="email" className="">Email</label>
-                            <input type="text" className="form-control" id="email"
+                            <input type="text" className="form-control form-control-fav" id="email"
                                 name="email" value={credentials.email} placeholder="youremail@domain.com"
                                 onChange={handleChange} required />
                         </div>
@@ -112,10 +111,10 @@ function LoginForm() {
                                 onChange={handleChange} required />
                         </div>
                         <div className="forgot-sumbit-ctn">
-                            <button type="submit" className="btn btn-primary">Log In</button>
+                            <button type="submit" className="btn btn-primary button-prm">Log In</button>
                         </div>
                         <div className="forgot-sumbit-ctn">
-                            <Link to="/create-account" className="btn btn-secondary">Create Account</Link>
+                            <Link to="/create-account" className="btn btn-secondary button-scnd">Create Account</Link>
                         </div>
                     </form>
                     <Errors errors={errors} />

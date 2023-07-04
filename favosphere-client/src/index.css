@@ -131,34 +131,48 @@ section, footer{
   align-items: center;
 }
 
-.login-logo-container{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .content-fav {
   flex: 1;
   padding: 16px;
   justify-content: center;
+  margin-left: 30vw;
   display: flex;
-  margin-left: 35vw;
-  
+  background-color: #646d7e;
+  width: 100%;
 }
 
 .login-input{
-  border-radius: 18px;
+  border-radius: 30px;
   margin: auto;
-  width: 70%;
+  width: 100%;
   background-color: white;
   border: 1px solid;
-  box-shadow: 2px 5px #888888;
+  box-shadow: 5px 5px #5a5757;
 }
 .center-all-full-page{
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 30vw;
+}
+
+.form-control-fav {
+  font-size: 1.5rem;
+}
+
+.button-prm {
+  font-size: 1.5rem;
+  font-family: "Google Sans",arial,sans-serif;
+  background-color: rgb(80, 163, 240);
+  border-radius: 10px;
+}
+
+.button-scnd {
+  font-size: 1.5rem;
+  font-family: "Google Sans",arial,sans-serif;
+  background-color: gray;
+  border-radius: 10px;
 }
 
 .google-login{
@@ -189,6 +203,8 @@ section, footer{
   display:flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(224, 219, 219);
+  border-radius: 30px;
 }
 
 .list div{
@@ -269,7 +285,7 @@ button{
 
 button:hover{
   background-color: white;
-  color: black;
+  color: rgb(237, 209, 209);
 }
 
 #formPlacer{
@@ -286,7 +302,7 @@ button:hover{
   border-radius: 1rem;
 }
 #formContainer #formHeading{
-  color: #334;
+  color: rgb(221, 221, 236);
   font-family: Arial, sans-serif;
   font-size: 2rem;
 
