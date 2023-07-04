@@ -33,6 +33,7 @@ function FavoriteStaging() {
                         });
                     })
         }
+    };
 
     const handleRefreshEmail = () => {
         const newEmails = refreshEmailsByUserId(localStorage.getItem("appUserId"));
@@ -77,7 +78,6 @@ function FavoriteStaging() {
                 </table>
             </section>
         </>);
-    }
 }
 
 export default FavoriteStaging;
