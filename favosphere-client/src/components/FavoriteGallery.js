@@ -2,7 +2,6 @@ import { useRef, useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { findAllFavoritesByUserId } from "../services/FavoriteApi";
 import AuthContext from "../contexts/AuthContext";
-import "../FavoriteGallery.css";
 
 function FavoriteGallery() {
 
