@@ -56,7 +56,7 @@ public class EmailService {
     }
 
     public List<Email> findByUserId(BigInteger appUserId) {
-        return repository.findByUserId(appUserId);
+        return repository.findAllByUserId(appUserId);
     }
 
     public Result<Email> create(Email email) {
