@@ -125,7 +125,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
                 favorite.getGifUrl(),
                 favorite.getImageUrl(),
                 favorite.getCreatedOn(),
-                favorite.getUpdatedOn(),
+                LocalDate.now(),
                 favorite.getCustomTitle(),
                 favorite.getCustomDescription(),
                 favorite.getCustomImage(),
