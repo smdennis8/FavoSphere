@@ -6,7 +6,8 @@ import { authenticate } from "../services/AuthApi";
 import jwt_decode from "jwt-decode";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 import CreateAccountForm from "./CreateAccountForm";
-
+import { handleGoogleLogin } from "../services/AuthApi";
+import default_icon from '../assets/default_icon.png';
 
 function LoginForm() {
 
@@ -50,14 +51,18 @@ function LoginForm() {
     return(
         <div className="center-all-full-page">
             <div className="login-input">
+                <div className="login-logo-container">
+                    <img src={default_icon} alt="Logo" />
+                </div>
                 <h2>Login</h2>
             <div className="google-login">
                 {/* {profile ? (navigate('/gallery')) : (<button onClick={() => login()}>Sign in with Google 🚀 </button>)} */}
                 {/* <button className="external-login-btn" onClick={() => login()}>Login with Google</button> */}
                 <GoogleLogin
                     onSuccess={(credentialResponse) => {
-                        console.log(jwt_decode(credentialResponse.credential,{ header: true }));
-    
+                        // localStorage.setItem('google_credential',jwt_decode(credentialResponse.credential,{ header: true }));
+                        // console.log(credentialResponse.credential);
+                        handleGoogleLogin(credentialResponse.credential) ? navigate("/gallery") : navigate("/") ; // failure should lead to signup
                     }}
                     onError={() => {console.log("Login Failed");}}
                     theme="filled_blue"

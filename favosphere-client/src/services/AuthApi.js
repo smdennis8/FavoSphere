@@ -21,7 +21,7 @@ export async function authenticate(credentials) {
     } else {
         return Promise.reject('Bad credentials');
     }
-}
+};
 
 export async function refreshToken() {
     const jwtToken = localStorage.getItem('jwt_token');
@@ -43,7 +43,12 @@ export async function refreshToken() {
         signOut();
         return Promise.reject('Session expired');
     }
-}
+};
+
+export function handleGoogleLogin(googleCredentialJwt){
+    console.log(jsonPayloadFromJwt(googleCredentialJwt));
+
+};
 
 export function signOut() {
     localStorage.removeItem('jwt_token');
@@ -54,16 +59,25 @@ const makeUser = (authResponse) => {
     const jwtToken = authResponse.jwt_token;
     localStorage.setItem('jwt_token', jwtToken);
     localStorage.setItem('jwt_decoded', jwtDecode(jwtToken,{ header: true }));
-    console.log(localStorage.getItem('jwt_decoded'));
+    
     return makeUserFromJwt(jwtToken);
 };
+
+const jsonPayloadFromJwt = (jwtToken) => {
+    const tokenParts = jwtToken.split('.');
+    if (tokenParts.length > 1) {
+        const userData = tokenParts[1];
+        return JSON.parse(atob(userData));
+    }
+}
 
 const makeUserFromJwt = (jwtToken) => {
     const tokenParts = jwtToken.split('.');
     if (tokenParts.length > 1) {
         const userData = tokenParts[1];
         const decodedUserData = JSON.parse(atob(userData));
-        localStorage.setItem('appUserId', decodedUserData.app_user_id)
+        localStorage.setItem('appUserId', decodedUserData.app_user_id);
+        localStorage.setItem('username', decodedUserData.sub)
         return {
             appUserId: decodedUserData.app_user_id,
             username: decodedUserData.sub,

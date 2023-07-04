@@ -28,6 +28,7 @@ export async function createFavorite(favorite) {
 
     const init = makeFavoriteInit('POST', favorite);
     const response = await fetch(API_URL, init);
+
     if (response.status === 201) {
         return response.json();
     } 

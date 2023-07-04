@@ -1,24 +1,26 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../contexts/AuthContext";
-import { findAllEmails, deleteEmailById } from '../services/EmailApi';
 
-function FavoriteStaging() {
-    // state variables
-    const [emails, setEmails] = useState([]);
-    const navigate = useNavigate();
+import { deleteEmailById, findAllEmails, refreshEmailsByUserId } from '../services/EmailApi';
+
+function FavoriteStaging(){
+// state variables
+const [email, setEmail] = useState([]);
+const [emails, setEmails] = useState([]);
+const navigate = useNavigate();
 
     const url = 'http://localhost:8080/email';
 
     const auth = useContext(AuthContext);
 
-    useEffect(() => {
-        findAllEmails()
+useEffect(() => {
+    refreshEmailsByUserId(localStorage.getItem("appUserId"))
             .then(data => setEmails(data));
     }, []);
 
-    const handleDeleteEmail = (emailId) => {
-        const email = emails.find(email => email.emailId === emailId);
+  const handleDeleteEmail = (emailId) => {
+    const email = emails.find(email => email.emailId === emailId);
         if (window.confirm(`Delete email Id ${email.emailId}: \nURL: ${email.url}\nTime: ${email.time}?`)) {
             deleteEmailById(emailId)
                 .then(res => {
@@ -31,10 +33,21 @@ function FavoriteStaging() {
                         state: { msg: `Email: ${emailId}} was not found.` }
                     });
                 })
-            }
-    }
+     }
 
-    return (<>
+const handleRefreshEmail = () => {
+    const newEmails = refreshEmailsByUserId(localStorage.getItem("appUserId"));
+    if(newEmails.size > emails.size){
+        setEmails(newEmails);
+    }
+    refreshEmailsByUserId(localStorage.getItem("appUserId")).then(data => setEmails(data));
+};
+
+return(<>
+        <div className="button-banner-placer">
+        <button className="btn btn-secondary" onClick={() => handleRefreshEmail()}>Refresh Inbox</button>
+        <Link to="/add" className="btn btn-secondary">Add New Favorite</Link>
+        </div>
         <section id="listContainer" className='list'>
             <table>
                 <thead>

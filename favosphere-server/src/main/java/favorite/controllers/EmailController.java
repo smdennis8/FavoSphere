@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/email")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class EmailController {
 
     private final EmailService emailService;

@@ -12,7 +12,7 @@ public interface EmailRepository {
 
     Email findById(BigInteger emailId);
 
-    List<Email> findByUserId(BigInteger emailId);
+    List<Email> findAllByUserId(BigInteger emailId);
 
     String findEmailByUserId(BigInteger appUserId);
 

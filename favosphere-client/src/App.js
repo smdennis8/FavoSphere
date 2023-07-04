@@ -10,6 +10,8 @@ import { refreshToken, signOut } from "./services/AuthApi";
 import NotFound from "./NotFound";
 import FavoriteStaging from "./components/FavoriteStaging";
 import CreateAccountForm from "./components/CreateAccountForm";
+import Profile from "./components/Profile";
+
 // import FavoriteCard from "./components/FavoriteCard";
 
 const EMPTY_USER = {
@@ -66,9 +68,9 @@ function App() {
   return (<>
     <AuthContext.Provider value={auth}>
       <Router>
-        <div className="container">
+        <div className="container-fav">
           { auth.isLoggedIn() ? <LeftPanel /> : <div></div>}
-          <div className="content">
+          <div className="content-fav">
             <Routes>
               <Route
                 path="/" element={<LoginForm />} />
@@ -78,6 +80,11 @@ function App() {
                 path="/staging"
                 element={auth.isLoggedIn()
                   ? <FavoriteStaging />
+                  : <Navigate to="/" />} />
+              <Route
+                path="/profile"
+                element={auth.isLoggedIn()
+                  ? <Profile />
                   : <Navigate to="/" />} />
               <Route
                 path="/add"

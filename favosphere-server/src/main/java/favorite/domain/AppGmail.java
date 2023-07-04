@@ -146,6 +146,7 @@ public class AppGmail {
             for (MessagePartHeader mph : msg.getPayload().getHeaders()) {
                 if (mph.getName().equalsIgnoreCase("From")) {
                     emailSender = mph.getValue().split("<")[1].split(">")[0];
+                    break;
                 }
             }
 
@@ -195,16 +196,17 @@ public class AppGmail {
         DateFormatSymbols dfs = new DateFormatSymbols(Locale.getDefault());
         String[] months = dfs.getShortMonths();
         int monthNum = 0;
+        String[] googleMsgSentDate = dateSent.split(" ");
         for (int i = 0; i < months.length; i++) {
-            if (dateSent.split(" ")[2].equalsIgnoreCase(months[i])) monthNum = i + 1;
+            if (googleMsgSentDate[2].equalsIgnoreCase(months[i])) monthNum = i + 1;
         }
-        LocalDate msgDate = LocalDate.parse(
-                String.format("%s %02d %s",dateSent.split(" ")[1], monthNum, dateSent.split(" ")[3]),
-                DateTimeFormatter.ofPattern("dd MM yyyy"));
+
+        LocalDate msgDate = LocalDate.of(
+                Integer.parseInt(googleMsgSentDate[3]),monthNum,Integer.parseInt(googleMsgSentDate[1]));
         LocalTime msgTime = LocalTime.parse(dateSent.split(" ")[4]);
         LocalDateTime localDateTimeSent = LocalDateTime.of(msgDate,msgTime);
 
-        String urlMsgPayload = msg.getSnippet();
+        String urlMsgPayload = msg.getSnippet().split(" ")[0];
 
         return new Link(senderEmail, urlMsgPayload, localDateTimeSent);
     }
