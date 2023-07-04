@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../contexts/AuthContext";
-import { deleteEmailById, findAllEmails } from '../services/EmailApi';
+import { deleteEmailById, findAllEmails, refreshEmailsByUserId } from '../services/EmailApi';
 
 function FavoriteStaging(){
 // state variables
@@ -14,13 +14,22 @@ const url = 'http://localhost:8080/email';
 const auth = useContext(AuthContext);
 
 useEffect(() => {
-    findAllEmails()
+    refreshEmailsByUserId(localStorage.getItem("appUserId"))
             .then(data => setEmails(data));
 }, []); 
 
+const handleRefreshEmail = () => {
+    const newEmails = refreshEmailsByUserId(localStorage.getItem("appUserId"));
+    if(newEmails.size > emails.size){
+        setEmails(newEmails);
+    }
+    refreshEmailsByUserId(localStorage.getItem("appUserId")).then(data => setEmails(data));
+};
+
 const handleDeleteEmail = (emailId) => {
     const email = emails.find(email => email.emailId === emailId);
-    if (window.confirm(`Delete email Id ${emailId}: \nURL: ${email.url}\nTime: ${email.time}?`)) {        deleteEmailById(emailId)
+    if (window.confirm(`Delete email Id ${emailId}: \nURL: ${email.url}\nTime: ${email.time}?`)) {        
+        deleteEmailById(emailId)
         .then(() => {
             navigate("/gallery", {
                 state: { msg: `"${email.url}" was deleted.` }
@@ -43,6 +52,10 @@ const handleDeleteEmail = (emailId) => {
 }
 
 return(<>
+        <div className="button-banner-placer">
+        <button className="btn btn-secondary" onClick={() => handleRefreshEmail()}>Refresh Inbox</button>
+        <Link to="/add" className="btn btn-secondary">Add New Favorite</Link>
+        </div>
         <section id="listContainer" className='list'>
             <table>
                 <thead>

@@ -52,9 +52,9 @@ public class EmailJdbcTemplateRepository implements EmailRepository{
     }
 
     @Override
-    public List<Email> findByUserId(BigInteger emailId) {
-
-        return null;
+    public List<Email> findAllByUserId(BigInteger appUserId) {
+        String sql = "select * from email where app_user_id = ?;";
+        return  jdbcTemplate.query(sql, emailRowMapper, appUserId);
     }
 
     @Override
