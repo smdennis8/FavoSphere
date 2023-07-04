@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { findAllFavorites } from "../services/FavoriteApi";
+import { findAllFavoritesByUserId } from "../services/FavoriteApi";
+
 import AuthContext from "../contexts/AuthContext";
 
 function FavoriteGallery() {
@@ -11,10 +12,11 @@ function FavoriteGallery() {
 
     const auth = useContext(AuthContext);
 
+    const currentUserId = localStorage.getItem('appUserId');
     useEffect(() => {
-        findAllFavorites()
+        findAllFavoritesByUserId(currentUserId)
             .then(data => setFavorites(data));
-    }, []);
+    }, [currentUserId]);
 
     return(<>
         <div className="row">

@@ -1,4 +1,5 @@
 const API_URL = 'http://localhost:8080/appuser';
+const API_URL_SECURITY = 'http://localhost:8080/security';
 
 export async function findAllUsers() {
     const response = await fetch(API_URL);
@@ -13,19 +14,16 @@ export async function findUserByUsername(username) {
         return response.json();
     } 
     else {
-        return Promise.reject(`User: ${appUserId} was not found.`);
+        return Promise.reject(`User: ${username} was not found.`);
     }
 }
 
 export async function createAppUser(appUser) {
 
-    const init = makeFavoriteInit('POST', appUser);
-    const response = await fetch(API_URL, init);
+    const init = makeAppUserInit('POST', appUser);
+    const response = await fetch(`${API_URL_SECURITY}/create-account`, init);
     if (response.status === 201) {
         return response.json();
-    } 
-    else if (response.status === 403) {
-        return Promise.reject('Unauthorized');
     } 
     else {
         const errors = await response.json();
@@ -35,7 +33,7 @@ export async function createAppUser(appUser) {
 
 // export async function updateAppUser(favorite) {
 
-//     const init = makeFavoriteInit('PUT', favorite);
+//     const init = makeAppUserInit('PUT', favorite);
 //     const response = await fetch(`${API_URL}/${favorite.favoriteId}`, init);
 //     console.log(init);
 
@@ -54,15 +52,11 @@ export async function createAppUser(appUser) {
 //     }
 // }
 
-function makeUserInit(method, appUser) {
-    const jwtToken = localStorage.getItem('jwt_token');
-
+function makeAppUserInit(method, appUser) {
     const init = {
     method: method,
     headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${jwtToken}`
+        'Content-Type': 'application/json'
     },
         body: JSON.stringify(appUser)
     };

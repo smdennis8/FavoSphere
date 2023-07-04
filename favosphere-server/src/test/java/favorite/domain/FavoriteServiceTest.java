@@ -75,7 +75,7 @@ class FavoriteServiceTest {
     @Test
     void shouldFindAllByUserId() {
         when(repository.findAllByUserId(BigInteger.valueOf(22))).thenReturn(List.of(favorites.get(1), favorites.get(2)));
-        List<Favorite>  actual = service.findAllByUserId(BigInteger.valueOf(22));
+        List<Favorite> actual = service.findAllByUserId(BigInteger.valueOf(22));
 
         assertTrue(actual.size() == 2);
         assertEquals(BigInteger.valueOf(2), actual.get(0).getFavoriteId());

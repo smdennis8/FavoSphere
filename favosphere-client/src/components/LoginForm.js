@@ -5,6 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 import { authenticate } from "../services/AuthApi";
 import jwt_decode from "jwt-decode";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
+import CreateAccountForm from "./CreateAccountForm";
 
 
 function LoginForm() {
@@ -45,10 +46,6 @@ function LoginForm() {
         />
     );
 
-    const handleCreateAccount = (evt) => {
-        evt.preventDefault();
-
-    }
 
     return(
         <div className="center-all-full-page">
@@ -87,7 +84,7 @@ function LoginForm() {
                             <button type="submit" className="btn btn-primary">Log In</button>
                         </div>
                         <div className="forgot-sumbit-ctn">
-                            <button className="btn btn-secondary" onClick={() => {handleCreateAccount(); navigate("/create-account");}}>Create Account</button>
+                            <Link to="/create-account" className="btn btn-secondary">Create Account</Link>
                         </div>
                     </form>
                     <Errors errors={errors} />

@@ -9,6 +9,7 @@ import AuthContext from "./contexts/AuthContext";
 import { refreshToken, signOut } from "./services/AuthApi";
 import NotFound from "./NotFound";
 import FavoriteStaging from "./components/FavoriteStaging";
+import CreateAccountForm from "./components/CreateAccountForm";
 // import FavoriteCard from "./components/FavoriteCard";
 
 const EMPTY_USER = {
