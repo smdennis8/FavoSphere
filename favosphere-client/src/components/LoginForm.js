@@ -1,13 +1,18 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Errors from "./Errors";
-import AuthContext from "../contexts/AuthContext";
-import { authenticate } from "../services/AuthApi";
-import jwt_decode from "jwt-decode";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
+
+import AuthContext from "../contexts/AuthContext";
+
+import { authenticate, handleGoogleLogin } from "../services/AuthApi";
+import { findUserByUsername } from "../services/AppUserApi";
+
+import Errors from "./Errors";
 import CreateAccountForm from "./CreateAccountForm";
-import { handleGoogleLogin } from "../services/AuthApi";
+
 import default_icon from '../assets/default_icon.png';
+
+import jwt_decode from "jwt-decode";
 
 function LoginForm() {
 
@@ -25,6 +30,29 @@ function LoginForm() {
         const nextCredentials = { ...credentials };
         nextCredentials[evt.target.name] = evt.target.value;
         setCredentials(nextCredentials);
+    };
+
+    const handleVerifiedGoogleLogin = (googleCredentialJwt) => {
+        const tokenParts = googleCredentialJwt.split('.');
+        if (tokenParts.length > 1) {
+            const userData = tokenParts[1];
+            const decodedUserData = JSON.parse(atob(userData));
+
+            let newCredentials = {email: '', password: ''};
+            findUserByUsername(decodedUserData.email)
+            .then( data => {
+                localStorage.setItem('appUserId',data.appUserId);
+                newCredentials.email = data.email;
+                newCredentials.password = "P@ssw0rd!"; // CHANGE TO backend google login handler
+                setCredentials(newCredentials);
+            });
+            localStorage.setItem('username', decodedUserData.email);
+            authenticate(credentials).then(user => {
+                auth.onAuthenticated(user);
+                navigate('/gallery');
+            })
+                .catch(err => setErrors(err));    
+        }
     };
 
     const handleSubmit = (evt) => {
@@ -60,9 +88,7 @@ function LoginForm() {
                 {/* <button className="external-login-btn" onClick={() => login()}>Login with Google</button> */}
                 <GoogleLogin
                     onSuccess={(credentialResponse) => {
-                        // localStorage.setItem('google_credential',jwt_decode(credentialResponse.credential,{ header: true }));
-                        // console.log(credentialResponse.credential);
-                        handleGoogleLogin(credentialResponse.credential) ? navigate("/gallery") : navigate("/") ; // failure should lead to signup
+                        handleVerifiedGoogleLogin(credentialResponse.credential);
                     }}
                     onError={() => {console.log("Login Failed");}}
                     theme="filled_blue"
