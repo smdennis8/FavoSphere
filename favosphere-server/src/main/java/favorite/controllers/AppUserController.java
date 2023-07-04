@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-@RequestMapping("/appuser")
+@RequestMapping("/appUser")
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class AppUserController {
     private final AppUserService service;

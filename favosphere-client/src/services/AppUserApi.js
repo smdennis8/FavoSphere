@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080/appuser';
+const API_URL = 'http://localhost:8080/appUser';
 const API_URL_SECURITY = 'http://localhost:8080/security';
 
 export async function findAllUsers() {
