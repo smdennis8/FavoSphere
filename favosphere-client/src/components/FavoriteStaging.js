@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../contexts/AuthContext";
+
 import { deleteEmailById, findAllEmails, refreshEmailsByUserId } from '../services/EmailApi';
 
 function FavoriteStaging(){
@@ -9,14 +10,30 @@ const [email, setEmail] = useState([]);
 const [emails, setEmails] = useState([]);
 const navigate = useNavigate();
 
-const url = 'http://localhost:8080/email';
+    const url = 'http://localhost:8080/email';
 
-const auth = useContext(AuthContext);
+    const auth = useContext(AuthContext);
 
 useEffect(() => {
     refreshEmailsByUserId(localStorage.getItem("appUserId"))
             .then(data => setEmails(data));
-}, []); 
+    }, []);
+
+  const handleDeleteEmail = (emailId) => {
+    const email = emails.find(email => email.emailId === emailId);
+        if (window.confirm(`Delete email Id ${email.emailId}: \nURL: ${email.url}\nTime: ${email.time}?`)) {
+            deleteEmailById(emailId)
+                .then(res => {
+                    navigate("/staging", {
+                        state: { msg: `Email: ${emailId} was deleted.` }
+                    });
+                })
+                .catch(() => {
+                    navigate("/staging", {
+                        state: { msg: `Email: ${emailId}} was not found.` }
+                    });
+                })
+     }
 
 const handleRefreshEmail = () => {
     const newEmails = refreshEmailsByUserId(localStorage.getItem("appUserId"));
@@ -25,31 +42,6 @@ const handleRefreshEmail = () => {
     }
     refreshEmailsByUserId(localStorage.getItem("appUserId")).then(data => setEmails(data));
 };
-
-const handleDeleteEmail = (emailId) => {
-    const email = emails.find(email => email.emailId === emailId);
-    if (window.confirm(`Delete email Id ${emailId}: \nURL: ${email.url}\nTime: ${email.time}?`)) {        
-        deleteEmailById(emailId)
-        .then(() => {
-            navigate("/gallery", {
-                state: { msg: `"${email.url}" was deleted.` }
-            });
-        })
-        const init = {
-            method: 'DELETE'
-        };
-        fetch(`${url}/${emailId}`, init)
-            .then(response => {
-                if (response.status === 204) {
-                    const newEmails = emails.filter(emails => emails.emailId !== emailId);
-                    setEmails(newEmails);
-                } else {
-                    return Promise.reject(`Unexpected Status code: ${response.status}`);
-                }
-            })
-            .catch(console.log);
-    }
-}
 
 return(<>
         <div className="button-banner-placer">
@@ -85,7 +77,7 @@ return(<>
                 </tbody>
             </table>
         </section>
-</>);
+    </>);
 }
 
 export default FavoriteStaging;

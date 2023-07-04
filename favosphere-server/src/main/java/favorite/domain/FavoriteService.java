@@ -136,7 +136,7 @@ public class FavoriteService {
     }
 
     private boolean isDuplicate(Favorite favorite) {
-        if(favorite.getFavoriteId() == null) {
+        if(favorite.getFavoriteId() == BigInteger.ZERO) {
             List<Favorite> all = repository.findAll();
             for(Favorite f : all){
                 if(favorite.equals(f)){

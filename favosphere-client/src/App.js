@@ -9,7 +9,9 @@ import AuthContext from "./contexts/AuthContext";
 import { refreshToken, signOut } from "./services/AuthApi";
 import NotFound from "./NotFound";
 import FavoriteStaging from "./components/FavoriteStaging";
+import CreateAccountForm from "./components/CreateAccountForm";
 import Profile from "./components/Profile";
+
 // import FavoriteCard from "./components/FavoriteCard";
 
 const EMPTY_USER = {
@@ -72,6 +74,8 @@ function App() {
             <Routes>
               <Route
                 path="/" element={<LoginForm />} />
+              <Route
+                path="/create-account" element={<CreateAccountForm />} />
               <Route
                 path="/staging"
                 element={auth.isLoggedIn()
