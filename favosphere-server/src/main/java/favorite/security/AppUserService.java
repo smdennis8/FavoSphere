@@ -39,16 +39,20 @@ public class AppUserService implements UserDetailsService {
         return repository.findAll();
     }
 
-    public Result<AppUser> create(Credentials credentials) {
-        Result<AppUser> result = validate(credentials);
+    public AppUser findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    public Result<AppUser> create(AppUser appUser) {
+        Result<AppUser> result = validate(appUser);
         if (!result.isSuccess()) {
             return result;
         }
 
-        String hashedPassword = encoder.encode(credentials.getPassword());
+        String hashedPassword = encoder.encode(appUser.getPassword());
 
-        AppUser appUser = new AppUser(BigInteger.ZERO, null, null, null, null,
-                credentials.getEmail(), hashedPassword, null, null, true,
+        appUser = new AppUser(BigInteger.ZERO, null, null, null, null,
+                appUser.getEmail(), hashedPassword, appUser.getRegisteredOn(), appUser.getLastLogin(), true,
                 List.of("USER"));
 
         try {
@@ -61,23 +65,23 @@ public class AppUserService implements UserDetailsService {
         return result;
     }
 
-    private Result<AppUser> validate(Credentials credentials) {
+    private Result<AppUser> validate(AppUser appUser) {
         Result<AppUser> result = new Result<>();
-        if (credentials.getEmail() == null || credentials.getEmail().isBlank()) {
+        if (appUser.getEmail() == null || appUser.getEmail().isBlank()) {
             result.addMessage("email is required");
             return result;
         }
 
-        if (credentials.getPassword() == null) {
+        if (appUser.getPassword() == null) {
             result.addMessage("password is required");
             return result;
         }
 
-        if (credentials.getEmail().length() > 50) {
+        if (appUser.getEmail().length() > 50) {
             result.addMessage("email must be less than 255 characters");
         }
 
-        if (!isValidPassword(credentials.getPassword())) {
+        if (!isValidPassword(appUser.getPassword())) {
             result.addMessage(
                     "password must be at least 8 character and contain a digit," +
                             " a letter, and a non-digit/non-letter");

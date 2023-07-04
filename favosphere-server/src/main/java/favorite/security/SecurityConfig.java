@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.GET,
                         "/email/refresh", "/email/refresh/*", "/email", "/email/*").permitAll()
                 .antMatchers(HttpMethod.GET,
-                        "/favorite", "/favorite/*").permitAll()
+                        "/favorite", "/favorite/*", "/favorite/appUser/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/favorite").authenticated()
                 .antMatchers(HttpMethod.PUT, "/favorite/*").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/favorite/*").authenticated()

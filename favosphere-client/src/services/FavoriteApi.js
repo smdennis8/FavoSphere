@@ -7,6 +7,13 @@ export async function findAllFavorites() {
     }
 }
 
+export async function findAllFavoritesByUserId(appUserId) {
+    const response = await fetch(`${API_URL}/appUser/${appUserId}`);
+    if (response.status === 200) {
+        return response.json();
+    }
+}
+
 export async function findFavoriteById(favoriteId) {
     const response = await fetch(`${API_URL}/${favoriteId}`);
     if (response.status === 200) {

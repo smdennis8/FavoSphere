@@ -13,6 +13,7 @@ import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository{
             ps.setString(4, user.getPhone());
             ps.setString(5, user.getEmail());
             ps.setString(6, user.getPassword());
-            ps.setDate(7, Date.valueOf(user.getRegisteredOn()));
+            ps.setDate(7, Date.valueOf(LocalDate.now()));
             ps.setDate(8, Date.valueOf(user.getLastLogin()));
             ps.setBoolean(9, user.isEnabled());
             return ps;

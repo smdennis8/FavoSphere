@@ -30,6 +30,33 @@ Content-Type: application/json
     "password": "P@ssw0rd!"
 }
 
+### Good credentials... returns 200 with a JWT in the response body
+
+POST {{url}}/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "test@yahoo.com",
+    "password": "password56$"
+}
+
+### Create new account
+
+POST {{url}}/create-account HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": null,
+    "middleName": null,
+    "lastName": null,
+    "email": "test@yahoo.com",
+    "password": "password56$",
+    "registeredOn": "2023-07-03",
+    "lastLogin": "2023-07-03",
+    "enabled": true,
+    "roles": ["USER"]
+}
+
 ### Refresh token... be sure to replace the token in the Authorization header with a valid token
 
 POST {{url}}/refresh_token HTTP/1.1

@@ -37,6 +37,15 @@ public class FavoriteController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/appUser/{appUserId}")
+    public ResponseEntity<Object> findAllByUserId(@PathVariable BigInteger appUserId) {
+        List<Favorite> all = service.findAllByUserId(appUserId);
+        if (all != null) {
+            return new ResponseEntity<>(all, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Favorite favorite) {
         Result<Favorite> result = service.create(favorite);

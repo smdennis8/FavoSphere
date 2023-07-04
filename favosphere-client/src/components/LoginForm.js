@@ -5,9 +5,9 @@ import AuthContext from "../contexts/AuthContext";
 import { authenticate } from "../services/AuthApi";
 import jwt_decode from "jwt-decode";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
+import CreateAccountForm from "./CreateAccountForm";
 import { handleGoogleLogin } from "../services/AuthApi";
 import default_icon from '../assets/default_icon.png';
-
 
 function LoginForm() {
 
@@ -46,6 +46,7 @@ function LoginForm() {
             }}
         />
     );
+
 
     return(
         <div className="center-all-full-page">
@@ -86,6 +87,9 @@ function LoginForm() {
                         </div>
                         <div className="forgot-sumbit-ctn">
                             <button type="submit" className="btn btn-primary">Log In</button>
+                        </div>
+                        <div className="forgot-sumbit-ctn">
+                            <Link to="/create-account" className="btn btn-secondary">Create Account</Link>
                         </div>
                     </form>
                     <Errors errors={errors} />

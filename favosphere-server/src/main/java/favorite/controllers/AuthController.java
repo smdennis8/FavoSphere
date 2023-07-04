@@ -61,8 +61,8 @@ public class AuthController {
     }
 
     @PostMapping("/create-account")
-    public ResponseEntity<Object> create(@RequestBody Credentials credentials) {
-        Result<AppUser> result = appUserService.create(credentials);
+    public ResponseEntity<Object> create(@RequestBody AppUser appUser) {
+        Result<AppUser> result = appUserService.create(appUser);
 
         if (!result.isSuccess()) {
             return new ResponseEntity<>(result.getMessages(), HttpStatus.BAD_REQUEST);
