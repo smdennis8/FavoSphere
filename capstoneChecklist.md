@@ -25,13 +25,13 @@
 - [x] Create a database schema diagram (2 hrs)
   - [x] Upload schema/ERD diagram to Github
 
-- [ ] Construct a wireframe
-  - [x] Display Home/Gallery Screen (0.75 hrs)
-  - [x] Add a basic user flow (0.75 hrs)
-  - [ ] Favoriting a favorite user flow (0.75 hrs)
-  - [ ] Editing a favorite user flow (0.75 hrs)
-  - [ ] Searching a favorite user flow (0.75 hrs)
-  - [ ] Sharing a favorite user flow (0.75 hrs)
+- [X] Construct a wireframe
+  - [X] Display Home/Gallery Screen (0.75 hrs)
+  - [X] Add a basic user flow (0.75 hrs)
+  - [X] Favoriting a favorite user flow (0.75 hrs)
+  - [X] Editing a favorite user flow (0.75 hrs)
+  - [X] Searching a favorite user flow (0.75 hrs)
+  - [X] Sharing a favorite user flow (0.75 hrs)
 
 ### Package/Class Overview
 
@@ -320,7 +320,7 @@ src
 - [X] Write `App.java` (0.17 hrs)
 - [X] Write `AppConfig` (0.17 hrs)
 - [X] Write `AuthController` (0.25 hrs)
-- [ ] Write `EmailController` (4 hrs)
+- [X] Write `EmailController` (4 hrs)
 - [X] Write `FavoriteController` (1.5 hrs)
 - [X] Write `GlobalExceptionHandler` (0.25 hrs)
 - [X] Write `TestHelpers` (0.1 hrs)
@@ -333,7 +333,7 @@ src
 - [X] Extract `EmailRepository` (0.5 hrs)
 - [X] Write `FavoriteJdbcTemplateRepository` (0.5 hrs)
 - [X] Extract `FavoriteRepository` (0.5 hrs)
-- [ ] Write `AppGmail` (3 hrs)
+- [X] Write `AppGmail` (3 hrs)
 - [X] Write `EmailService` (1 hr)
 - [X] Write `FavoriteResult`  (0.25 hrs)
 - [X] Write `FavoriteService` (1.5 hrs)
@@ -373,36 +373,36 @@ src
 - [X] Create react app and set-up client side (0.17 hrs)
 - [X] Remove unnecessary files (0.067 hrs)
 - [X] Create an `index.html` and `App.js` file as a starting point for your project (0.25 hrs)
-- [ ] Add Bootstrap to the `public/index.html` file (0.08 hrs)
-- [ ] Components:
-  - [ ] Navigation Panel Wrapper (0.5 hrs)
+- [X] Add Bootstrap to the `public/index.html` file (0.08 hrs)
+- [X] Components:
+  - [X] Left Panel (0.5 hrs)
   - [ ] Filter Bar Component (3 hrs)
-  - [ ] Home Component - Gallery View (3 hrs)
-  - [ ] Login Page (2 hrs)
-  - [ ] Favorites Gallery Grid Component (1 hr)
-  - [ ] Favorites Staging/Inbox Component (1.5 hrs)
-  - [ ] Edit Favorite Page (1.5 hrs)
-  - [ ] Stub out click event handlers for the "Add Favorite", "Edit Favorite", and "Delete Favorite" buttons (1 hr)
-- [ ] Conditionally render sections of the page (1.5 hr)
-  - [ ] Add a state variable to track the current view
-  - [ ] Add a method to update the current view and conditionally render the list or the form
-  - [ ] Call the method to update the current where needed
+  - [X] Home Component - Gallery View (3 hrs)
+  - [X] Login Page (2 hrs)
+  - [X] Favorites Gallery Grid Component (1 hr)
+  - [X] Favorites Staging/Inbox Component (1.5 hrs)
+  - [X] Edit Favorite Page (1.5 hrs)
+  - [X] Stub out click event handlers for the "Add Favorite", "Edit Favorite", and "Delete Favorite" buttons (1 hr)
+- [X] Conditionally render sections of the page (1.5 hr)
+  - [X] Add a state variable to track the current view
+  - [X] Add a method to update the current view and conditionally render the list or the form
+  - [X] Call the method to update the current where needed
 
 ### Part 6: Finishing Touches
 
-- [ ] Choose an appropriate CSS framework for the style desired and implement (0.25 hrs)
+- [X] Choose an appropriate CSS framework for the style desired and implement (0.25 hrs)
 
-  - [ ] Style all buttons (0.5 hrs)
-  - [ ] Style the favorites list (grid) in gallery view (0.75 hrs)
+  - [X] Style all buttons (0.5 hrs)
+  - [X] Style the favorites list (grid) in gallery view (0.75 hrs)
   - [ ] Style the form (0.75 hrs)
-  - [ ] Add onsubmit event handler to the form element (be sure to prevent the form from submitting!) (0.25 hrs)
-  - [ ] Create a favorite object (0.25 hrs)
-  - [ ] Use `fetch` to `POST` the new favorite’s information to the FavoSphere API (0.5 hrs)
-  - [ ] On success, refresh the favorites list, or on failure, display any validation errors from the API in the UI (1 hr)
-- [ ] Support deleting favorites
-  - [ ] Confirm the deletion with the user (0.25 hrs)
-  - [ ] Use `fetch` to `DELETE` the favorite from the FavoSphere API (0.33 hrs)
-  - [ ] On success, refresh the favorites list (0.33 hrs)
+  - [X] Add onsubmit event handler to the form element (be sure to prevent the form from submitting!) (0.25 hrs)
+  - [X] Create a favorite object (0.25 hrs)
+  - [X] Use `fetch` to `POST` the new favorite’s information to the FavoSphere API (0.5 hrs)
+  - [X] On success, refresh the favorites list, or on failure, display any validation errors from the API in the UI (1 hr)
+- [X] Support deleting favorites
+  - [X] Confirm the deletion with the user (0.25 hrs)
+  - [X] Use `fetch` to `DELETE` the favorite from the FavoSphere API (0.33 hrs)
+  - [X] On success, refresh the favorites list (0.33 hrs)
         **Commit all changes and push to GitHub**
 
 ## High-Level Requirements
