@@ -11,8 +11,7 @@ function Profile(){
             <div className="profile-img-ctn">
                 <img src={default_icon} alt="profile avatar" />
             </div>
-            <h5>Full User Name</h5>
-            <h5>{localStorage.getItem('username')}</h5>
+            <h5>Email Address: {localStorage.getItem('username')}</h5>
         </div>
     </div>
     </>);

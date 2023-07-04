@@ -52,17 +52,21 @@ function FavoriteForm() {
 
     const handleChange = (event) => {
         const nextFavorite = { ...favorite };
+        const { name, type, checked, value } = event.target;
 
-
-        let nextValue = event.target.value;
-        if (event.target.type === 'number') {
-            nextValue = parseFloat(nextValue, 10);
-            if (isNaN(nextValue)) {
-                nextValue = event.target.value;
-            }
+        if (type === 'checkbox') {
+            nextFavorite[name] = checked;
         }
-        nextFavorite[event.target.name] = nextValue;
-
+        else {
+            let nextValue = value;
+            if (type === 'number') {
+                nextValue = parseFloat(nextValue, 10);
+                if (isNaN(nextValue)) {
+                    nextValue = value;
+                }
+            }
+            nextFavorite[name] = nextValue;
+        }
         setFavorite(nextFavorite);
     }
 
@@ -166,34 +170,24 @@ function FavoriteForm() {
                 <input type="text" className="form-control" id="imageUrl" name="imageUrl" value={favorite.imageUrl} onChange={handleChange} />
             </div>
 
-            {/* <div className="mb-3">
-                <label htmlFor="createdOn" className="form-label">Created On</label>
-                <input type="date" className="form-control" id="createdOn" name="createdOn" value={favorite.createdOn} onChange={handleChange} required />
-            </div>
-
-            <div className="mb-3">
-                <label htmlFor="updatedOn" className="form-label">Updated On</label>
-                <input type="date" className="form-control" id="updatedOn" name="updatedOn" value={favorite.updatedOn} onChange={handleChange} required />
-            </div> */}
-
             <div className="mb-3">
                 <label htmlFor="customTitle" className="form-label">Custom Title</label>
-                <input type="checkbox" className="form-control" id="customTitle" name="customTitle" value={favorite.customTitle} onChange={handleChange} />
+                <input type="checkbox" id="customTitle" name="customTitle" checked={favorite.customTitle} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customDescription" className="form-label">Custom Description</label>
-                <input type="checkbox" className="form-control" id="customDescription" name="customDescription" value={favorite.customDescription} onChange={handleChange} />
+                <input type="checkbox" id="customDescription" name="customDescription" checked={favorite.customDescription} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customImage" className="form-label">Custom Image</label>
-                <input type="checkbox" className="form-control" id="customImage" name="customImage" value={favorite.customImage} onChange={handleChange} />
+                <input type="checkbox" id="customImage" name="customImage" checked={favorite.customImage} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customGif" className="form-label">Custom Gif</label>
-                <input type="checkbox" className="form-control" id="customGif" name="customGif" value={favorite.customGif} onChange={handleChange} />
+                <input type="checkbox" id="customGif" name="customGif" checked={favorite.customGif} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
