@@ -339,10 +339,3 @@ ul{
   font-family: Arial, sans-serif;
   font-size: 1.5rem;
 }
-
-.card-description {
-  height:60px;
-  line-height:20px; /* Height / no. of lines to display */
-  overflow:hidden;
-  text-overflow:ellipsis;  
-}

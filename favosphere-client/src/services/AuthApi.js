@@ -13,6 +13,8 @@ export async function authenticate(credentials) {
         body: JSON.stringify(credentials)
     };
 
+    console.log(credentials);
+    
     const response = await fetch(`${url}/authenticate`, init);
 
     if (response.status === 200) {
@@ -45,14 +47,8 @@ export async function refreshToken() {
     }
 };
 
-export function handleGoogleLogin(googleCredentialJwt){
-    console.log(jsonPayloadFromJwt(googleCredentialJwt));
-
-};
-
 export function signOut() {
-    localStorage.removeItem('jwt_token');
-    localStorage.removeItem('jwt_decoded');
+    localStorage.clear();
 }
 
 const makeUser = (authResponse) => {
