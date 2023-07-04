@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -94,21 +95,23 @@ public class FavoriteService {
             result.addMessage("Url must be a valid url");
         }
 
-        if (favorite.getGifUrl() != null && !Validations.isValidUrl(favorite.getGifUrl())) {
+        if ((favorite.getGifUrl() != null && !(favorite.getGifUrl().isBlank()) && (favorite.getGifUrl().equals(""))) && (favorite.getGifUrl().isEmpty())
+                && !Validations.isValidUrl(favorite.getGifUrl())) {
             result.addMessage("Gif url must be a valid url");
         }
 
-        if (favorite.getImageUrl() != null && !Validations.isValidUrl(favorite.getImageUrl())) {
+        if ((favorite.getImageUrl() != null && !(favorite.getImageUrl().isBlank()) && ((favorite.getImageUrl().equals(""))) && (favorite.getImageUrl().isEmpty()))
+                && !Validations.isValidUrl(favorite.getImageUrl())) {
             result.addMessage("Image url must be a valid url");
         }
 
-        if (favorite.getCreatedOn() == null) {
-            result.addMessage("Created on date is required");
-        }
-
-        if (favorite.getUpdatedOn() == null) {
-            result.addMessage("Updated on date is required");
-        }
+//        if (favorite.getCreatedOn() == null) {
+//            result.addMessage("Created on date is required");
+//        }
+//
+//        if (favorite.getUpdatedOn() == null) {
+//            result.addMessage("Updated on date is required");
+//        }
 
         if (favorite.getCreatedOn() != null) {
             if (favorite.getCreatedOn().isAfter(LocalDate.now())) {

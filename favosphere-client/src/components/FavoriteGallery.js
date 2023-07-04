@@ -31,19 +31,18 @@ function FavoriteGallery() {
         <div className="card col-sm-6 col-lg-4" key={f.favoriteId}>
             {auth.isLoggedIn() &&
                 <Link to={`/card/${f.favoriteId}`}>
-                    {f.imageUrl !== null &&
+                    {f.imageUrl !== null && f.imageUrl !== "" &&
                     <img src={f.imageUrl} className="card-img-top" alt={"Title image for " + f.title} />}
-                    {f.gifUrl !== null && 
+                    {f.gifUrl !== null &&  f.gifUrl !== "" &&
                     <img src={f.gifUrl} className="card-gif-mid" alt={"Title gif for " + f.title} />}
                     <div className="card-body">
-                        <h5 className="card-title">{f.title}</h5>
-                        <h6 className="card-source">{f.source}</h6>
-                        <h6 className="card-creator">by: {f.creator}</h6>
-                        <h6 className="card-type">type: {f.type}</h6>
-                        <h6 className="card-description">{f.description}</h6>
-                        <h7 className="card-createdOn">{f.createdOn}</h7>
-                        <p></p>
-                        <h7 className="card-updatedOn">{f.updatedOn}</h7>
+                        <h1 className="card-title">{f.title}</h1>
+                        <h2 className="card-source">{f.source}</h2>
+                        <h2 className="card-creator">by: {f.creator}</h2>
+                        <h2 className="card-type">type: {f.type}</h2>
+                        <h2 className="card-description">{f.description}</h2>
+                        <h3 className="card-createdOn">Created On: {f.createdOn}</h3>
+                        <h3 className="card-updatedOn">Updated On: {f.updatedOn}</h3>
                     </div>
                 </Link>
                 

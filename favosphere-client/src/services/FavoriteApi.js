@@ -25,10 +25,13 @@ export async function findFavoriteById(favoriteId) {
 }
 
 export async function createFavorite(favorite) {
+    console.log('createFavorite called');
+    console.log('Favorite object:', favorite);
 
     const init = makeFavoriteInit('POST', favorite);
     const response = await fetch(API_URL, init);
 
+    console.log(favorite);
     if (response.status === 201) {
         return response.json();
     } 
@@ -45,7 +48,6 @@ export async function updateFavorite(favorite) {
 
     const init = makeFavoriteInit('PUT', favorite);
     const response = await fetch(`${API_URL}/${favorite.favoriteId}`, init);
-    console.log(init);
 
     if (response.status === 404) {
         return Promise.reject(`Favorite: ${favorite.favoriteId} was not found.`);

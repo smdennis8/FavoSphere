@@ -32,14 +32,13 @@ h1, h2, h3, h4{
   letter-spacing:3px;
 }
 h1{
-  font-size:5rem;
+  font-size:20px;
 }
 h2{
-  font-size:3rem;
-  text-align:center;
+  font-size:10px;
 }
-h7{
-  font-size: 12px;
+h3{
+  font-size: 7.5px;
 }
 section, footer{
   padding: 4% 0;
@@ -96,9 +95,9 @@ section, footer{
 }
 
 .leftPanel a{
- color: black;
- float: left;
- margin: 20px;
+  color: black;
+  float: left;
+  margin: 20px;
 }
 
 .leftPanel a{

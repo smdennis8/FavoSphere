@@ -12,6 +12,7 @@ import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -74,8 +75,8 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
             ps.setString(7, favorite.getDescription());
             ps.setString(8, favorite.getGifUrl());
             ps.setString(9, favorite.getImageUrl());
-            ps.setDate(10, Date.valueOf(favorite.getCreatedOn()));
-            ps.setDate(11, Date.valueOf(favorite.getUpdatedOn()));
+            ps.setDate(10, Date.valueOf(LocalDate.now()));
+            ps.setDate(11, Date.valueOf(LocalDate.now()));
             ps.setBoolean(12, favorite.getCustomTitle());
             ps.setBoolean(13, favorite.getCustomDescription());
             ps.setBoolean(14, favorite.getCustomImage());
@@ -124,7 +125,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
                 favorite.getGifUrl(),
                 favorite.getImageUrl(),
                 favorite.getCreatedOn(),
-                favorite.getUpdatedOn(),
+                LocalDate.now(),
                 favorite.getCustomTitle(),
                 favorite.getCustomDescription(),
                 favorite.getCustomImage(),
