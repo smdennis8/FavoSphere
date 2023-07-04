@@ -125,6 +125,11 @@ function FavoriteForm() {
                 })
                 .catch(console.log);
         }
+        else {
+            navigate("/card/favoriteId", {
+                state: { msg: `` }
+            });
+        }
     }    
 
     return <div className="container-fluid">
@@ -152,7 +157,7 @@ function FavoriteForm() {
 
             <div className="mb-3">
                 <label htmlFor="description" className="form-label">Description</label>
-                <input type="text" className="form-control" id="description" name="description" value={favorite.description} onChange={handleChange} required />
+                <textarea className="form-control" id="description" name="description" value={favorite.description} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
