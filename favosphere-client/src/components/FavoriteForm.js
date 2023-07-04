@@ -160,7 +160,7 @@ function FavoriteForm() {
                 <input type="text" className="form-control" id="imageUrl" name="imageUrl" value={favorite.imageUrl} onChange={handleChange} />
             </div>
 
-            <div className="mb-3">
+            {/* <div className="mb-3">
                 <label htmlFor="createdOn" className="form-label">Created On</label>
                 <input type="date" className="form-control" id="createdOn" name="createdOn" value={favorite.createdOn} onChange={handleChange} required />
             </div>
@@ -168,7 +168,7 @@ function FavoriteForm() {
             <div className="mb-3">
                 <label htmlFor="updatedOn" className="form-label">Updated On</label>
                 <input type="date" className="form-control" id="updatedOn" name="updatedOn" value={favorite.updatedOn} onChange={handleChange} required />
-            </div>
+            </div> */}
 
             <div className="mb-3">
                 <label htmlFor="customTitle" className="form-label">Custom Title</label>
