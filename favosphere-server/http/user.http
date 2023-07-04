@@ -57,6 +57,9 @@ Content-Type: application/json
     "roles": ["USER"]
 }
 
+### GET user by email
+GET http://localhost:8080/appUser/srkneg@gmail.com HTTP/1.1
+
 ### Refresh token... be sure to replace the token in the Authorization header with a valid token
 
 POST {{url}}/refresh_token HTTP/1.1
