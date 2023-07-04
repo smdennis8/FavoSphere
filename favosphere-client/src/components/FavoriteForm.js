@@ -68,16 +68,22 @@ function FavoriteForm() {
 
     const handleSaveFavorite = (event) => {
         event.preventDefault();
+        console.log('handleSaveFavorite called');
 
         if (favorite.favoriteId === 0) {
             favorite.userId = localStorage.getItem('appUserId');
             createFavorite(favorite)
             .then(() => {
+                console.log('createFavorite resolved');
                 navigate("/gallery", {
                     state: { msg: `Your favorite titled: '${favorite.title}' was added!` }
                 });
             })
-            .catch(err => setErrors(err))
+            .catch(err => {
+            console.log('createFavorite rejected:', err);
+                setErrors(err)
+            });
+
         } 
         else {
             updateFavorite(favorite)

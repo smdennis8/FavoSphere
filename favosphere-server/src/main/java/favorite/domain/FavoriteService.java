@@ -102,13 +102,13 @@ public class FavoriteService {
             result.addMessage("Image url must be a valid url");
         }
 
-        if (favorite.getCreatedOn() == null) {
-            result.addMessage("Created on date is required");
-        }
-
-        if (favorite.getUpdatedOn() == null) {
-            result.addMessage("Updated on date is required");
-        }
+//        if (favorite.getCreatedOn() == null) {
+//            result.addMessage("Created on date is required");
+//        }
+//
+//        if (favorite.getUpdatedOn() == null) {
+//            result.addMessage("Updated on date is required");
+//        }
 
         if (favorite.getCreatedOn() != null) {
             if (favorite.getCreatedOn().isAfter(LocalDate.now())) {
