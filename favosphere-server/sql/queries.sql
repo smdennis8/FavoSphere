@@ -33,3 +33,5 @@ where app_user_id = 1;
 
 select *
 from app_user;
+where app_user_id = 5;
+
