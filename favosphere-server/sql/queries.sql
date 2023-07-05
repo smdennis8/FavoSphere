@@ -29,4 +29,4 @@ select * from app_user;
 
 select *
 from favorite
-where app_user_id = 1;
+where app_user_id = 5;
