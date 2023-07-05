@@ -61,10 +61,9 @@ function FavoriteGallery() {
                     <img src={f.gifUrl} className="card-gif-mid" alt={"Title gif for " + f.title} />}
                     <div className="card-body">
                         <h1 className="card-title">{f.title}</h1>
-                        <h2 className="card-source">{f.source}</h2>
-                        <h2 className="card-creator">by: {f.creator}</h2>
-                        <h2 className="card-type">type: {f.type}</h2>
-                        <p></p>
+                        <h2 className="card-source">Source:<p>{f.source}</p></h2>
+                        <h2 className="card-creator">By:<p>{f.creator}</p></h2>
+                        <h2 className="card-type">Type:<p>{f.type}</p></h2>
                         <h2 ref={descriptionRef} className="card-description">{f.description}</h2>
                         <p></p>
                         <h3 className="card-createdOn">Created On: {f.createdOn}</h3>

@@ -30,3 +30,6 @@ select * from app_user;
 select *
 from favorite
 where app_user_id = 1;
+
+select *
+from app_user;
