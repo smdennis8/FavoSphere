@@ -110,11 +110,9 @@ function LoginForm() {
                                 name="password" value={credentials.password} placeholder="************"
                                 onChange={handleChange} required />
                         </div>
-                        <div className="forgot-sumbit-ctn">
+                        <div className="mb-3">
                             <button type="submit" className="btn btn-primary button-prm">Log In</button>
-                        </div>
-                        <div className="forgot-sumbit-ctn">
-                            <Link to="/create-account" className="btn btn-secondary button-scnd">Create Account</Link>
+                            <Link to="/create-account" className="btn btn-primary button-scnd">Create Account</Link>
                         </div>
                     </form>
                     <Errors errors={errors} />
