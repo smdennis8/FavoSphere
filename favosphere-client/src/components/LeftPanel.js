@@ -9,14 +9,29 @@ const LeftPanel = () => {
 
     return (
         <div className="leftPanel">
-            <p>Logged in as: {username}</p>
-            <button className="btn btn-secondary" onClick={() => {signOut(); navigate("/");}}>Sign Out</button>
+            
             
             <div className='menu-items-ctn'>
-                <Link to={'/gallery'} href="home">Home</Link>
-                <Link to={'/profile'} href="profile">Profile</Link>
-                <Link to={'/gallery'} href="gallery">Favorites Gallery</Link>
-                <Link to={'/staging'} href="staging">Favorites Staging</Link>
+                <div className='lpi'>
+                    <Link to={'/gallery'} href="home">Home</Link>
+                </div>  
+                <div className='lpi'>
+                    <Link to={'/profile'} href="profile">Profile</Link>
+                </div>
+                <div className='lpi'>
+                    <Link to={'/gallery'} href="gallery">Favorites Gallery</Link>
+                </div>
+                <div className='lpi'>
+                    <Link to={'/staging'} href="staging">Favorites Staging</Link>
+                </div>
+                <div className='lpi'>
+                    <Link onClick={signOut} to="/">Sign Out</Link>
+                </div>
+                <div className='space'></div>
+                <div className='log-status'>
+                    <p>Logged in as: {username}</p> 
+                </div>
+                
             </div>    
         </div>
     );
