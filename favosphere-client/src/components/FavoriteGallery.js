@@ -49,6 +49,7 @@ function FavoriteGallery() {
             <Link to="/add" className="btn btn-dark">Add New Favorite</Link>
             </div>
         </div>
+
         {favorites.length > 0 ? 
         <Grid container spacing={4} columnSpacing={{ xs: 5 }}>
             {favorites.map(f => (
