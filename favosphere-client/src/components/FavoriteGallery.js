@@ -51,9 +51,9 @@ function FavoriteGallery() {
         </div>
 
         {favorites.length > 0 ? 
-        <Grid container spacing={6} columnSpacing={{ xs: 5 }}>
+        <Grid container spacing={4} columnSpacing={{ xs: 5 }}>
             {favorites.map(f => (
-                <Grid item md={6}>
+                <Grid item md={4}>
                     <div className="card col-sm-6 col-lg-4" key={f.favoriteId}>
                     {auth.isLoggedIn() &&
                     <Link to={`/card/${f.favoriteId}`}>
