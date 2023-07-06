@@ -1,6 +1,6 @@
 import { useRef, useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { findAllFavoritesByUserId } from "../services/FavoriteApi";
+import { findAllFavoritesByUserId, findAllFavorites } from "../services/FavoriteApi";
 import AuthContext from "../contexts/AuthContext";
 import { Grid } from "@mui/material";
 
@@ -10,11 +10,16 @@ function FavoriteGallery() {
     const [favorites, setFavorites] = useState([]);
     const location = useLocation();
     const auth = useContext(AuthContext);
-
+    const roles = localStorage.getItem('roles');
     const currentUserId = localStorage.getItem('appUserId');
     useEffect(() => {
-        findAllFavoritesByUserId(currentUserId)
+        if(roles.includes('ADMIN')) {
+            findAllFavorites()
             .then(data => setFavorites(data));
+        } else {
+            findAllFavoritesByUserId(currentUserId)
+            .then(data => setFavorites(data));
+        }
     }, [currentUserId]);
 
     useEffect(() => {
