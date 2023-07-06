@@ -176,9 +176,7 @@ section, footer{
 }
 
 .card:hover{
-  zoom: 130%;
-  border-top-left-radius: 4rem;
-  border-top-right-radius: 4rem;
+  box-shadow: 1rem 1rem 1rem  #bcb892;
 }
 
 /* .card-img-top:hover, .card-gif-mid:hover{
