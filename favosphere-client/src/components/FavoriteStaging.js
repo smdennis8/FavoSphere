@@ -45,8 +45,8 @@ function FavoriteStaging() {
 
     return(<>
             <div className="button-banner-placer">
-            <button className="btn btn-secondary" onClick={() => handleRefreshEmail()}>Refresh Inbox</button>
-            <Link to="/add" className="btn btn-secondary">Add New Favorite</Link>
+                <button className="btn btn-dark" onClick={() => handleRefreshEmail()}>Refresh Inbox</button>
+                <Link to="/add" className="btn btn-dark" id ="addition">Add New Favorite</Link>
             </div>
             <section id="listContainer" className='list'>
                 <table>

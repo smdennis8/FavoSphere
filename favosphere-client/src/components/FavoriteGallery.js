@@ -17,38 +17,14 @@ function FavoriteGallery() {
             .then(data => setFavorites(data));
     }, [currentUserId]);
 
-    useEffect(() => {
-        const calculateEllipsis = () => {
-            if (descriptionRef.current) {
-                const element = descriptionRef.current;
-                const maxLines = 3; // Adjust the maximum number of lines to display
-        
-                // Set explicit line-height on the element
-                element.style.lineHeight = "20px";
-        
-                // Calculate the height based on the line-height and maxLines
-                const lineHeight = parseInt(window.getComputedStyle(element).lineHeight);
-                const maxHeight = lineHeight * maxLines;
-        
-                if (element.scrollHeight > maxHeight) {
-                    element.style.display = "-webkit-box";
-                    element.style.WebkitLineClamp = maxLines;
-                    element.style.WebkitBoxOrient = "vertical";
-                    element.style.overflow = "hidden";
-                    element.style.textOverflow = "ellipsis";
-                }
-            }
-        };
-    
-        calculateEllipsis();
-    }, [favorites.length]);
-
     return(<>
-        <div className="row">
-            <div className="col">
-            <Link to="/add" className="btn btn-dark">Add New Favorite</Link>
+        <h1>
+            <div className="row">
+                <div className="col">
+                    <Link to="/add" className="btn btn-dark" id="addition">Add New Favorite</Link>
+                </div>
             </div>
-        </div>
+        </h1>
 
         {favorites.length > 0 ? 
         <Grid container spacing={4} columnSpacing={{ xs: 5 }}>
@@ -66,7 +42,7 @@ function FavoriteGallery() {
                             <h2 className="card-source">Source:<p>{f.source}</p></h2>
                             <h2 className="card-creator">By:<p>{f.creator}</p></h2>
                             <h2 className="card-type">Type:<p>{f.type}</p></h2>
-                            <h2 ref={descriptionRef} className="card-description">Description:<p>{f.description}</p></h2>
+                            <h2 className="card-description">Description:<p>{f.description}</p></h2>
                             <h3 className="card-createdOn">Created On: {f.createdOn}</h3>
                             <h3 className="card-updatedOn">Updated On: {f.updatedOn}</h3>
                         </div>
