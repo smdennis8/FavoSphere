@@ -175,12 +175,7 @@ insert into favorite (app_user_id, url, `source`, creator, `type`, title, `descr
         comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips 
         the balance in favor of fair use.\"', null, 'https://i.ytimg.com/vi/GmneUncWZMg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoIhY5ERmG_dnz42mHjc_uCxYqyg', '2023-07-02',
         '2023-07-02', 1, 1, 1, 1),
-        
---         app_user_id, url, `source`, creator, `type`, title, 
---         `description`, 
---         gif_url, image_url, 
---         created_on, updated_on, is_custom_title, is_custom_description, is_custom_image, is_custom_gif
-        
+                
         (5, 'https://en.wikipedia.org/wiki/Capsule_hotel', 'Wikipedia', 'Japan', 'Article', 'Capsule Hotel',
         'Capsule hotel (Japanese: カプセルホテル, romanized: kapuseru hoteru), also known in the Western world as a pod hotel,[1] is a type of hotel developed in Japan that features many small bed-sized rooms known as capsules. Capsule hotels provide cheap, basic overnight accommodation for guests who do not require or who cannot afford larger, more expensive rooms offered by more conventional hotels.', 
         null, 'https://cdn.shopify.com/s/files/1/0344/6469/files/cats_refuse_to_admit_box_too_small_7aea7a59-470d-4d43-acf9-3fc1b705b70d.png?v=1661192187',
