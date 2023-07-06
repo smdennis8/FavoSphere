@@ -10,7 +10,7 @@ html{
 }
 
 body{
-  font-size:1.8rem;
+  font-size:2rem;
   line-height:1.5;
   /* font-family: 'Arvo', serif; */
 
@@ -75,7 +75,7 @@ section, footer{
   width: 35vw;
   height: 120vh;
   max-width: 400px;
-  
+  box-shadow: 5rem 5rem 5rem 5rem;
   position: fixed;
   top: 0px;
   background-color: whitesmoke;
@@ -90,22 +90,30 @@ section, footer{
 
 .menu-items-ctn{
   display: flex;
+  margin-top: 20%;
+  margin-right: 5%;
+  margin-left: 5%;
+  background-color: rgb(211, 233, 241);
+  border-top-left-radius: none;
+  box-shadow: 0.25rem 0.25rem 1rem rgb(142, 182, 196);
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   height: 80%;
-  width: 100%;
 }
 
 .lpi{
-  width: 100%;
+  width: 90%;
+  border-radius: 1rem;
+  padding-left: 6%;
+  box-shadow: 0.1rem 0.1rem rgb(142, 182, 196);
 }
 
 .lpi:hover{
   background-color: #a4b5cd5d;
-  padding-left: 1%;
-  border-left-color: rgb(90, 90, 226);
+  padding-left: 4%;
   border-left-width: 5%;
+  box-shadow: 1rem 1rem rgb(142, 182, 196);
 }
 
 .log-status{
@@ -119,6 +127,17 @@ section, footer{
   margin: 20px;
 }
 
+.gallery-title{
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  color: white;
+  border-radius: 3rem;
+  background-color: rgb(8, 8, 8);
+}
 
 .leftPanel a:link { text-decoration: none; }
 .leftPanel a:visited { text-decoration: none; }
@@ -126,28 +145,53 @@ section, footer{
 .leftPanel a:active { text-decoration: none; }
 
 .card a{
-  color: black;
+  color: rgb(228, 200, 200);
   /*font-family: "Google Sans",arial,sans-serif;*/
 }
+
+.card-source, .card-description{
+  font-family: "Google Sans", arial,sans-serif;
+  font-size: 1.3rem;
+  color: white;
+}
+
+
+
+.card-img-top, .card-gif-mid{
+  box-shadow: 0.5rem 0.5rem 2rem rgb(130, 130, 130);
+  border-radius: 8px; 
+}
+
 .card a:link {text-decoration: none; }
 .card a:visited {text-decoration: none; }
 .card a:hover {text-decoration: none; }
 .card a:active {text-decoration: none; }
 
 .card{
-  padding: 3%;
+  padding: 5%;
   width: 100%;
-  border-radius: 10px;
-  box-shadow: 5px 7px #5a5757;
+  background-color: rgb(65, 93, 130);
+  border-radius: 5rem;
+  box-shadow: 1rem 1rem 1rem  #5a5757;
 }
 
 .card:hover{
-  padding: 2.5%;
+  zoom: 130%;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+}
+
+/* .card-img-top:hover, .card-gif-mid:hover{
+  zoom: 110%;
+  border-radius: 10rem;
+} */
+
+.card-img-top, .card-gif-mid{
+  border-radius: 2rem
 }
 
 .container-fav {
   display: flex;
-  height: 120vh;
   width: 100vw;
 }
 
@@ -158,13 +202,12 @@ section, footer{
 }
 
 .content-fav {
-  flex: 1;
   padding: 16px;
   justify-content: center;
   margin-left: 30vw;
-  display: flex;
-  background-color: #646d7e;
+  background-color: #7c8eb0;
   width: 100%;
+  height:auto;
 }
 
 .login-input{
@@ -173,7 +216,7 @@ section, footer{
   width: 100%;
   background-color: white;
   border: 1px solid;
-  box-shadow: 5px 5px #5a5757;
+  box-shadow: 5px 5px 4px 2px #5a5757;
 }
 .center-all-full-page{
   display: flex;
@@ -189,6 +232,24 @@ section, footer{
 
 .form-acc{
   font-size: 1.6rem;
+}
+
+.form-label{
+  color: whitesmoke;
+  margin-left: 10%;
+}
+
+.form-control-add{
+  font-size: 1.6rem;
+  width: 70%;
+  margin-left: 10%;
+  box-shadow: 0.25rem 0.25rem 1rem rgb(89, 88, 88);
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.form-control-add:hover{
+  box-shadow: 0.3rem 0.3rem 1rem rgb(41, 41, 41);
 }
 
 .button-prm {
