@@ -68,9 +68,8 @@ function LoginForm() {
         <hr
             style={{
                 color: color,
-                backgroundColor: color,
                 height: 2,
-                marginRight: 20
+                margin: 20
             }}
         />
     );
@@ -105,7 +104,7 @@ function LoginForm() {
                                 onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="password" className="form-label">Password</label>
+                            <label htmlFor="password" className="">Password</label>
                             <input type="password" className="form-control" id="password"
                                 name="password" value={credentials.password} placeholder="************"
                                 onChange={handleChange} required />

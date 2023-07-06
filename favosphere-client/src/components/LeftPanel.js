@@ -17,15 +17,15 @@ const LeftPanel = () => {
             <div className='menu-items-ctn'>
                 <div className='lpi'>
                     <Link to={'/gallery'} href="home">Home</Link>
-                </div>  
-                <div className='lpi'>
-                    <Link to={'/profile'} href="profile">Profile</Link>
                 </div>
                 <div className='lpi'>
-                    <Link to={'/gallery'} href="gallery">Favorites Gallery</Link>
+                    <Link to={'/gallery'} href="gallery">My Favorites Gallery</Link>
                 </div>
                 <div className='lpi'>
                     <Link to={'/staging'} href="staging">Favorites Staging</Link>
+                </div>
+                <div className="lpi">
+                    <Link to={'/add'} href="add">Add New Favorite</Link>
                 </div>
                 <div className='lpi'>
                     <Link to="/" onClick={handleSignOut}>Sign Out</Link>

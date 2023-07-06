@@ -137,42 +137,42 @@ function FavoriteForm() {
 
             <div className="mb-3">
                 <label htmlFor="source" className="form-label">Source</label>
-                <input type="text" className="form-control" id="source" name="source" value={favorite.source} onChange={handleChange} />
+                <input type="text" className="form-control form-control-add" id="source" name="source" value={favorite.source} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="creator" className="form-label">Creator</label>
-                <input type="text" className="form-control" id="creator" name="creator" value={favorite.creator} onChange={handleChange} required />
+                <input type="text" className="form-control form-control-add" id="creator" name="creator" value={favorite.creator} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="type" className="form-label">Type</label>
-                <input type="text" className="form-control" id="type" name="type" value={favorite.type} onChange={handleChange} required />
+                <input type="text" className="form-control form-control-add" id="type" name="type" value={favorite.type} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">Title</label>
-                <input type="text" className="form-control" id="title" name="title" value={favorite.title} onChange={handleChange} required />
+                <input type="text" className="form-control form-control-add" id="title" name="title" value={favorite.title} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="description" className="form-label">Description</label>
-                <textarea className="form-control" id="description" name="description" value={favorite.description} onChange={handleChange} required />
+                <textarea className="form-control form-control-add" id="description" name="description" value={favorite.description} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="url" className="form-label">URL</label>
-                <input type="text" className="form-control" id="url" name="url" value={favorite.url} onChange={handleChange} required />
+                <input type="text" className="form-control form-control-add" id="url" name="url" value={favorite.url} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="gifUrl" className="form-label">Gif URL</label>
-                <input type="text" className="form-control" id="gifUrl" name="gifUrl" value={favorite.gifUrl} onChange={handleChange} />
+                <input type="text" className="form-control form-control-add" id="gifUrl" name="gifUrl" value={favorite.gifUrl} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="imageUrl" className="form-label">Image URL</label>
-                <input type="text" className="form-control" id="imageUrl" name="imageUrl" value={favorite.imageUrl} onChange={handleChange} />
+                <input type="text" className="form-control form-control-add" id="imageUrl" name="imageUrl" value={favorite.imageUrl} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
