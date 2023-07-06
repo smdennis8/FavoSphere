@@ -14,7 +14,7 @@ function FavoriteGallery() {
     const currentUserId = localStorage.getItem('appUserId');
     useEffect(() => {
         if(roles.includes('ADMIN')) {
-            findAllFavorites(currentUserId)
+            findAllFavorites()
             .then(data => setFavorites(data));
         } else {
             findAllFavoritesByUserId(currentUserId)
