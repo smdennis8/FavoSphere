@@ -11,6 +11,7 @@ import NotFound from "./NotFound";
 import FavoriteStaging from "./components/FavoriteStaging";
 import CreateAccountForm from "./components/CreateAccountForm";
 import Profile from "./components/Profile";
+import MaybeShowLeftPanel from "./MaybeShowLeftPanel";
 
 // import FavoriteCard from "./components/FavoriteCard";
 
@@ -69,7 +70,9 @@ function App() {
     <AuthContext.Provider value={auth}>
       <Router>
         <div className="container-fav">
-          { auth.isLoggedIn() && <LeftPanel />}
+          <MaybeShowLeftPanel>
+            <LeftPanel />
+          </MaybeShowLeftPanel>
           <div className="content-fav">
             <Routes>
               <Route
