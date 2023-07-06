@@ -51,7 +51,10 @@ public class AppUserService implements UserDetailsService {
 
         String hashedPassword = encoder.encode(appUser.getPassword());
 
-        appUser = new AppUser(BigInteger.ZERO, null, null, null, null,
+        appUser = new AppUser(BigInteger.ZERO, (!appUser.getFirstName().isBlank() || !appUser.getFirstName().isEmpty()) ? appUser.getFirstName() : null,
+                (!appUser.getMiddleName().isBlank() || !appUser.getMiddleName().isEmpty()) ? appUser.getMiddleName() : null,
+                (!appUser.getLastName().isBlank() || !appUser.getLastName().isEmpty()) ? appUser.getLastName() : null,
+                (!appUser.getPhone().isBlank() || !appUser.getPhone().isEmpty()) ? appUser.getPhone() : null,
                 appUser.getEmail(), hashedPassword, appUser.getRegisteredOn(), appUser.getLastLogin(), true,
                 List.of("USER"));
 
