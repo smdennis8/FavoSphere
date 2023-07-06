@@ -15,7 +15,7 @@ const LeftPanel = () => {
     return (
         <div className="leftPanel">
             <div className='menu-items-ctn'>
-                <div >
+                <div className="login-logo-container">
                     <img src={default_icon} alt="Logo" />
                 </div>
                 <div className='lpi'>

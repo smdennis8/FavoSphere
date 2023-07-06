@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import AuthContext from "../contexts/AuthContext";
-import { authenticate } from "../services/AuthApi";
+import { authenticate, handleGoogleLogin } from "../services/AuthApi";
 import { findUserByUsername } from "../services/AppUserApi";
 import Errors from "./Errors";
 import default_icon from '../assets/default_icon.png';
