@@ -80,7 +80,13 @@ function FavoriteForm() {
             .then(() => {
                 console.log('createFavorite resolved');
                 navigate("/gallery", {
-                    state: { msg: `Your favorite titled: '${favorite.title}' was added!` }
+                    state: { 
+                        msg: (
+                            <div className="success">
+                                `Your favorite titled: '${favorite.title}' was added!` 
+                            </div>
+                        )
+                    }
                 });
             })
             .catch(err => {
@@ -94,8 +100,11 @@ function FavoriteForm() {
             .then(() => {
                 navigate("/gallery", {
                     state: {
-                        msgType: 'success',
-                        msg: `Your favorite titled: '${favorite.title}' was updated!`
+                        msg: (
+                            <div className="success">
+                                `Your favorite titled: '${favorite.title}' was updated!`
+                            </div>
+                        )
                     }
                 });
             })

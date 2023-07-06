@@ -19,7 +19,7 @@ body{
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #3c3c3c;
+  background-color: #727171;
   height: 100%;
 }
 
@@ -403,4 +403,8 @@ ul{
 
 .card-img-top {
   border: 2px solid white; /* Add border to the image-url */
+}
+
+.success {
+  height: 10%;
 }

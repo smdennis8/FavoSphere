@@ -58,13 +58,6 @@ function App() {
     }
   };
 
-  // const maybeRedirect = (component, role) => {
-  //   if (!auth.isLoggedIn() || (role && !auth.hasRole(role))) {
-  //     return <Navigate to="/" />;
-  //   }
-  //   return component;
-  // }
-
   return (<>
     <AuthContext.Provider value={auth}>
       <Router>
