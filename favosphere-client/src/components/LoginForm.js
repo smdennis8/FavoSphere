@@ -1,18 +1,11 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
-
+import { GoogleLogin } from "@react-oauth/google";
 import AuthContext from "../contexts/AuthContext";
-
-import { authenticate, handleGoogleLogin } from "../services/AuthApi";
+import { authenticate } from "../services/AuthApi";
 import { findUserByUsername } from "../services/AppUserApi";
-
 import Errors from "./Errors";
-import CreateAccountForm from "./CreateAccountForm";
-
 import default_icon from '../assets/default_icon.png';
-
-import jwt_decode from "jwt-decode";
 
 function LoginForm() {
 
