@@ -4,14 +4,10 @@ import org.springframework.stereotype.Service;
 import favorite.data.FavoriteRepository;
 import favorite.models.Favorite;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class FavoriteService {
@@ -105,14 +101,6 @@ public class FavoriteService {
             result.addMessage("Image url must be a valid url");
         }
 
-//        if (favorite.getCreatedOn() == null) {
-//            result.addMessage("Created on date is required");
-//        }
-//
-//        if (favorite.getUpdatedOn() == null) {
-//            result.addMessage("Updated on date is required");
-//        }
-
         if (favorite.getCreatedOn() != null) {
             if (favorite.getCreatedOn().isAfter(LocalDate.now())) {
                 result.addMessage("Created on date cannot be in the future");
@@ -134,20 +122,19 @@ public class FavoriteService {
             result.addMessage("Favorite cannot be a duplicate");
         }
 
-
         return result;
     }
 
     private boolean isDuplicate(Favorite favorite) {
-        if(favorite.getFavoriteId() == BigInteger.ZERO) {
+        if(Objects.equals(favorite.getFavoriteId(), BigInteger.ZERO)) {
             List<Favorite> all = repository.findAll();
             for(Favorite f : all){
                 if(favorite.equals(f)){
                     return true;
                 }
             }
-            return false;
-        } else {
+        }
+        else {
             BigInteger favoriteId = favorite.getFavoriteId();
             List<Favorite> listWithoutCurrentObject = repository.findAll().stream().filter(f -> !f.getFavoriteId().equals(favoriteId)).toList();
             for(Favorite f : listWithoutCurrentObject){
@@ -155,8 +142,7 @@ public class FavoriteService {
                     return true;
                 }
             }
-            return false;
         }
-
+        return false;
     }
 }

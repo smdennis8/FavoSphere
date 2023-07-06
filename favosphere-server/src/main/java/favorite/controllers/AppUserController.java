@@ -1,13 +1,11 @@
 package favorite.controllers;
 
-import favorite.models.Favorite;
 import favorite.security.AppUser;
 import favorite.security.AppUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -33,6 +31,4 @@ public class AppUserController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-
 }
