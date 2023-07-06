@@ -18,14 +18,6 @@ function FavoriteGallery() {
     }, [currentUserId]);
 
     return(<>
-        <h1>
-            <div className="row">
-                <div className="col">
-                    <Link to="/add" className="btn btn-dark" id="addition">Add New Favorite</Link>
-                </div>
-            </div>
-        </h1>
-
         {favorites.length > 0 ? 
         <Grid container spacing={4} columnSpacing={{ xs: 5 }}>
             {favorites.map(f => (
