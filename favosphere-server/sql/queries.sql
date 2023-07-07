@@ -13,3 +13,4 @@ select * from app_user;
 
 select *
 from favorite;
+
