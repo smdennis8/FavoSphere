@@ -22,32 +22,6 @@ function FavoriteGallery() {
         }
     }, [currentUserId]);
 
-    useEffect(() => {
-        const calculateEllipsis = () => {
-            if (descriptionRef.current) {
-                const element = descriptionRef.current;
-                const maxLines = 3; // Adjust the maximum number of lines to display
-        
-                // Set explicit line-height on the element
-                element.style.lineHeight = "20px";
-        
-                // Calculate the height based on the line-height and maxLines
-                const lineHeight = parseInt(window.getComputedStyle(element).lineHeight);
-                const maxHeight = lineHeight * maxLines;
-        
-                if (element.scrollHeight > maxHeight) {
-                    element.style.display = "-webkit-box";
-                    element.style.WebkitLineClamp = maxLines;
-                    element.style.WebkitBoxOrient = "vertical";
-                    element.style.overflow = "hidden";
-                    element.style.textOverflow = "ellipsis";
-                }
-            }
-        };
-    
-        calculateEllipsis();
-    }, [favorites.length]);
-
     return(<>
     {favorites.length > 0 &&
     <div className="gallery-title">

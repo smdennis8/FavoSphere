@@ -13,6 +13,7 @@ const LeftPanel = () => {
         navigate('/');
     }
     return (
+        <div className="group-left-panel">
         <div className="leftPanel">
             <div className='menu-items-ctn'>
                 <div className='lpi'>
@@ -34,8 +35,8 @@ const LeftPanel = () => {
                 <div className='log-status'>
                     <p>Logged in as: {username}</p> 
                 </div>
-                
             </div>    
+        </div>
         </div>
     );
 };
