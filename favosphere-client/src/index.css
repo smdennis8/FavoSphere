@@ -129,7 +129,7 @@ section, footer{
 
 .gallery-title{
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   padding-top: 5%;
   padding-bottom: 5%;
   margin-top: 5%;
@@ -140,6 +140,7 @@ section, footer{
   font-family: 'Bevan', cursive;
   font-family: 'Marcellus SC', serif;
   font-family: 'Permanent Marker', cursive;
+  align-items: center;
 }
 
 .leftPanel a:link { text-decoration: none; }
@@ -475,4 +476,11 @@ ul{
 
 .box-for-checking{
   margin-left: 0.75%;
+}
+
+.login-logo-container-header{
+  margin-right: 10%;
+  margin-left: 10%;
+  /* background-color: white;
+  box-shadow: none; */
 }
