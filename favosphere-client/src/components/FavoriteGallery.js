@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { findAllFavoritesByUserId, findAllFavorites } from "../services/FavoriteApi";
 import AuthContext from "../contexts/AuthContext";
 import { Grid } from "@mui/material";
-import default_icon_inverted from '../assets/default_icon_inverted.png';
+import default_icon_negative from '../assets/default_icon_negative.png';
 
 function FavoriteGallery() {
 
@@ -26,7 +26,7 @@ function FavoriteGallery() {
     return(<>
     <div className="gallery-title">
         <div className="login-logo-container-header">
-            <img src={default_icon_inverted} alt="Logo" />
+            <img src={default_icon_negative} alt="Logo" />
         </div>
         <h1>NOW ALL YOUR FAVS IN ONE PLACE...</h1>
     </div>
