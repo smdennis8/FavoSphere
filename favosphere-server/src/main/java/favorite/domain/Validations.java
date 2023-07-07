@@ -1,5 +1,5 @@
 package favorite.domain;
-
+import org.apache.commons.validator.routines.UrlValidator;
 import java.util.regex.Pattern;
 
 public class Validations {
@@ -8,9 +8,7 @@ public class Validations {
             "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)";
 
     public static boolean isValidUrl(String input) {
-        if (input == null) {
-            return false;
-        }
-        return Pattern.matches(pattern, input);
+        UrlValidator validator = new UrlValidator();
+        return validator.isValid(input);
     }
 }

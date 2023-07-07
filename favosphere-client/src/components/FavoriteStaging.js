@@ -50,7 +50,7 @@ function FavoriteStaging() {
 
     return(<>
             <div className="button-banner-placer refresh-em">
-                <button className="btn btn-secondary button-scnd" onClick={() => handleRefreshEmail()}>Refresh Inbox</button>
+                <button className="btn btn-secondary button-scnd" onClick={() => handleRefreshEmail()}>Refresh Staged Favorites</button>
             </div>
             <section id="listContainer" className='list'>
                 <table>
@@ -69,12 +69,12 @@ function FavoriteStaging() {
                                 <td>
                                     <div className="mr-2">
                                         <Link 
-                                        className="btn btn-primary btn-sm mr-2 button-prm staging-btn" 
+                                        className="btn btn-primary btn-sm mr-2 button-prm edit-staging-btn" 
                                         state={{ urlToScrape: email.url }} 
                                         to={`/add-from-email`}>
                                             <i className="bi bi-pencil-square"></i> Edit
                                         </Link>
-                                        <button className="btn btn-danger btn-sm button-scnd delete staging-btn" onClick={() => handleDeleteEmail(email.emailId)}>
+                                        <button className="btn btn-danger btn-sm button-scnd delete" onClick={() => handleDeleteEmail(email.emailId)}>
                                             <i className="bi bi-trash"></i> Delete
                                         </button>
                                     </div>
