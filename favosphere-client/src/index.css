@@ -275,10 +275,20 @@ section, footer{
 
 .delete{
   background-color: red;
-  width: 100%;
+  width: 70%;
+  
+  border-radius: 1rem;
+  box-shadow: 0.1rem 0.1rem 0.5rem #cbc6c6;
 }
 
-
+.edit-staging-btn{
+  font-size: 1.5rem;
+  font-family: "Google Sans",arial,sans-serif;
+  
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 0.1rem 0.1rem 0.5rem #cbc6c6;
+}
 
 .buttons-crt-acc{
   margin-left: 10%;

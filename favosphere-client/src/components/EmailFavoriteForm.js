@@ -219,17 +219,17 @@ function EmailFavoriteForm() {
                 <input type="checkbox" id="customGif" name="customGif" checked={favorite.customGif} onChange={handleChange} />
             </div>
 
-            <div className="mb-3">
-                <button type="submit" className="btn btn-primary">Submit</button>
-                <Link to="/gallery" type="button" className="btn btn-secondary">Cancel</Link>
+            <div className="mb-3 buttons-crt-acc">
+                <button type="submit" className="btn btn-primary button-prm">Submit</button>
+                <Link to="/staging" type="button" className="btn btn-secondary button-scnd">Cancel</Link>
                 {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
                 <button className="btn btn-danger" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
                     <i className="bi bi-trash"></i> Delete
                 </button>
                 }
                 {auth.isLoggedIn() && favorite.favoriteId == 0 && urlToScrape &&
-                <button className="btn btn-secondary" onClick={() => getFavoriteSuggestions(urlToScrape)}>
-                    <i className="bi bi-trash"></i> Suggest
+                <button className="btn btn-secondary button-scnd" onClick={() => getFavoriteSuggestions(urlToScrape)}>
+                    Suggest
                 </button>
                 }
             </div>
