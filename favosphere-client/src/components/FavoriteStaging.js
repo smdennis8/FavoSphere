@@ -52,7 +52,7 @@ function FavoriteStaging() {
                     <thead>
                         <tr>
                             <th>Sent On</th>
-                            <th>Url</th>
+                            <th>URL</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>

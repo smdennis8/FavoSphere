@@ -113,7 +113,7 @@ section, footer{
   background-color: #a4b5cd5d;
   padding-left: 4%;
   border-left-width: 5%;
-  box-shadow: 1rem 1rem rgb(142, 182, 196);
+  box-shadow: 1rem 1rem rgb(184, 199, 205);
 }
 
 .log-status{
@@ -137,6 +137,9 @@ section, footer{
   color: white;
   border-radius: 3rem;
   background-color: rgb(8, 8, 8);
+  font-family: 'Bevan', cursive;
+  font-family: 'Marcellus SC', serif;
+  font-family: 'Permanent Marker', cursive;
 }
 
 .leftPanel a:link { text-decoration: none; }
@@ -197,6 +200,7 @@ section, footer{
   display:flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0.1rem 0.5rem 0.5rem rgb(196, 193, 193);
 }
 
 .content-fav {
