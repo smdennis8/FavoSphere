@@ -177,22 +177,22 @@ function FavoriteForm() {
 
             <div className="mb-3">
                 <label htmlFor="customTitle" className="form-label">Custom Title</label>
-                <input type="checkbox" id="customTitle" name="customTitle" checked={favorite.customTitle} onChange={handleChange} />
+                <input type="checkbox" id="customTitle" className="box-for-checking" name="customTitle" checked={favorite.customTitle} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customDescription" className="form-label">Custom Description</label>
-                <input type="checkbox" id="customDescription" name="customDescription" checked={favorite.customDescription} onChange={handleChange} />
+                <input type="checkbox" id="customDescription" className="box-for-checking" name="customDescription" checked={favorite.customDescription} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customImage" className="form-label">Custom Image</label>
-                <input type="checkbox" id="customImage" name="customImage" checked={favorite.customImage} onChange={handleChange} />
+                <input type="checkbox" id="customImage" className="box-for-checking" name="customImage" checked={favorite.customImage} onChange={handleChange} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="customGif" className="form-label">Custom Gif</label>
-                <input type="checkbox" id="customGif" name="customGif" checked={favorite.customGif} onChange={handleChange} />
+                <input type="checkbox" id="customGif" className="box-for-checking" name="customGif" checked={favorite.customGif} onChange={handleChange} />
             </div>
 
             <div className="mb-3 buttons-crt-acc">
