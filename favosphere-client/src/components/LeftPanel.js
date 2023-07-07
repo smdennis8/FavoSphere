@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { signOut } from '../services/AuthApi';
 import AuthContext from '../contexts/AuthContext';
+import default_icon from '../assets/default_icon.png';
 
 const LeftPanel = () => {
     const auth = useContext(AuthContext);
@@ -16,6 +17,9 @@ const LeftPanel = () => {
         <div className="group-left-panel">
         <div className="leftPanel">
             <div className='menu-items-ctn'>
+            <div className="login-logo-container-panel">
+                    <img src={default_icon} alt="Logo" />
+                </div>
                 <div className='lpi'>
                     <Link to={'/gallery'} href="home">Home</Link>
                 </div>

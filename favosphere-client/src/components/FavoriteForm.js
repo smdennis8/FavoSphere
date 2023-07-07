@@ -199,9 +199,9 @@ function FavoriteForm() {
                 <button type="submit" className="btn btn-primary button-prm">Submit</button>
                 <Link to="/gallery" type="button" className="btn btn-secondary button-scnd">Cancel</Link>
                 {auth.isLoggedIn() && favorite.favoriteId !== 0 &&
-                <button className="btn btn-danger" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
+                <button className="btn btn-danger btn-sm button-scnd delete necessary" onClick={() => handleDeleteFavorite(favorite.favoriteId)}>
                     <i className="bi bi-trash"></i> Delete
-                </button>
+                </button>            
             }
             </div>
             
