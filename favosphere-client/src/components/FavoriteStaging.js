@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../contexts/AuthContext";
 import { deleteEmailById, findAllEmails, refreshEmailsByUserId } from '../services/EmailApi';
-import { scrapeYouTube, callScraperFromUrl } from "../services/ScraperApi";
+
 
 function FavoriteStaging() {
     // state variables
@@ -18,7 +18,15 @@ function FavoriteStaging() {
 
     useEffect(() => {
         refreshEmailsByUserId(localStorage.getItem("appUserId"))
-                .then(data => {setEmails(data);});
+                .then(data => {
+                    const newData = [];
+                    data.forEach(email => {
+                        const newEmail = { ...email };
+                        newEmail.time = email.time.split('T')[0] + ' '+ email.time.split('T')[1];
+                        setEmail(newEmail);
+                        newData.push(newEmail);
+                    });
+                    setEmails(newData);});
         //scrapeYouTube("https://www.youtube.com/watch?v=U4xOOnLBPB8").then(data => console.log(data));
 
         }, []);

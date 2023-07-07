@@ -282,10 +282,10 @@ section, footer{
 
 .delete{
   background-color: red;
-  width: 70%;
+  width:75px;
+  height: 30px;
   margin-left: 10%;
-  border-radius: 1rem;
-  box-shadow: 0.1rem 0.1rem 0.5rem #cbc6c6;
+  box-shadow: 2px 2px #5a5757;
 }
 
 .delete:hover, .edit-staging-btn:hover{
@@ -297,7 +297,7 @@ section, footer{
   font-family: "Google Sans",arial,sans-serif;
   border-radius: 1rem;
   border: none;
-  box-shadow: 0.1rem 0.1rem 0.5rem #cbc6c6;
+  box-shadow: 2px 2px #5a5757;
 }
 
 .buttons-crt-acc{
@@ -481,6 +481,8 @@ ul{
   background-color: red;
   width:75px;
   height: 30px;
+  margin-left: 2%;
+  box-shadow: 2px 2px #5a5757;
 }
 
 .box-for-checking{

@@ -235,9 +235,9 @@ insert into favorite (app_user_id, url, `source`, creator, `type`, title, `descr
         
 insert into email (app_user_id, url, sent_on)
 	values
-		(1,'https://www.youtube.com/watch?v=xtZI23hxetw','2023-11-11 11:11:11.11'),
-        (1,'https://www.youtube.com/watch?v=j7q8Zzw46oQ','2023-11-11 12:12:12.12'),
-        (2,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13'),
-        (4,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13'),
-        (5,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13'),
-        (6,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-11-11 13:13:13.13');
+		(1,'https://www.youtube.com/watch?v=xtZI23hxetw','2023-06-11 11:11:11.11'),
+        (1,'https://www.youtube.com/watch?v=j7q8Zzw46oQ','2023-06-11 12:12:12.12'),
+        (2,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-06-11 13:13:13.13'),
+        (4,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-06-11 13:13:13.13'),
+        (5,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-06-11 13:13:13.13'),
+        (6,'https://www.youtube.com/watch?v=dUqJ1U2QhAo','2023-06-11 13:13:13.13');
