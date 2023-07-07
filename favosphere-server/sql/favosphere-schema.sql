@@ -220,7 +220,6 @@ insert into favorite (app_user_id, url, `source`, creator, `type`, title, `descr
         'The James Bond series focuses on James Bond, a fictional British Secret Service agent created in 1953 by writer Ian Fleming, who featured him in twelve novels and two short-story collections. Since Fleming\'s death in 1964, eight other authors have written authorised Bond novels or novelisations: Kingsley Amis, Christopher Wood, John Gardner, Raymond Benson, Sebastian Faulks, Jeffery Deaver, William Boyd, and Anthony Horowitz. The latest novel is With a Mind to Kill by Anthony Horowitz, published in May 2022. Additionally Charlie Higson wrote a series on a young James Bond, and Kate Westbrook wrote three novels based on the diaries of a recurring series character, Moneypenny.',
         'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmJxb3VwY3k5c2h4a3FsbDJtOTRkY2FxYjRvNTRsb2U0amM1em5kbCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/nu4DN4nKos3m0/giphy.gif', null,
         '2023-07-05', '2023-07-05', 1, 1, 0, 1),
-        
         (6, 'https://www.youtube.com/watch?v=R6EFebizEKs', 'Youtube', 'News Be Funny', 'Video', 'Best Cats Work From Home News Bloopers',
         'Watch the Best Cats Work From Home News Bloopers! In this unique video with original commentary, we comment and react to the best cats news bloopers that happened during working from 
         home as part of a critical review. Voiceover by Kezhal Dashti. Subscribe: / newsbefunny About News Be Funny: News Be Funny creates unique videos with original commentary to react and 

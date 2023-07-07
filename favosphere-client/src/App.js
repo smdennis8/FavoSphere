@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { useCallback, useEffect, useState } from "react";
 import ConfirmDeleteFavorite from "./components/ConfirmDeleteFavorite";
 import FavoriteForm from "./components/FavoriteForm";
+import EmailFavoriteForm from "./components/EmailFavoriteForm";
 import FavoriteGallery from "./components/FavoriteGallery";
 import LeftPanel from "./components/LeftPanel";
 import LoginForm from "./components/LoginForm";
@@ -88,6 +89,11 @@ function App() {
                 path="/profile"
                 element={auth.isLoggedIn()
                   ? <Profile />
+                  : <Navigate to="/" />} />
+              <Route
+                path="/add-from-email"
+                element={auth.isLoggedIn()
+                  ? <EmailFavoriteForm />
                   : <Navigate to="/" />} />
               <Route
                 path="/add"
