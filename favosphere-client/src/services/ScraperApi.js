@@ -31,12 +31,12 @@ const getUrlSuggestions = async function(urlList, results) {
 
 
 export async function callScraperFromUrl(URL) {
-    const url_domain_name = URL.split(".")[1];
-    switch (url_domain_name) {
-        case "youtube":
+    //const url_domain_name = URL.split(".")[1];
+    switch (true) {
+        case URL.includes("youtube"):
           return await scrapeYouTube(URL);
           break;
-        case "wikipedia":
+        case URL.includes("wikipedia"):
           return await scrapeWikipedia(URL);
           break;
         default:
