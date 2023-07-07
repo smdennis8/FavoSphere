@@ -113,7 +113,7 @@ section, footer{
   background-color: #a4b5cd5d;
   padding-left: 4%;
   border-left-width: 5%;
-  box-shadow: 1rem 1rem rgb(142, 182, 196);
+  box-shadow: 1rem 1rem rgb(184, 199, 205);
 }
 
 .log-status{
@@ -137,6 +137,9 @@ section, footer{
   color: white;
   border-radius: 3rem;
   background-color: rgb(8, 8, 8);
+  font-family: 'Bevan', cursive;
+  font-family: 'Marcellus SC', serif;
+  font-family: 'Permanent Marker', cursive;
 }
 
 .leftPanel a:link { text-decoration: none; }
@@ -176,9 +179,7 @@ section, footer{
 }
 
 .card:hover{
-  zoom: 130%;
-  border-top-left-radius: 4rem;
-  border-top-right-radius: 4rem;
+  box-shadow: 1rem 1rem 1rem  #bcb892;
 }
 
 /* .card-img-top:hover, .card-gif-mid:hover{
@@ -199,6 +200,7 @@ section, footer{
   display:flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0.1rem 0.5rem 0.5rem rgb(196, 193, 193);
 }
 
 .content-fav {
@@ -224,6 +226,7 @@ section, footer{
   justify-content: center;
   height: 100vh;
   width: 30vw;
+  margin-left: 20%;
 }
 
 .form-control-fav {
@@ -265,9 +268,23 @@ section, footer{
   font-size: 1.5rem;
   font-family: "Google Sans",arial,sans-serif;
   background-color: rgb(171, 157, 157);
-  border-radius: 15px;;
+  border-radius: 15px;
   border: none;
   box-shadow: 2px 2px #5a5757;
+}
+
+.delete{
+  background-color: red;
+  width: 100%;
+}
+
+.delete{
+  width: 100%;
+  
+}
+
+.buttons-crt-acc{
+  margin-left: 10%;
 }
 
 .google-login{
@@ -307,11 +324,14 @@ section, footer{
   justify-content: center;
   align-items: center;
 }
+
 .list{
   text-align:center;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .list table{
-  width:50%;
+  width:70%;
 }
 table {
   /*table behaviors*/
@@ -319,13 +339,13 @@ table {
   border-collapse: collapse;
 
   /*table stylings*/
-  border-radius: 12px;
+  border-radius: 12rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   
   /*text stylings*/
-  color: #334;
-  font-family: Arial, sans-serif;
-  font-size: 1.4rem;
+  color: whitesmoke;
+  font-family: 'Times New Roman', Times, serif, sans-serif;
+  font-size: 2rem;
   
   /*text behavior*/
   text-align: center;
@@ -346,12 +366,9 @@ table th {
   border-top: 1px solid #fff;   
 }
 
-table tr:nth-child(even) td {
-  background-color: #f2f2f2;
-}
-
 table tr:hover td {
-  background-color: #96bcfa;
+  background-color: #fff;
+  color: #324da4
 }
 
 table td {
@@ -359,8 +376,8 @@ table td {
   font-weight: bold;
   
   /*cell stylings*/
-  padding: 8px;
-  background-color: #fff;
+  padding: 1rem;
+  background-color: #293342;
   border-bottom: 1px solid #fff;  
 }
 
@@ -420,7 +437,11 @@ ul{
 }
 
 #btnPlacer{
-  margin-left: 5%;
+  margin-left: 10%;
+}
+
+.refresh-em{
+  margin-top: 10%;
 }
 
 .form-group{
