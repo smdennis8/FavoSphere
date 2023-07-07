@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../contexts/AuthContext";
 import { deleteEmailById, findAllEmails, refreshEmailsByUserId } from '../services/EmailApi';
+import { scrapeYouTube, callScraperFromUrl } from "../services/ScraperApi";
 
 function FavoriteStaging() {
     // state variables
@@ -13,9 +14,13 @@ function FavoriteStaging() {
 
         const auth = useContext(AuthContext);
 
+    
+
     useEffect(() => {
         refreshEmailsByUserId(localStorage.getItem("appUserId"))
-                .then(data => setEmails(data));
+                .then(data => {setEmails(data);});
+        //scrapeYouTube("https://www.youtube.com/watch?v=U4xOOnLBPB8").then(data => console.log(data));
+
         }, []);
 
     const handleDeleteEmail = (emailId) => {
@@ -64,7 +69,10 @@ function FavoriteStaging() {
                                 <td>{email.url}</td>
                                 <td>
                                     <div className="mr-2">
-                                        <Link className="btn btn-primary btn-sm mr-2" to={`/add`}>
+                                        <Link 
+                                        className="btn btn-primary btn-sm mr-2" 
+                                        state={{ urlToScrape: email.url }} 
+                                        to={`/add-from-email`}>
                                             <i className="bi bi-pencil-square"></i> Edit
                                         </Link>
                                         <button className="btn btn-danger btn-sm" onClick={() => handleDeleteEmail(email.emailId)}>
