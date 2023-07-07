@@ -90,7 +90,8 @@ section, footer{
 
 .menu-items-ctn{
   display: flex;
-  margin-top: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   margin-right: 5%;
   margin-left: 5%;
   background-color: rgb(211, 233, 241);
@@ -99,7 +100,8 @@ section, footer{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 90%;
+  width: 90%;
 }
 
 .lpi{
@@ -273,18 +275,25 @@ section, footer{
   box-shadow: 2px 2px #5a5757;
 }
 
+.btli{
+  margin-left: 2%;
+}
+
 .delete{
   background-color: red;
   width: 70%;
-  
+  margin-left: 10%;
   border-radius: 1rem;
   box-shadow: 0.1rem 0.1rem 0.5rem #cbc6c6;
+}
+
+.delete:hover, .edit-staging-btn:hover{
+  box-shadow: 0.2rem 0.2rem 1rem #292828;
 }
 
 .edit-staging-btn{
   font-size: 1.5rem;
   font-family: "Google Sans",arial,sans-serif;
-  
   border-radius: 1rem;
   border: none;
   box-shadow: 0.1rem 0.1rem 0.5rem #cbc6c6;

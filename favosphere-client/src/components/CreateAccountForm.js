@@ -35,7 +35,7 @@ function CreateAccountForm() {
         event.preventDefault();
         createAppUser(user)
             .then(() => {
-                navigate("/create-account", {
+                navigate("/", {
                     state: { 
                         msgType: 'success',
                         msg: `Your FavoSphere account was created!` }
@@ -73,7 +73,7 @@ function CreateAccountForm() {
             <div className="mb-3 buttons-crt-acc">
                 <button type="submit" className="btn btn-primary button-prm acc">Submit</button>
                 <Link to="/" type="button" className="btn btn-secondary button-scnd">Cancel</Link>
-                <Link to="/" type="button" className="btn btn-secondary button-scnd">Back to Log-In Page</Link>
+                <Link to="/" type="button" className="btn btn-secondary button-scnd btli">Back to Log-In Page</Link>
             </div>
         </form>
         <Errors errors={errors} />

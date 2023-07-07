@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
-import ConfirmDeleteFavorite from "./components/ConfirmDeleteFavorite";
 import FavoriteForm from "./components/FavoriteForm";
 import EmailFavoriteForm from "./components/EmailFavoriteForm";
 import FavoriteGallery from "./components/FavoriteGallery";
@@ -104,11 +103,6 @@ function App() {
                 path="/card/:id"
                 element={auth.isLoggedIn()
                   ? <FavoriteForm />
-                  : <Navigate to="/card/:id" />} />
-              <Route
-                path="/delete/:id"
-                element={auth.isLoggedIn()
-                  ? <ConfirmDeleteFavorite />
                   : <Navigate to="/card/:id" />} />
               <Route path="/notfound" element={<NotFound />} />
               <Route path="/gallery" element={<FavoriteGallery/>}/>   {/*Add Auth Login Back*/}
