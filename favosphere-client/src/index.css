@@ -131,7 +131,7 @@ section, footer{
 
 .gallery-title{
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   padding-top: 5%;
   padding-bottom: 5%;
   margin-top: 5%;
@@ -142,6 +142,7 @@ section, footer{
   font-family: 'Bevan', cursive;
   font-family: 'Marcellus SC', serif;
   font-family: 'Permanent Marker', cursive;
+  align-items: center;
 }
 
 .leftPanel a:link { text-decoration: none; }
@@ -470,4 +471,23 @@ ul{
   color: #334;
   font-family: Arial, sans-serif;
   font-size: 1.5rem;
+}
+
+.login-logo-container-panel{
+  background-color: rgb(211, 233, 241);
+}
+
+.necessary{
+  background-color: red;
+  width:75px;
+  height: 30px;
+}
+
+.box-for-checking{
+  margin-left: 0.75%;
+}
+
+.login-logo-container-header{
+  margin-right: 10%;
+  margin-left: 10%;
 }
