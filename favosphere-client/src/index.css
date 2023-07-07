@@ -300,6 +300,11 @@ section, footer{
   box-shadow: 2px 2px #5a5757;
 }
 
+.suggest-btn{
+  background-color: yellow;
+  color: gray;
+}
+
 .buttons-crt-acc{
   margin-left: 10%;
 }

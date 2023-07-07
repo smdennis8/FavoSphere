@@ -228,7 +228,7 @@ function EmailFavoriteForm() {
                 </button>
                 }
                 {auth.isLoggedIn() && favorite.favoriteId == 0 && urlToScrape &&
-                <button className="btn btn-secondary button-scnd" onClick={() => getFavoriteSuggestions(urlToScrape)}>
+                <button className="btn btn-secondary button-scnd suggest-btn" onClick={() => getFavoriteSuggestions(urlToScrape)}>
                     Suggest
                 </button>
                 }
